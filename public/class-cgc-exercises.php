@@ -61,6 +61,8 @@ class CGC_Exercises {
 
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
+
+		require_once(CGC_EXERCISES_DIR.'/includes/class.type.php');
 	}
 
 	/**
