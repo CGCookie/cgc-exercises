@@ -11,7 +11,7 @@ class cgc_exercise_meta{
 
 		$meta_boxes[] = array(
 			'id'	=> '_exercise_setup',
-			'title' => __('Exercise Setup', 'cgc-quiz'),
+			'title' => __('Exercise Setup', 'cgc-exercises'),
 			'object_types' 	=> array('exercise'),
 			'fields' => array(
 				array(
@@ -29,22 +29,22 @@ class cgc_exercise_meta{
 
 		$meta_boxes[] = array(
 			'id'	=> '_exercise_criteria_setup',
-			'title' => __('Exercise Criteria', 'cgc-quiz'),
+			'title' => __('Exercise Criteria', 'cgc-exercises'),
 			'object_types' 	=> array('exercise'),
 			'fields' => array(
 				array(
 					'id' 			=> '_exercise_criteria',
-					'name' 			=> __('Exercise Criteria', 'cgc-quiz'),
+					'name' 			=> __('Exercise Criteria', 'cgc-exercises'),
 					'type' 			=> 'textarea',
 					'options'     => array(
-						'group_title'   => __( 'Criterea {#}', 'cgc-quiz' ), // {#} gets replaced by row number
-						'add_button'    => __( 'Add Another Criteria', 'cgc-quiz' ),
-						'remove_button' => __( 'Remove Criteria', 'cgc-quiz' ),
+						'group_title'   => __( 'Criterea {#}', 'cgc-exercises' ), // {#} gets replaced by row number
+						'add_button'    => __( 'Add Another Criteria', 'cgc-exercises' ),
+						'remove_button' => __( 'Remove Criteria', 'cgc-exercises' ),
 						'sortable'      => true
 					),
 					'repeatable'     => true,
 					'repeatable_max' => 20,
-					'desc'			=> __('List the criteria fore this exercise.', 'cgc-quiz'),
+					'desc'			=> __('List the criteria fore this exercise.', 'cgc-exercises'),
 				)
 			)
 		);
