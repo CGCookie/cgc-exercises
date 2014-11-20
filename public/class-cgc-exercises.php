@@ -63,6 +63,7 @@ class CGC_Exercises {
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
 		require_once(CGC_EXERCISES_DIR.'/includes/class.type.php');
+		require_once(CGC_EXERCISES_DIR.'/includes/class.template-loader.php');
 	}
 
 	/**
