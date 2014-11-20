@@ -23,6 +23,11 @@ class cgc_exercise_meta{
 					'id'			=> '_exercise_votes_passing',
 					'name'			=> __('How many votes are needed for this exercise to pass?', 'cgc-exercises'),
 					'type'			=> 'text'
+				),
+				array(
+					'id'			=> '_exercise_submission_type',
+					'name'			=> __('What type of submissions are accepted for this exercise?', 'cgc-exercises'),
+					'type'			=> 'text'
 				)
 			)
 		);
