@@ -40,6 +40,8 @@ class CGC_Exercises_Admin {
 		$plugin = CGC_Exercises::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
+		require_once(CGC_EXERCISES_DIR.'/admin/includes/class.meta.php');
+
 	}
 
 	/**
