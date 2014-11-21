@@ -5,16 +5,17 @@
 			<div id="main" class="main-content no-sidebar">
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post();?>
 
-					<article>
+					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-						<header>
+						<header class="cgc-edu-mast">
 
 							<?php echo the_title('<h1>','</h1>');?>
 
 							<div class="post-video">
 								VIDEO
 							</div>
-							<div class="">
+
+							<div class="cgc-edu-meta">
 								META
 							</div>
 

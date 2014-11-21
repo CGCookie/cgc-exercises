@@ -3,6 +3,17 @@
 	margin:0;
 }
 
+// mast header
+.cgc-edu-mast {
+	margin-bottom:$padding;
+}
+
+// meta
+.cgc-edu-meta {
+	background:$black;
+	padding:$padding;
+}
+
 // general layout
 .cgc-edu-tabs--exercise {
 	@include column(8);
@@ -16,6 +27,6 @@
 
 	.cgc-edu-sidebar--inner {
 		background:$black;
-		padding:10px;
+		padding:$padding;
 	}
 }
