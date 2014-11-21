@@ -1,3 +1,8 @@
+// body level
+.single-exercise .post-video {
+	margin:0;
+}
+
 // general layout
 .cgc-edu-tabs--exercise {
 	@include column(8);
@@ -7,5 +12,10 @@
 // sidebar
 .cgc-edu-sidebar--exercise {
 	@include column(4);
-	background:$black;
+	top:40px; // even with top of tab
+
+	.cgc-edu-sidebar--inner {
+		background:$black;
+		padding:10px;
+	}
 }

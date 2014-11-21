@@ -56,7 +56,9 @@
 							</div>
 
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
-								SIDEBAR
+								<div class="cgc-edu-sidebar--inner">
+									SIDEBAR
+								</div>
 							</div>
 
 						</section>
