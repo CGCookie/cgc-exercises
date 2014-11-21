@@ -64,6 +64,7 @@ class CGC_Exercises {
 
 		require_once(CGC_EXERCISES_DIR.'/includes/class.type.php');
 		require_once(CGC_EXERCISES_DIR.'/includes/class.template-loader.php');
+		require_once(CGC_EXERCISES_DIR.'/includes/helpers.php');
 
 		require_once(CGC_EXERCISES_DIR.'/public/includes/class.assets.php');
 
