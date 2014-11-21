@@ -8,6 +8,11 @@
 	margin-bottom:$padding;
 }
 
+// main layout
+.cgc-edu-main {
+	@include outerRow();
+}
+
 // meta
 .cgc-edu-meta {
 	background:$black;
@@ -24,9 +29,11 @@
 .cgc-edu-sidebar--exercise {
 	@include column(4);
 	top:40px; // even with top of tab
+	margin-bottom:$padding;
 
-	.cgc-edu-sidebar--inner {
+	.cgc-edu-sidebar--block {
 		background:$black;
 		padding:$padding;
+		margin-bottom:$padding;
 	}
 }

@@ -22,7 +22,7 @@
 						</header>
 
 
-						<section>
+						<section class="cgc-edu-main">
 
 							<!-- Tabbed -->
 							<div id="cgc-edu-tabs" class="cgc-edu-tabs--exercise">
@@ -57,8 +57,11 @@
 							</div>
 
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
-								<div class="cgc-edu-sidebar--inner">
-									SIDEBAR
+								<div class="cgc-edu-sidebar--block">
+									SIDEBAR BLOCK
+								</div>
+								<div class="cgc-edu-sidebar--block">
+									ANOTHER BLOCK
 								</div>
 							</div>
 
