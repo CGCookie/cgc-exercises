@@ -37,7 +37,7 @@
 								<div class="tab-content">
 
 									<div id="about">
-										ABOUT
+										<?php echo the_content();?>
 									</div>
 
 									<div id="discussion" class="tab-hide">
@@ -57,11 +57,23 @@
 							</div>
 
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
-								<div class="cgc-edu-sidebar--block">
+								<div class="cgc-edu-sidebar--block cgc-edu-sibebar--block__actions">
 									SIDEBAR BLOCK
 								</div>
-								<div class="cgc-edu-sidebar--block">
-									ANOTHER BLOCK
+								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__instructor">
+									
+									<img class="" src="http://placekitten.com/150/150">
+									<p>Instructor: Mclean Kendree</p>
+									<a href="#">Follow</a>
+									<p>Big bio</p>
+									<a href="#">More by this instructor</a>
+								</div>
+								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__share">
+									<ul>
+										<li><a href="#"><i class="icon icon-facebook-sign"></i>Like This</a></li>
+										<li><a href="#"><i class="icon icon-twitter-sign"></i>Tweet This</a></li>
+										<li><a href="#"><i class="icon icon-pinterest-sign"></i>Pin This</a></li>
+									</ul>
 								</div>
 							</div>
 
