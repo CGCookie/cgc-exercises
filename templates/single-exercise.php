@@ -57,11 +57,14 @@
 							</div>
 
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
-								<div class="cgc-edu-sidebar--block cgc-edu-sibebar--block__actions">
-									SIDEBAR BLOCK
+								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__actions">
+									<ul>
+										<li><a href="#"><i class="icon icon-upload"></i>Submit Exercise</a></li>
+										<li><a href="#"><i class="icon icon-upload"></i>Add to Watchlist</a></li>
+										<li><a href="#"><i class="icon icon-upload"></i>Download HD Video</a></li>
+									</ul>
 								</div>
-								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__instructor">
-									
+								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__author">
 									<img class="" src="http://placekitten.com/150/150">
 									<p>Instructor: Mclean Kendree</p>
 									<a href="#">Follow</a>

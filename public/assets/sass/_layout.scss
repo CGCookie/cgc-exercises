@@ -38,6 +38,53 @@
 	}
 }
 
+// actiom blogk
+.cgc-edu-sidebar--block__actions {
+	ul {
+		list-style:none;
+		padding:0;
+		margin:0;
+		line-height:1;
+		text-align:center;
+
+		li {
+			margin-bottom:10px;
+
+			&:last-child {
+				margin-bottom:0;
+			}
+		}
+
+		a {
+			width:75%;
+			margin:0 auto;
+			padding:14px 12px;
+			color:white;
+			background:lighten($base,10);
+			border-radius:5px;
+			display:block;
+			position:relative;
+		}
+
+		i {
+			font-size:28px;
+			margin-right:5px;
+			position:absolute;
+			left:8px;
+			top:7px;
+		}
+	}
+}
+
+// author block
+.cgc-edu-sidebar--block__author {
+	text-align:center;
+
+	img {
+		border-radius:100%;
+	}
+}
+
 // share block
 .cgc-edu-sidebar--block__share {
 	ul {
