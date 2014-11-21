@@ -1,0 +1,9 @@
+// general layout
+.cgc-edu-tabs--exercise {
+	@include column(8);
+}
+
+// sidebar
+.cgc-edu-sidebar--exercise {
+	@include column(4);
+}

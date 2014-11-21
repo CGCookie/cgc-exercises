@@ -23,7 +23,17 @@ module.exports = function(grunt) {
                     force: true
                 }
             }
-        }
+        },
+        uglify: {
+            front: {
+               	files: {
+                    'public/assets/js/cgc-exercises.js': [
+                     	'public/assets/js/tabbed.js',
+                     	'public/assets/js/methods.js'
+                    ]
+                }
+            }
+        },
     });
 
     // register task

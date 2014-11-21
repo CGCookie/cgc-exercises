@@ -3,7 +3,7 @@
 class cgc_exercises_assets {
 
 	function __construct(){
-		//add_action('wp_enqueue_scripts', array($this,'scripts'));
+		add_action('wp_enqueue_scripts', array($this,'scripts'));
 	}
 
 	function scripts(){
