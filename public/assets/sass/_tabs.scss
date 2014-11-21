@@ -5,16 +5,24 @@
 	left: -9999px;
 }
 
-// tabs
+// main container
 #cgc-edu-tabs {
-	padding: 10px;
-	margin: 0 0 20px 0;
+	margin:0;
+	padding:10px;
+	background:$black;
+	@include clearfix();
 }
 
-// tab nav
+// content area
+#cgc-edu-tabs .tab-content {
+
+}
+
+// the nav
 #cgc-edu-tabs .tab-nav {
 	overflow: hidden;
-	margin: 0 0 10px 0;
+	margin: -10px -10px 10px;
+	background:lighten($black, 4%);
 	li {
 		display:inline-block;
 		margin: 0 10px 0 0;
@@ -25,10 +33,14 @@
 
 		a {
 			display: block;
-			padding: 5px;
+			padding: 5px 10px;
 			font-size: 10px;
 			text-align: center;
 			border: 0;
+
+			&.current {
+				background:$black;
+			}
 
 			&:hover {
 
