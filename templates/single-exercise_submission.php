@@ -23,7 +23,8 @@
 									<strong>Exercise Criteria</strong>
 									<ul class="cgc-edu-block-list">
 										<li>SOmething</li>
-										<li>Someting Else</li>
+										<li>Account for relaly long text just in case things get crazy up in this mother chicken.</li>
+										<li>Another awesome thing to account for</li>
 									</ul>
 								</div>
 

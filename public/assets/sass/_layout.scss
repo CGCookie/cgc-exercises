@@ -25,3 +25,35 @@
 	z-index:-1;
 	padding:0 15px;
 }
+
+// styled block list
+.cgc-edu-block-list {
+	list-style:none;
+	margin:0;
+	padding:0;
+	counter-reset: block-counter;
+
+	li {
+		padding:5px 5px 5px 40px;
+		counter-increment: block-counter;
+		position:relative;
+		margin-bottom:5px;
+		background:lighten($black,4);
+		line-height:1.2;
+		min-height:34px;
+
+		&:before {
+			content: counter(block-counter);
+			position:absolute;
+			left:5px;
+			top:4px;
+			height:26px;
+			width:26px;
+			background:lighten($black,12);
+			color:white;
+			text-align:center;
+			line-height:1.71429em;
+			padding-top:1px;
+		}
+	}
+}
