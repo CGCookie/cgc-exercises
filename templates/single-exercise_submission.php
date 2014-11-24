@@ -5,9 +5,6 @@
 			<div id="main" class="main-content no-sidebar">
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-					// setup some vars for this template
-					$auth_id = get_the_author_meta('ID');
-
 					?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 						<!-- Image Mast -->
@@ -69,23 +66,7 @@
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__author">
 
-									<?php
-
-									$avatar = get_user_meta($auth_id, 'profile_avatar_image', true);
-
-									if ( $avatar ) {
-
-										printf('<img src="%s" alt="%s">', $avatar, the_author_meta('display_name',$auth_id) );
-
-									} else {
-
-										echo get_avatar( $auth_id, 80 );
-									}
-									?>
-									<p>Instructor: <?php echo the_author_meta('display_name',$auth_id);?></p>
-									<a href="#">Follow</a>
-									<p>Big bio</p>
-									<a href="#">More by this instructor</a>
+									<?php echo cgc_edu_author_block();?>
 								</div>
 							</div>
 						</div>

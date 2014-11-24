@@ -69,24 +69,7 @@
 									</ul>
 								</div>
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__author">
-
-									<?php
-
-									$avatar = get_user_meta($auth_id, 'profile_avatar_image', true);
-
-									if ( $avatar ) {
-
-										printf('<img src="%s" alt="%s">', $avatar, the_author_meta('display_name',$auth_id) );
-
-									} else {
-
-										echo get_avatar( $auth_id, 80 );
-									}
-									?>
-									<p>Instructor: <?php echo the_author_meta('display_name',$auth_id);?></p>
-									<a href="#">Follow</a>
-									<p>Big bio</p>
-									<a href="#">More by this instructor</a>
+									<?php echo cgc_edu_author_block();?>
 								</div>
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__share">
 									<ul>
