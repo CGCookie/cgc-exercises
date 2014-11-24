@@ -34,6 +34,7 @@
 									<div style="background-image:url('http://placekitten.com/1200/800');"></div>
 								</div>
 								<div class="cgc-edu-meta">
+									<div id="cgc-edu-exercise--vote-results">Does the above image meet the exercise criteria?</div>
 									<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data"> 
 
 										<label for="vote-yes">
@@ -46,12 +47,11 @@
 						                	<input type="radio" name="vote" value="no"/>
 						                </label>
 						                <input type="hidden" name="action" value="process_grading">
-						                 <input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
+						                <input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
 						                <input type="hidden" name="post_id" value="<?php echo get_the_ID(); ?>">
 						                <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('cgc-exercise-nonce'); ?>"/>
 								        <input id="cgc-exercise-vote" type="submit" value="Submit">
 									</form>
-									<div id="cgc-edu-exercise--vote-results"></div>
 								</div>
 							</div>
 							<div class="cgc-edu-bg-filler"></div>

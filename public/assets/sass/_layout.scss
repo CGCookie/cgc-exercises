@@ -12,6 +12,8 @@
 .cgc-edu-meta {
 	background:$black;
 	padding:$padding;
+	position:relative;
+	@include clearfix();
 }
 
 // bg filler used to provide a 100% background height without usin gjs

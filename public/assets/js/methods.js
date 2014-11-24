@@ -4,7 +4,13 @@ jQuery(document).ready(function($){
 
 	//vars
 	var ajaxurl			= cgc_exercise_meta.ajaxurl,
-		nonce 			= cgc_exercise_meta.nonce
+		nonce 			= cgc_exercise_meta.nonce;
+
+	// trigger the click when they vote
+	$('#cgc-exercise-vote-form label').click(function(e){
+		e.preventDefault();
+		$('#cgc-exercise-vote').trigger('click');
+	});
 
 	// vote click handler
   	$('#cgc-exercise-vote-form').submit(function(e) {

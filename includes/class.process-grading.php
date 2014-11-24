@@ -18,6 +18,9 @@ class cgc_exercises_process_grading {
 	*
 	*	Process the form submission
 	*
+	*	@todo - work in XP awarding
+	*	@todo - work in total grading process logic
+	*
 	*/
 	function process_grading(){
 
@@ -38,12 +41,12 @@ class cgc_exercises_process_grading {
 				$has_voted = get_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true);
 
 				if ( $has_voted ) {
+
 					echo 'You already voted yo!';
+
 				} else {
 					// user voted yes, so incremenet and set a flag for this user
 					if ( 'yes' == $vote ) {
-
-						// the vote is yes so let's save some post meta to this submission
 
 						echo 'you voted yes';
 
