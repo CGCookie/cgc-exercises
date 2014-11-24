@@ -34,7 +34,10 @@
 									<div style="background-image:url('http://placekitten.com/1200/800');"></div>
 								</div>
 								<div class="cgc-edu-meta">
-									<div id="cgc-edu-exercise--vote-results">Does the above image meet the exercise criteria?</div>
+
+									<?php $vote_message = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.get_the_ID().'_has_voted', true) ? 'Thanks for voting!' : 'Does the above image meet the exercise criteria?'; ?>
+
+									<div id="cgc-edu-exercise--vote-results"><?php echo $vote_message;?></div>
 									<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data"> 
 
 										<label for="vote-yes">

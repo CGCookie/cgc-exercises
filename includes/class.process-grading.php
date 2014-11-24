@@ -28,6 +28,8 @@ class cgc_exercises_process_grading {
 		$postid = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
 		$userid = isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
 
+		$thanks = 'Thanks for your vote! We are still awaiting more votes to calculate a pass or fail';
+
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_grading' ) {
 
 			// only run for logged in users
@@ -42,13 +44,13 @@ class cgc_exercises_process_grading {
 
 				if ( $has_voted ) {
 
-					echo 'You already voted yo!';
+					echo 'Thanks for voting!';
 
 				} else {
 					// user voted yes, so incremenet and set a flag for this user
 					if ( 'yes' == $vote ) {
 
-						echo 'you voted yes';
+						echo $thanks;
 
 						// get the old value
 						$meta = get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
@@ -62,7 +64,7 @@ class cgc_exercises_process_grading {
 					// aww shcuks, they voted no, so let's gentlybail
 					} else {
 
-						echo 'you voted no';
+						echo $thanks;
 					}
 				}
 
