@@ -87,11 +87,11 @@
 	}
 
 	// the hidden radio field
-	input[type="radio"] {
-		position:absolute;
-		left:-10000px;
-		@include opacity(0);
-	}
+	///input[type="radio"] {
+		//position:absolute;
+		//left:-10000px;
+		//@include opacity(0);
+	//}
 }
 
 // form results
