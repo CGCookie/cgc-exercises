@@ -45,7 +45,9 @@
 											No
 						                	<input type="radio" name="vote" value="no"/>
 						                </label>
-
+						                <input type="hidden" name="action" value="process_grading">
+						                <input type="hidden" name="post_id" value="<?php echo get_the_ID(); ?>">
+						                <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('cgc-exercise-nonce'); ?>"/>
 								        <input id="cgc-exercise-vote" type="submit" value="Submit">
 									</form>
 									<div id="cgc-edu-exercise--vote-results"></div>

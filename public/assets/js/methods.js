@@ -11,11 +11,7 @@ jQuery(document).ready(function($){
 
   		e.preventDefault();
 
-  		var data = {
-            action: 'process_grading',
-            nonce: nonce,
-            fields: $(this).serialize()
-        };
+  		var data = $(this).serialize();
 
 	  	$.post(ajaxurl, data, function(response) {
 	  		$('#cgc-edu-exercise--vote-results').html(response);
