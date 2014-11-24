@@ -20,4 +20,19 @@ jQuery(document).ready(function($){
 	  		$('#cgc-edu-exercise--vote-results').html(response);
 	    });
     });
+
+	// submission click handler
+  	$('#cgc-exercise-submit').click(function(e){
+
+  		e.preventDefault();
+
+  		var data = {
+            action: 'process_submission',
+            nonce: nonce
+        };
+
+	  	$.post(ajaxurl, data, function(response) {
+	  		alert(response)
+	    });
+    });
 });
