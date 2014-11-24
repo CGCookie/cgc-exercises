@@ -14,7 +14,8 @@ class cgc_exercises_assets {
 			wp_enqueue_script('cgc-exercises', CGC_EXERCISES_URL.'/public/assets/js/cgc-exercises.js', array('jquery'), CGC_EXERCISES_VERSION, true);
 
 			wp_localize_script('cgc-exercises', 'cgc_exercise_meta', array(
-				'ajaxurl' 		=> admin_url( 'admin-ajax.php' )
+				'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
+				'nonce'			=> wp_create_nonce('cgc-exercise-nonce')
 			));
 
 		endif;

@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-
 	<div class="page-content">
 		<div class="page-content-inner">
 			<div id="main" class="main-content no-sidebar">
@@ -35,7 +34,8 @@
 									<div style="background-image:url('http://placekitten.com/1200/800');"></div>
 								</div>
 								<div class="cgc-edu-meta">
-									VOTE AREA
+									<a id="cgc-exercise-vote" href="#">Vote some shit</a>
+									<div id="cgc-edu-exercise--vote-results"></div>
 								</div>
 							</div>
 							<div class="cgc-edu-bg-filler"></div>
