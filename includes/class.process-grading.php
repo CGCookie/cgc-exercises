@@ -23,7 +23,13 @@ class cgc_exercises_process_grading {
 
 		check_ajax_referer('cgc-exercise-nonce','nonce');
 
-		echo 'righrt on';
+		$value = isset( $_POST['fields'] ) ? $_POST['fields'] : null;
+
+		if ( 'vote=yes' == $value ) {
+			echo 'yes';
+		} else {
+			echo 'no';
+		}
 
 		die(); // ajax
 	}

@@ -34,8 +34,17 @@
 									<div style="background-image:url('http://placekitten.com/1200/800');"></div>
 								</div>
 								<div class="cgc-edu-meta">
-									<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data">
+									<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data"> 
 
+										<label for="vote-yes">
+											Yes
+						                	<input type="radio" name="vote" value="yes"/>
+						                </label>
+
+										<label for="vote-no">
+											No
+						                	<input type="radio" name="vote" value="no"/>
+						                </label>
 
 								        <input id="cgc-exercise-vote" type="submit" value="Submit">
 									</form>

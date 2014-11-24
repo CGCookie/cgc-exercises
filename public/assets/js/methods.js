@@ -13,7 +13,8 @@ jQuery(document).ready(function($){
 
   		var data = {
             action: 'process_grading',
-            nonce: nonce
+            nonce: nonce,
+            fields: $(this).serialize()
         };
 
 	  	$.post(ajaxurl, data, function(response) {
