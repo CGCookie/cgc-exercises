@@ -23,7 +23,7 @@ class cgc_exercises_process_grading {
 
 		check_ajax_referer('cgc-exercise-nonce','nonce');
 
-		echo 'ajax scucess';
+		echo 'righrt on';
 
 		die(); // ajax
 	}

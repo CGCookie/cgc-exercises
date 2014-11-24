@@ -7,7 +7,7 @@ jQuery(document).ready(function($){
 		nonce 			= cgc_exercise_meta.nonce
 
 	// vote click handler
-  	$('#cgc-exercise-vote').click(function(e){
+  	$('#cgc-exercise-vote-form').submit(function(e) {
 
   		e.preventDefault();
 
@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
         };
 
 	  	$.post(ajaxurl, data, function(response) {
-	  		alert(response)
+	  		alert(response);
 	    });
     });
 });
