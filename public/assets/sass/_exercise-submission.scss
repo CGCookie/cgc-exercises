@@ -1,0 +1,45 @@
+// image meta area
+.cgc-edu-exercise-submission--meta {
+	@include column(3);
+	position:relative;
+	padding:0;
+
+	div {
+		background:$black;
+		border-bottom:10px solid lighten($base,4);
+		padding:$padding;
+	}
+
+}
+
+// image wrap
+.cgc-edu-exercise-submission--image-wrap {
+	position:relative;
+	@include column(9);
+
+	.cgc-meta {
+		width:100%;
+		position:relative;
+		z-index:0;
+	}
+}
+
+// image container
+.cgc-edu-exercise-submission--image {
+	min-height:400px;
+	position:relative;
+	margin-bottom:$padding;
+
+	div {
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background-size:cover;
+		background-position:center center;
+		background-repeat:no-repeat;
+		z-index:-1;
+
+	}
+}

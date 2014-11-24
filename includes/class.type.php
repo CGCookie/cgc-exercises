@@ -69,7 +69,7 @@ class cgc_Exercises_Type {
 			'label'               		=> __( 'Exercise Submissions', 'cgc-exercises' ),
 			'description'         		=> __( 'Create exercise submissions', 'cgc-exercises' ),
 			'labels'              		=> $labels,
-			'supports'            		=> array( 'title'),
+			'supports'            		=> array( 'editor','title'),
 			'public'              		=> true,
  			'show_ui' 					=> true,
 			'query_var' 				=> true,
