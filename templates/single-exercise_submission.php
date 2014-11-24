@@ -21,6 +21,7 @@
 
 								<div class="cgc-edu-list cgc-edu-exercise-critera">
 									<strong>Exercise Criteria</strong>
+									<p>Images submitted to an exercise must meet the following examples to be given a pass rating.</p>
 									<ul class="cgc-edu-block-list">
 										<li>SOmething</li>
 										<li>Account for relaly long text just in case things get crazy up in this mother chicken.</li>
@@ -67,7 +68,7 @@
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__author">
 
-									<?php echo cgc_edu_author_block();?>
+									<?php echo cgc_edu_author_block( get_the_ID(), true );?>
 								</div>
 							</div>
 						</div>

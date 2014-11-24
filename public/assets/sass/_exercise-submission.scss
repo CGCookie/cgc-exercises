@@ -6,7 +6,7 @@
 
 	div {
 		background:$black;
-		border-bottom:10px solid lighten($base,4);
+		border-bottom:15px solid lighten($base,4);
 		padding:$padding;
 	}
 
@@ -28,7 +28,7 @@
 .cgc-edu-exercise-submission--image {
 	min-height:500px;
 	position:relative;
-	margin-bottom:$padding;
+	margin-bottom:15px;
 
 	div {
 		position:absolute;
@@ -47,6 +47,11 @@
 // critera
 .cgc-edu-list.cgc-edu-exercise-critera {
 	border-bottom:none;
+
+	p {
+		font-size:14px;
+		line-height:17px;
+	}
 
 	strong {
 		display:block;
