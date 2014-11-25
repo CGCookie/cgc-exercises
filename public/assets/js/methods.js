@@ -33,17 +33,16 @@ jQuery(document).ready(function($){
     });
 
 	// submission click handler
-  	$('#cgc-exercise-submit').click(function(e){
+  	$('#cgc-exercise-submit-form').submit(function(e){
 
   		e.preventDefault();
 
-  		var data = {
-            action: 'process_submission',
-            nonce: nonce
-        };
+  		var data = $(this).serialize();
 
 	  	$.post(ajaxurl, data, function(response) {
-	  		alert(response);
+	  		$('#cgc-edu-exercise--submission-results').html(response);
 	    });
+
+	    $(modal).reveal();
     });
 });
