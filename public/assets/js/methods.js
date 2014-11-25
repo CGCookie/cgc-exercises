@@ -8,8 +8,9 @@ jQuery(document).ready(function($){
 		modal 			= $('#cgc-grading-modal');
 
 	// trigger the click when they vote
-	$('#cgc-exercise-vote-form label').click(function(e){
-		e.preventDefault();
+	$('#cgc-exercise-vote-form label').click(function( ){
+		//e.preventDefault();
+		$(this).next('input').attr('checked', true);
 		$('#cgc-exercise-vote').trigger('click');
 	});
 
@@ -26,6 +27,10 @@ jQuery(document).ready(function($){
 	    });
 
 	    $(modal).reveal();
+    });
+
+    $('.comment-cancel').click(function(){
+    	location.reload();
     });
 
 	// submission click handler

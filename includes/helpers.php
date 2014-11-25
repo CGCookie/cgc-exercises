@@ -83,7 +83,7 @@ function cgc_edu_grading_modal(){
 
 					comment_form($comments_args, get_the_ID());
 				?>
-				<a class="button comment-cancel close-reveal-modal" href="#">No thanks</a>
+				<a class="button comment-cancel" href="#">No thanks</a>
 			</div>
 
 		</div>

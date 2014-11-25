@@ -58,15 +58,15 @@ class cgc_exercises_process_grading {
 						// and increment
 						update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $meta ) + 1 );
 
-						// set a flag for this user so they can't vote anymore
-						update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
-
 					// aww shcuks, they voted no, so let's gentlybail
 					} else {
 
 						echo $thanks;
 					}
 				}
+
+				// set a flag for this user so they can't vote anymore
+				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
 			}
 

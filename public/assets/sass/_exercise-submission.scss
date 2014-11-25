@@ -87,17 +87,20 @@
 	}
 
 	// the hidden radio field
-	///input[type="radio"] {
-		//position:absolute;
-		//left:-10000px;
-		//@include opacity(0);
-	//}
+	input[type="radio"] {
+		position:absolute;
+		left:-10000px;
+		@include opacity(0);
+	}
 }
 
 // form results
 #cgc-edu-exercise--vote-info {
-	//position:absolute;
 	text-align:right;
-	//right:120px;
 	padding:2px 0;
+
+	&.not-voted {
+		position:absolute;
+		right:92px;
+	}
 }
