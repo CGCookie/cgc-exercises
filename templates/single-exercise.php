@@ -63,7 +63,7 @@
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__actions">
 									<ul>
-										<li><a href="#"><i class="icon icon-upload"></i>Submit Exercise</a></li>
+										<li><a href="#" data-reveal-id="cgc-exercise-submission-modal"><i class="icon icon-upload"></i>Submit Exercise</a></li>
 										<li><a href="#"><i class="icon icon-upload"></i>Add to Watchlist</a></li>
 										<li><a href="#"><i class="icon icon-upload"></i>Download HD Video</a></li>
 									</ul>
@@ -88,5 +88,7 @@
 			</div>
 		</div>
 	</div>
+
+	<?php if ( function_exists('cgc_edu_exercise_submission_modal') ) echo cgc_edu_exercise_submission_modal() ;?>
 
 <?php get_footer();

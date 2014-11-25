@@ -103,4 +103,17 @@
 		position:absolute;
 		right:92px;
 	}
+
+	.passed,
+	.failed {
+		margin-left:5px;
+		padding:10px 18px;
+		margin-right:-3px;
+	}
+	.passed {
+		background:#5cb85c;
+	}
+	.failed {
+		background:#d9534f;
+	}
 }

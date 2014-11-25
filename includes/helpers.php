@@ -94,6 +94,38 @@ function cgc_edu_grading_modal(){
 
 /**
 *
+* Modal displayed after grading
+*
+*
+*/
+function cgc_edu_exercise_submission_modal(){
+
+	ob_start();
+
+	?><div id="cgc-exercise-submission-modal" class="reveal-modal cgc-universal-modal">
+		<div class="cgc-universal-modal--wrap">
+
+			<h2 class="cgc-universal-modal--header">Submit your exercise</h2>
+			<div class="cgc-universal-modal--body">
+				<p>CG Cookie is excited to work along side you in offering education to your class or team. Fill out the form below and a friendly cookie crew member will reach out and discuss how we can help.</p>
+				<form>
+					<label for="url">URL</label>
+					<input type="text" id="url" value="" placeholder="http://">
+
+					<label for="description">URL</label>
+					<input type="text" id="description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques.">
+					<input type="submit" value="Submit">
+					<a class="button comment-cancel" href="#">Nah, nevermind</a>
+				</form>
+			</div>
+
+		</div>
+	</div><?php
+
+	return ob_get_clean();
+}
+/**
+*
 *	Calculates the number of passes on any given exercise submission and determins a pass or fail
 *
 *	@param $postid int id of the excersie submission to calcuate votes for
@@ -112,11 +144,11 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 
 		if ( $total_votes >= $passing ) {
 
-			$return = 'passed';
+			$return = 'This piece has passed the community vote! <span class="passed">Passed!</span>';
 
 		} else {
 
-			$return = 'failed';
+			$return = 'This piece did not pass the community vote. <span class="failed">Did not pass</span>';
 		}
 
 	} else {
