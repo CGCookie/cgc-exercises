@@ -22,6 +22,7 @@ jQuery(document).ready(function($){
 
 	  	$.post(ajaxurl, data, function(response) {
 	  		$('#cgc-edu-exercise--vote-results').html(response);
+	  		console.log(response);
 	    });
 
 	    $(modal).reveal();

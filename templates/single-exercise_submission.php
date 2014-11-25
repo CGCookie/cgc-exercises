@@ -35,26 +35,32 @@
 								</div>
 								<div class="cgc-edu-meta">
 
-									<?php $vote_message = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.get_the_ID().'_has_voted', true) ? 'Thanks for voting!' : 'Does the above image meet the exercise criteria?'; ?>
+									<?php 
+
+									$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.get_the_ID().'_has_voted', true);
+									$vote_message = $has_voted ? 'Thanks for voting!' : 'Does the above image meet the exercise criteria?'; ?>
 
 									<div id="cgc-edu-exercise--vote-info"><?php echo $vote_message;?></div>
-									<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data"> 
 
-										<label for="vote-yes">
-											Yes
-						                	<input type="radio" name="vote" value="yes"/>
-						                </label>
+									<?php if ( !$has_voted ): ?>
+										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data"> 
 
-										<label for="vote-no">
-											No
-						                	<input type="radio" name="vote" value="no"/>
-						                </label>
-						                <input type="hidden" name="action" value="process_grading">
-						                <input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
-						                <input type="hidden" name="post_id" value="<?php echo get_the_ID(); ?>">
-						                <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('cgc-exercise-nonce'); ?>"/>
-								        <input id="cgc-exercise-vote" type="submit" value="Submit">
-									</form>
+											<label for="vote-yes">
+												Yes
+							                	<input id="vote-yes" type="radio" name="vote" value="yes"/>
+							                </label>
+
+											<label for="vote-no">
+												No
+							                	<input id="vote-no" type="radio" name="vote" value="no"/>
+							                </label>
+							                <input type="hidden" name="action" value="process_grading">
+							                <input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
+							                <input type="hidden" name="post_id" value="<?php echo get_the_ID(); ?>">
+							                <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('cgc-exercise-nonce'); ?>"/>
+									        <input id="cgc-exercise-vote" type="submit" value="Submit">
+										</form>
+									<?php endif; ?>
 								</div>
 							</div>
 							<div class="cgc-edu-bg-filler"></div>
