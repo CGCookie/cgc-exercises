@@ -71,6 +71,8 @@ class CGC_Exercises {
 		require_once(CGC_EXERCISES_DIR.'/includes/class.process-submission.php');
 		require_once(CGC_EXERCISES_DIR.'/includes/class.process-grading.php');
 
+		add_filter( 'comments_template', array($this,'exercise_submission_comment_template' ));
+
 	}
 
 	/**
@@ -236,6 +238,22 @@ class CGC_Exercises {
 		// @TODO: Define deactivation functionality here
 	}
 
+	/**
+	*
+	*	Load custom comments template for exercise submission post type
+	*
+	*/
+	function exercise_submission_comment_template( $comment_template ) {
+
+	    global $post;
+
+	    if ( !( is_singular() && ( have_comments() || 'open' == $post->comment_status ) ) ) {
+	        return;
+	    }
+	    if ( 'exercise_submission' == $post->post_type ) {
+	        return CGC_EXERCISES_DIR.'/templates/exercise-comments.php';
+	    }
+	}
 }
 
 

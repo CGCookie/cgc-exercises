@@ -72,12 +72,24 @@ function cgc_edu_grading_modal(){
 				<p>Our robots are calculating your grade into the collective. It is important you let the artist know why you did or did not pass their piece.</p>
 				<p>The feedback will show publically underneath the piece in the discussion tab.</p>
 				<p>Feedback or reasoning for your grade</p>
-				<?php echo comment_form();?>
+				<?php 
+					$comments_args = array(
+					        // change the title of send button 
+					        'label_submit'=>'Send',
+					        // change the title of the reply section
+					        'title_reply'=>'',
+					        // remove "Text or HTML to be displayed after the set of comment fields"
+					        'comment_notes_after' => '',
+					        // redefine your own textarea (the comment body)
+					        'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><br /><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
+					);
+
+					comment_form($comments_args, get_the_ID());
+				?>
 			</div>
 
 			<div class="cgc-universal-modal--bottom">
 
-				<a class="button" href="#">Submit</a>
 				<a class="button" href="#">No thanks</a>
 
 			</div>

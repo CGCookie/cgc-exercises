@@ -71,12 +71,14 @@
 
 								<div class="tab-content">
 
-									<div id="about">
+									<div id="about" class="tab-display">
 										<?php echo the_content();?>
 									</div>
 
-									<div id="discussion" class="tab-hide">
-										DISCUSSION
+									<div id="discussion" class="tab-hide tab-display">
+										<?php if ( comments_open() || get_comments_number() ) {
+											comments_template();
+										}?>
 									</div>
 
 								</div>

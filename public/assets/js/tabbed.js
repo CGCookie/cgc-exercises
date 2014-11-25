@@ -92,7 +92,7 @@
 								.removeClass("current")
 								.end()
 								.next(".tab-content")
-								.find("div")
+								.find(".tab-display")
 								.hide();
 							tab.addClass("current");
 							$("#" + queryString[base.options.param]).show();

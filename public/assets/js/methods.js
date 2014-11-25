@@ -11,7 +11,6 @@ jQuery(document).ready(function($){
 	$('#cgc-exercise-vote-form label').click(function(e){
 		e.preventDefault();
 		$('#cgc-exercise-vote').trigger('click');
-		$(modal).reveal();
 	});
 
 	// vote click handler
@@ -24,6 +23,8 @@ jQuery(document).ready(function($){
 	  	$.post(ajaxurl, data, function(response) {
 	  		$('#cgc-edu-exercise--vote-results').html(response);
 	    });
+
+	    $(modal).reveal();
     });
 
 	// submission click handler
