@@ -4,12 +4,14 @@ jQuery(document).ready(function($){
 
 	//vars
 	var ajaxurl			= cgc_exercise_meta.ajaxurl,
-		nonce 			= cgc_exercise_meta.nonce;
+		nonce 			= cgc_exercise_meta.nonce,
+		modal 			= $('#cgc-grading-modal');
 
 	// trigger the click when they vote
 	$('#cgc-exercise-vote-form label').click(function(e){
 		e.preventDefault();
 		$('#cgc-exercise-vote').trigger('click');
+		$(modal).reveal();
 	});
 
 	// vote click handler

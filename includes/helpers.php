@@ -53,3 +53,36 @@ function cgc_edu_author_block( $postid = 0, $submission = false ) {
 
 	return ob_get_clean();
 }
+
+/**
+*
+* Modal displayed after grading
+*
+*
+*/
+function cgc_edu_grading_modal(){
+
+	ob_start();
+
+	?><div id="cgc-grading-modal" class="reveal-modal cgc-universal-modal">
+		<div class="cgc-universal-modal--wrap">
+
+			<h2 class="cgc-universal-modal--header">Thanks for Grading!</h2>
+			<div class="cgc-universal-modal--body">
+				<p>Our robots are calculating your grade into the collective. It is important you let the artist know why you did or did not pass their piece.</p>
+				<p>The feedback will show publically underneath the piece in the discussion tab.</p>
+				<p>Feedback or reasoning for your grade</p>
+				<?php echo comment_form();?>
+			</div>
+
+			<div class="cgc-universal-modal--bottom">
+
+				<a class="button" href="#">Submit</a>
+				<a class="button" href="#">No thanks</a>
+
+			</div>
+		</div>
+	</div><?php
+
+	return ob_get_clean();
+}
