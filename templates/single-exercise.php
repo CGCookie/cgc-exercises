@@ -40,19 +40,19 @@
 
 								<div class="tab-content">
 
-									<div id="about">
+									<div id="about" class="tab-display">
 										<?php echo the_content();?>
 									</div>
 
-									<div id="discussion" class="tab-hide">
+									<div id="discussion" class="tab-hide tab-display">
 										DISCUSSION
 									</div>
 
-									<div id="files" class="tab-hide">
+									<div id="files" class="tab-hide tab-display">
 										EXERCISE FILES
 									</div>
 
-									<div id="submissions" class="tab-hide">
+									<div id="submissions" class="tab-hide tab-display">
 										STUDENT SUBMISSIONS
 									</div>
 
