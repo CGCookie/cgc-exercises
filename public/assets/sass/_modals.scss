@@ -3,6 +3,11 @@
 	// modal text
 	p {
 		text-align:left;
+		margin-bottom:10px;
+
+		&:nth-child(3) {
+			font-weight:bold;
+		}
 	}
 
 	// form shell
@@ -15,19 +20,20 @@
 		width:48%;
 		float:left;
 		text-align:right;
+		margin-bottom:0;
 	}
 
 	// cancel button
 	.comment-cancel {
 		position:absolute;
-		bottom:13px;
+		bottom:14px;
 		background:#d7d7d7;
 		top: auto;
 		right: auto;
 		text-shadow: none;
 		color: #333;
 		font-size: inherit;
-		line-height: 1.1;
+		line-height: 1;
 		&:hover {
 			background:darken(#d7d7d7,2);
 		}
