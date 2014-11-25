@@ -38,10 +38,9 @@
 									<?php 
 
 									$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.get_the_ID().'_has_voted', true);
-									$vote_message = $has_voted ? 'Thanks for voting!' : 'Does the above image meet the exercise criteria?';
 									$vote_class   = $has_voted ? 'has-voted' : 'not-voted';?>
 
-									<div id="cgc-edu-exercise--vote-info" class="<?php echo $vote_class;?>"><?php echo $vote_message;?></div>
+									<div id="cgc-edu-exercise--vote-info" class="<?php echo $vote_class;?>"><?php echo cgc_edu_exercise_grade();?></div>
 
 									<?php if ( !$has_voted ): ?>
 										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data"> 

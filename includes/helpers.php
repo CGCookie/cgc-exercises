@@ -91,3 +91,47 @@ function cgc_edu_grading_modal(){
 
 	return ob_get_clean();
 }
+
+/**
+*
+*	Calculates the number of passes on any given exercise submission and determins a pass or fail
+*
+*	@param $postid int id of the excersie submission to calcuate votes for
+*	@param $passing int number required to pass or fail a submission
+*/
+function cgc_edu_exercise_grade( $postid = 0 ) {
+
+	$votes_allowed 	= get_post_meta( $postid, '_cgc_edu_exercise_votes_allowed', true);
+	$total_votes 	= get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+	$passing     	= get_post_meta( $postid, '_cgc_edu_exercise_passing', true );
+	$thanks 		= 'Thanks for your vote! We are still awaiting more votes to calculate a pass or fail';
+
+	if ( $total_votes >= $votes_allowed ) {
+
+		$return = $thanks;
+
+		if ( $total_votes >= $passing ) {
+
+			$return = 'passed';
+
+		} else {
+
+			$return = 'failed';
+		}
+
+	} else {
+
+		$return = 'Does the above image meet the exercise criteria?';
+	
+	}
+
+	return $return;
+}
+
+
+
+
+
+
+
+
