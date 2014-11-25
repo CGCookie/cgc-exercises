@@ -1,0 +1,45 @@
+#cgc-grading-modal {
+
+	// modal text
+	p {
+		text-align:left;
+	}
+
+	// form shell
+	#commentform {
+		@include clearfix();
+	}
+
+	// submit button
+	.form-submit {
+		width:48%;
+		float:left;
+		text-align:right;
+	}
+
+	// cancel button
+	.comment-cancel {
+		position:absolute;
+		bottom:13px;
+		background:#d7d7d7;
+		top: auto;
+		right: auto;
+		text-shadow: none;
+		color: #333;
+		font-size: inherit;
+		line-height: 1.1;
+		&:hover {
+			background:darken(#d7d7d7,2);
+		}
+		&:active {
+			background:#d7d7d7;
+		}
+	}
+
+	// comment area
+	#comment {
+		min-height:150px;
+	}
+
+	// close button overrides
+}
