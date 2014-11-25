@@ -122,7 +122,7 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 	} else {
 
 		$return = 'Does the above image meet the exercise criteria?';
-	
+
 	}
 
 	return $return;

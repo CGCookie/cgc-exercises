@@ -24,14 +24,14 @@ class cgc_exercises_process_grading {
 	*/
 	function process_grading(){
 
-		$vote = isset( $_POST['vote'] ) ? $_POST['vote'] : null;
-		$postid = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
-		$userid = isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
+		$vote 			= isset( $_POST['vote'] ) ? $_POST['vote'] : null;
+		$postid 		= isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
+		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
 
 		// get number of passes
-		$votes_allowed = get_post_meta( $postid, '_cgc_edu_exercise_votes_allowed', true);
-		$total_votes = get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
-		$passing     = get_post_meta( $postid, '_cgc_edu_exercise_passing', true );
+		$votes_allowed 	= get_post_meta( $postid, '_cgc_edu_exercise_votes_allowed', true);
+		$total_votes 	= get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+		$passing     	= get_post_meta( $postid, '_cgc_edu_exercise_passing', true );
 
 		$thanks = 'Thanks for your vote! We are still awaiting more votes to calculate a pass or fail';
 
@@ -74,14 +74,18 @@ class cgc_exercises_process_grading {
 				// set a flag for this user so they can't vote anymore
 				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
-				// if the total votes pass the threshold of allowed votes then proceed
+				// total votes pass the threshold of allowed votes
 				if ( $total_votes >= $votes_allowed ) {
-					// ok so we've got enough votes to make something happen
 
+					// we have enough votes but waiting to reach the passing threshold
 					echo $thanks;
 
-					// passes total votes required and number to pass threshold proceed to storing XP and sending mail
+					// passes total votes required and passing threshold
 					if ( $total_votes >= $passing ) {
+
+						// award xp
+
+						// send mail
 
 					}
 				}
