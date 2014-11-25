@@ -21,7 +21,11 @@ class cgc_exercises_process_submission {
 	*/
 	function process_submission(){
 
-		check_ajax_referer('cgc-exercise-submission-nonce','nonce');
+		$postid 		= isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
+		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
+		$title 			= isset( $_POST['exercise-title'] ) ? $_POST['exercise-title'] : null;
+		$desc 			= isset( $_POST['exercise-description'] ) ? $_POST['exercise-description'] : null;
+
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_submission' ) {
 
@@ -32,7 +36,17 @@ class cgc_exercises_process_submission {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'cgc-exercise-submission-nonce' ) ) {
 
-				echo 'boom shakalaka';
+				// bail if we dont have rquired fields
+				if ( empty( $title ) || empty( $desc ) ) {
+
+					echo 'Title and description are required';
+
+				} else {
+
+					echo 'Thanks for your submission!';
+
+				}
+
 			}
 
 		}

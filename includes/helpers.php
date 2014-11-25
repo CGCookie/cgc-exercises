@@ -110,11 +110,15 @@ function cgc_edu_exercise_submission_modal(){
 				<p>CG Cookie is excited to work along side you in offering education to your class or team. Fill out the form below and a friendly cookie crew member will reach out and discuss how we can help.</p>
 				<div id="cgc-edu-exercise--submission-results"></div>
 				<form id="cgc-exercise-submit-form" method="post" enctype="multipart/form-data">
-					<label for="url">URL</label>
-					<input type="text" id="url" value="" placeholder="http://">
 
-					<label for="description">URL</label>
-					<input type="text" id="description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques.">
+					<label for="exercise-title">Title</label>
+					<input type="text" name="exercise-title" value="" placeholder="My Awesome Submission">
+
+					<label for="exercise-url">URL</label>
+					<input type="text" name="exercise-url" value="" placeholder="http://">
+
+					<label for="exercise-description">Description</label>
+					<textarea form="cgc-exercise-submit-form" name="exercise-description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques."></textarea>
 
 					<input type="hidden" name="action" value="process_submission">
 					<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">

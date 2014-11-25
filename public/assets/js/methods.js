@@ -42,7 +42,5 @@ jQuery(document).ready(function($){
 	  	$.post(ajaxurl, data, function(response) {
 	  		$('#cgc-edu-exercise--submission-results').html(response);
 	    });
-
-	    $(modal).reveal();
     });
 });
