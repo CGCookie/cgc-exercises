@@ -43,7 +43,21 @@ class cgc_exercises_process_submission {
 
 				} else {
 
-					echo 'Thanks for your submission!';
+					// create an exercise submission
+					$post_args = array(
+					  'post_title'    => $title,
+					  'post_content'  => $desc,
+					  'post_status'   => 'publish',
+					  'post_type'	  => 'exercise_submission',
+					  'post_author'   => $userid
+					);
+					$submission_id = wp_insert_post( $post_args );
+
+					// create a connection for this exercise linked to the exercise submission
+					update_post_meta( $postid, '_cgc_exercise_submission_linked_to', $submission_id );
+
+					// success and stuffs
+					echo 'Thanks for your submission we have you with postid-'.$submission_id.' ';
 
 				}
 
