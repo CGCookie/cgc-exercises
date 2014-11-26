@@ -30,8 +30,10 @@ class cgc_exercises_process_grading {
 
 		// get number of passes
 		$votes_allowed 	= get_post_meta( $postid, '_cgc_edu_exercise_votes_allowed', true);
-		$total_votes 	= get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
-		$passing     	= get_post_meta( $postid, '_cgc_edu_exercise_passing', true );
+		$total_votes 	= cgc_edu_exercise_count_votes( $postid );
+
+		$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
+		$passing     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
 		$thanks = 'Thanks for your vote! We are still awaiting more votes to calculate a pass or fail';
 
@@ -51,43 +53,32 @@ class cgc_exercises_process_grading {
 
 					echo 'Thanks for voting!';
 
-				} else {
+				} elseif ( 'yes' == $vote ) { // user voted yes, so incremenet and set a flag for this user
 
-					// the user hasn't voted at this point so let's continue
+					echo $thanks;
 
-					if ( 'yes' == $vote ) { // user voted yes, so incremenet and set a flag for this user
+					// get the old value
+					$meta = get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
 
-						echo $thanks;
+					// and increment
+					update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $meta ) + 1 );
 
-						// get the old value
-						$meta = get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+				} else { // aww shcuks, they voted no, so let's gentlybail
 
-						// and increment
-						update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $meta ) + 1 );
+					echo $thanks;
 
-					} else { // aww shcuks, they voted no, so let's gentlybail
-
-						echo $thanks;
-					}
 				}
 
 				// set a flag for this user so they can't vote anymore
 				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
 				// total votes pass the threshold of allowed votes
-				if ( $total_votes >= $votes_allowed ) {
+				if ( $total_votes >= $passing ) {
 
-					// we have enough votes but waiting to reach the passing threshold
-					echo $thanks;
+					// award xp
 
-					// passes total votes required and passing threshold
-					if ( $total_votes >= $passing ) {
+					// send mail
 
-						// award xp
-
-						// send mail
-
-					}
 				}
 
 			}

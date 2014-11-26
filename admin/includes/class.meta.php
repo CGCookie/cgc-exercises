@@ -15,17 +15,17 @@ class cgc_exercise_meta{
 			'object_types' 	=> array('exercise'),
 			'fields' => array(
 				array(
-					'id'			=> '_exercise_xp_worth',
+					'id'			=> '_cgc_edu_exercise_xp_worth',
 					'name'			=> __('How much XP is this exercise worth?', 'cgc-exercises'),
 					'type'			=> 'text'
 				),
 				array(
-					'id'			=> '_exercise_votes_passing',
+					'id'			=> '_cgc_edu_exercise_passing',
 					'name'			=> __('How many votes are needed for this exercise to pass?', 'cgc-exercises'),
 					'type'			=> 'text'
 				),
 				array(
-					'id'			=> '_exercise_submission_type',
+					'id'			=> '_cgc_edu_exercise_type',
 					'name'			=> __('What type of submissions are accepted for this exercise?', 'cgc-exercises'),
 					'type'			=> 'text'
 				)
@@ -38,7 +38,7 @@ class cgc_exercise_meta{
 			'object_types' 	=> array('exercise'),
 			'fields' => array(
 				array(
-					'id' 			=> '_exercise_criteria',
+					'id' 			=> '_cgc_edu_exercise_criteria',
 					'name' 			=> __('Exercise Criteria', 'cgc-exercises'),
 					'type' 			=> 'textarea',
 					'options'     => array(

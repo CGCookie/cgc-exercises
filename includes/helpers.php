@@ -72,7 +72,7 @@ function cgc_edu_grading_modal(){
 				<p>Our robots are calculating your grade into the collective. It is important you let the artist know why you did or did not pass their piece.</p>
 				<p>The feedback will show publically underneath the piece in the discussion tab.</p>
 				<p>Feedback or reasoning for your grade</p>
-				<?php 
+				<?php
 					$comments_args = array(
 					   	'label_submit'			=>'Send',
 					    'title_reply'			=>'',
@@ -146,33 +146,72 @@ function cgc_edu_exercise_submission_modal(){
 */
 function cgc_edu_exercise_grade( $postid = 0 ) {
 
-	$votes_allowed 	= get_post_meta( $postid, '_cgc_edu_exercise_votes_allowed', true);
-	$total_votes 	= get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
-	$passing     	= get_post_meta( $postid, '_cgc_edu_exercise_passing', true );
+	if ( empty( $postid ) )
+		$postid = get_the_ID();
+
+	// get total votes
+	$total_votes 	= cgc_edu_exercise_count_votes( $postid );
+
+	// get votes required to psas
+	$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
+	$passing     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
+
+	// has this user voted
+	$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.$postid.'_has_voted', true);
+
 	$thanks 		= 'Thanks for your vote! We are still awaiting more votes to calculate a pass or fail';
 
-	if ( $total_votes >= $votes_allowed ) {
+	if ( $total_votes < $passing ) { // total votes haven't reached # required to pass
 
-		$return = $thanks;
+		$has_voted ? $return = 'Thanks for voting!' : $return = 'Does the above image meet the exercise criteria?';
 
-		if ( $total_votes >= $passing ) {
+	} elseif ( $total_votes >= $passing ) { // ok we passed
 
-			$return = 'This piece has passed the community vote! <span class="passed">Passed!</span>';
-
-		} else {
-
-			$return = 'This piece did not pass the community vote. <span class="failed">Did not pass</span>';
-		}
+		$return = 'This piece has passed the community vote! <span class="passed">Passed!</span>';
 
 	} else {
 
-		$return = 'Does the above image meet the exercise criteria?';
+		$return = 'This piece did not pass the community vote. <span class="failed">Did not pass</span>';
 
 	}
 
 	return $return;
 }
 
+/**
+*
+*
+*	Count the number of votes for an exercise
+*	@param $postid int id of exercise to check for votes on
+*	@return the number of votes for the specific submission
+*
+*/
+function cgc_edu_exercise_count_votes( $postid = 0 ) {
+
+	if ( empty( $postid ) )
+		$postid = get_the_ID();
+
+	$votes = get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+
+	return !empty( $votes ) ? $votes : '0';
+}
+
+/**
+*
+*	Return the id of the connected exercise
+*
+*	@param $postid int id of the submission
+*	@return the id of the connected exercise from the exercise submission
+*/
+function cgc_edu_exercise_get_connected( $postid = 0 ) {
+
+	if ( empty( $postid ) )
+		$postid = get_the_ID();
+
+	$connected = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true );
+
+	return !empty( $connected ) ? $connected : false;
+}
 
 
 
