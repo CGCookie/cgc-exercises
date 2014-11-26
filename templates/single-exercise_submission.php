@@ -4,6 +4,9 @@
 			<div id="main" class="main-content no-sidebar">
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 
+						$connected      = get_post_meta( get_the_ID(), '_cgc_exercise_submission_linked_to', true);
+						$criteria     	= get_post_meta( $connected, '_cgc_edu_exercise_criteria', true );
+
 					?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 						<!-- Image Mast -->
@@ -22,9 +25,15 @@
 									<strong>Exercise Criteria</strong>
 									<p>Images submitted to an exercise must meet the following examples to be given a pass rating.</p>
 									<ul class="cgc-edu-block-list">
-										<li>SOmething</li>
-										<li>Account for relaly long text just in case things get crazy up in this mother chicken.</li>
-										<li>Another awesome thing to account for</li>
+										<?php if ( !empty( $criteria ) ):
+
+											foreach( (array) $criteria as $key => $data ):
+
+												echo '<li>'.esc_html($data).'</li>';
+
+											endforeach;
+
+										endif; ?>
 									</ul>
 								</div>
 

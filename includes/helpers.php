@@ -217,5 +217,3 @@ function cgc_edu_exercise_get_connected( $postid = 0 ) {
 
 
 
-
-
