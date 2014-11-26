@@ -107,7 +107,7 @@ function cgc_edu_exercise_submission_modal(){
 
 			<h2 class="cgc-universal-modal--header">Submit your exercise</h2>
 			<div class="cgc-universal-modal--body">
-				<p>CG Cookie is excited to work along side you in offering education to your class or team. Fill out the form below and a friendly cookie crew member will reach out and discuss how we can help.</p>
+				<p class="cgc-universal-modal--intro">CG Cookie is excited to work along side you in offering education to your class or team. Fill out the form below and a friendly cookie crew member will reach out and discuss how we can help.</p>
 				<div id="cgc-edu-exercise--submission-results"></div>
 				<form id="cgc-exercise-submit-form" method="post" enctype="multipart/form-data">
 

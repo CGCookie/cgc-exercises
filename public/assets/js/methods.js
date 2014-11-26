@@ -6,6 +6,7 @@ jQuery(document).ready(function($){
 	var ajaxurl			= cgc_exercise_meta.ajaxurl,
 		nonce 			= cgc_exercise_meta.nonce,
 		modal 			= $('#cgc-grading-modal'),
+		exercise_modal  = $('#cgc-exercise-submission-modal'),
 		results         = $('#cgc-edu-exercise--submission-results');
 
 	// trigger the click when they vote
@@ -44,7 +45,11 @@ jQuery(document).ready(function($){
 	  		$(results).hide();
 	  		$(results).html(response);
 	  		$(results).fadeIn();
-	  		$('#cgc-exercise-submit-form').fadeOut();
+
+	  		$(exercise_modal).find('h2').text('Congrats!');
+	  		$(exercise_modal).find('.cgc-universal-modal--intro').text('Congrats on submitting your work to be graded by the community. That is huge first step in becoming better. Take a moment to share out your work or grade others in the exercise.')
+	  		$(exercise_modal).find('form').fadeOut()
+	  		$(exercise_modal).find(results).after('<a href="">Share</a>');
 	    });
     });
 });

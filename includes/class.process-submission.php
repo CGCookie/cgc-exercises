@@ -43,6 +43,7 @@ class cgc_exercises_process_submission {
 
 				} else {
 
+					/*
 					// create an exercise submission
 					$post_args = array(
 					  'post_title'    => $title,
@@ -55,7 +56,7 @@ class cgc_exercises_process_submission {
 
 					// create a connection for this exercise linked to the exercise submission
 					update_post_meta( $postid, '_cgc_exercise_submission_linked_to', $submission_id );
-
+	*/
 					// success and stuffs
 					echo '<div class="success">Success! You can view your submission <a href="'.$submission_id.'">here</a></div>';
 
