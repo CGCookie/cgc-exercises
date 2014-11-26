@@ -5,7 +5,8 @@ jQuery(document).ready(function($){
 	//vars
 	var ajaxurl			= cgc_exercise_meta.ajaxurl,
 		nonce 			= cgc_exercise_meta.nonce,
-		modal 			= $('#cgc-grading-modal');
+		modal 			= $('#cgc-grading-modal'),
+		results         = $('#cgc-edu-exercise--submission-results');
 
 	// trigger the click when they vote
 	$('#cgc-exercise-vote-form label').click(function( ){
@@ -40,7 +41,10 @@ jQuery(document).ready(function($){
   		var data = $(this).serialize();
 
 	  	$.post(ajaxurl, data, function(response) {
-	  		$('#cgc-edu-exercise--submission-results').html(response);
+	  		$(results).hide();
+	  		$(results).html(response);
+	  		$(results).fadeIn();
+	  		$('#cgc-exercise-submit-form').fadeOut();
 	    });
     });
 });

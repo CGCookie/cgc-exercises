@@ -39,7 +39,7 @@ class cgc_exercises_process_submission {
 				// bail if we dont have rquired fields
 				if ( empty( $title ) || empty( $desc ) ) {
 
-					echo 'Title and description are required';
+					echo '<div class="error">Whoopsy! Looks like you forgot the Title and/or description.</div>';
 
 				} else {
 
@@ -57,7 +57,7 @@ class cgc_exercises_process_submission {
 					update_post_meta( $postid, '_cgc_exercise_submission_linked_to', $submission_id );
 
 					// success and stuffs
-					echo 'Thanks for your submission we have you with postid-'.$submission_id.' ';
+					echo '<div class="success">Success! You can view your submission <a href="'.$submission_id.'">here</a></div>';
 
 				}
 
