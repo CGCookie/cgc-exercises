@@ -34,7 +34,7 @@ class cgc_Exercises_Type {
 			'label'               		=> __( 'Exercises', 'cgc-exercises' ),
 			'description'         		=> __( 'Create exercises', 'cgc-exercises' ),
 			'labels'              		=> $labels,
-			'supports'            		=> array( 'editor','title', 'comments'),
+			'supports'            		=> array( 'editor','title', 'comments','thumbnail'),
 			'public'              		=> true,
  			'show_ui' 					=> true,
 			'query_var' 				=> true,

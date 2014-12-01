@@ -15,12 +15,10 @@
 
 							<?php echo the_title('<h1>','</h1>');?>
 
-							<div class="post-video">
-								VIDEO
-							</div>
+							<?php get_template_part( 'content', 'post-header' ); ?>
 
 							<div class="cgc-edu-meta">
-								META
+								<?php cgc_connected_course(true,'exercises_to_courses');?>
 							</div>
 
 						</header>
@@ -51,7 +49,9 @@
 									</div>
 
 									<div id="files" class="tab-hide tab-display">
-										EXERCISE FILES
+										<ul class="cgc-edu-downloadables">
+											<?php get_template_part( 'content', 'resource-files' ); ?>
+										</ul>
 									</div>
 
 									<div id="submissions" class="tab-hide tab-display">

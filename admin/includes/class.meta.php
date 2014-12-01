@@ -13,21 +13,46 @@ class cgc_exercise_meta{
 			'id'	=> '_exercise_setup',
 			'title' => __('Exercise Setup', 'cgc-exercises'),
 			'object_types' 	=> array('exercise'),
+			'context'		=> 'side',
+			'priority'		=> 'low',
 			'fields' => array(
 				array(
 					'id'			=> '_cgc_edu_exercise_xp_worth',
 					'name'			=> __('How much XP is this exercise worth?', 'cgc-exercises'),
-					'type'			=> 'text'
+					'type'			=> 'text_small'
 				),
 				array(
 					'id'			=> '_cgc_edu_exercise_passing',
 					'name'			=> __('How many votes are needed for this exercise to pass?', 'cgc-exercises'),
-					'type'			=> 'text'
+					'type'			=> 'text_small'
 				),
 				array(
 					'id'			=> '_cgc_edu_exercise_type',
-					'name'			=> __('What type of submissions are accepted for this exercise?', 'cgc-exercises'),
-					'type'			=> 'text'
+					'name'			=> __('Which submission type is accepted for this exercise?', 'cgc-exercises'),
+					'type'			=> 'select',
+					'default'		=> 'image',
+					'options'		=> array(
+						'image'		=> __('Image','cgc-exercises'),
+						'video'		=> __('Video','cgc-exercises'),
+						'sketchfab'	=> __('Sketchfab','cgc-exercises'),
+						'unity'		=> __('Unity','cgc-exercises')
+					)
+				)
+			)
+		);
+
+		$meta_boxes[] = array(
+			'id'	=> '_exercise_video',
+			'title' => __('Exercise Video (optional)', 'cgc-exercises'),
+			'object_types' 	=> array('exercise'),
+			'context'		=> 'side',
+			'priority'		=> 'low',
+			'fields' => array(
+				array(
+					'id'			=> '_cgc_edu_exercise_video',
+					'name'			=> '',
+					'desc'			=> 'Enter the Wistia Video ID for this exercise if applicable',
+					'type'			=> 'text_small'
 				)
 			)
 		);
@@ -40,7 +65,7 @@ class cgc_exercise_meta{
 				array(
 					'id' 			=> '_cgc_edu_exercise_criteria',
 					'name' 			=> __('Exercise Criteria', 'cgc-exercises'),
-					'type' 			=> 'textarea',
+					'type' 			=> 'textarea_small',
 					'options'     => array(
 						'group_title'   => __( 'Criterea {#}', 'cgc-exercises' ), // {#} gets replaced by row number
 						'add_button'    => __( 'Add Another Criteria', 'cgc-exercises' ),
