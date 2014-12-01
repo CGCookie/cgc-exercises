@@ -18,7 +18,7 @@
 							<?php get_template_part( 'content', 'post-header' ); ?>
 
 							<div class="cgc-edu-meta">
-								<?php cgc_connected_course(true,'exercises_to_courses');?>
+								<?php cgc_connected_course(true);?>
 							</div>
 
 						</header>
