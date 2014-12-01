@@ -45,7 +45,9 @@
 									</div>
 
 									<div id="discussion" class="tab-hide tab-display">
-										DISCUSSION
+										<?php if ( comments_open() ) {
+											comments_template();
+										}?>
 									</div>
 
 									<div id="files" class="tab-hide tab-display">
@@ -53,7 +55,17 @@
 									</div>
 
 									<div id="submissions" class="tab-hide tab-display">
-										STUDENT SUBMISSIONS
+										<?php
+											$submissions = cgc_edu_exercise_get_submissions();
+
+											if ( $submissions ):
+
+												foreach( (array) $submissions as $key => $submission ) {
+													echo '<p>'.$submission.'</p>';
+												}
+
+											endif;
+										?>
 									</div>
 
 								</div>

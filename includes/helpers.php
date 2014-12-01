@@ -213,6 +213,57 @@ function cgc_edu_exercise_get_connected( $postid = 0 ) {
 	return !empty( $connected ) ? $connected : false;
 }
 
+/**
+*	Get a list of submissions linked to this exercise post
+*
+*	@return array of postids
+*/
+function cgc_edu_exercise_get_submissions( $postid = ''){
+
+	if ( empty( $postid ) )
+		$postid = get_the_ID();
+
+	$submissions = get_post_meta( $postid, '_cgc_exercise_submission_ids', true );
+
+	return !empty($submissions) ? $submissions : false;
+
+}
+
+/**
+*
+*	Add a submission postid to the array of ids for this exercise
+*
+*	@param $postid - int - id of the exercise to store the submissions to
+*	@param $submission_id - int - the id of the submission being created
+*
+*/
+function cgc_edu_exercise_log_submission( $postid = 0, $submission_id = 0 ) {
+
+	if ( empty( $postid ) )
+		return;
+
+	// retrieve the IDs of all submissions for this exercise
+	$submissions = cgc_edu_exercise_get_submissions( $postid );
+
+	// go through the submissions check if its empty or an array 
+	if ( ! empty( $submissions ) && is_array( $submissions ) ) {
+		$submissions[] = $submission_id;
+	} else {
+		$submissions = array();
+		$submissions[] = $submission_id;
+	}
+
+	// create an array of submission_ids linked to this exercise
+	update_post_meta( $postid, '_cgc_exercise_submission_ids', $submissions );
+
+	// create a connection for this submission linked to the exercise
+	update_post_meta( $submission_id, '_cgc_exercise_submission_linked_to', $postid );
+
+}
+
+
+
+
 
 
 

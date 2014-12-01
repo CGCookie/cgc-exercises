@@ -43,7 +43,6 @@ class cgc_exercises_process_submission {
 
 				} else {
 
-					/*
 					// create an exercise submission
 					$post_args = array(
 					  'post_title'    => $title,
@@ -54,9 +53,9 @@ class cgc_exercises_process_submission {
 					);
 					$submission_id = wp_insert_post( $post_args );
 
-					// create a connection for this submission linked to the exercise
-					update_post_meta( $submission_id, '_cgc_exercise_submission_linked_to', $postid );
-	*/
+					// do the saving of submission ids and such 
+					cgc_edu_exercise_log_submission( $postid, $submission_id );
+
 					// success and stuffs
 					echo '<div class="success">Success! You can view your submission <a href="'.$submission_id.'">here</a></div>';
 

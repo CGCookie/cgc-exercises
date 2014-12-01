@@ -1,5 +1,5 @@
 <?php if ( comments_open() ) : ?>
-	<div id="comments" class="exercise-comments">
+	<div id="comments" class="submission-comments">
 
 		<?php if ( have_comments() ) : ?>
 			<strong><?php comments_number('No Conversations', 'One Conversation', '% Conversations' );?> on &#8220;<?php the_title(); ?>&#8221;</strong>
@@ -17,4 +17,3 @@
 
 	</div>
 <?php endif; // if you delete this the sky will fall on your head ?>
-

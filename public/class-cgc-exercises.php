@@ -251,6 +251,9 @@ class CGC_Exercises {
 	        return;
 	    }
 	    if ( 'exercise_submission' == $post->post_type ) {
+	        return CGC_EXERCISES_DIR.'/templates/submission-comments.php';
+	    }
+	    if ( 'exercise' == $post->post_type ) {
 	        return CGC_EXERCISES_DIR.'/templates/exercise-comments.php';
 	    }
 	}
