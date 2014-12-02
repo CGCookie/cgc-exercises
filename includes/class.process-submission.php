@@ -26,6 +26,12 @@ class cgc_exercises_process_submission {
 		$title 			= isset( $_POST['exercise-title'] ) ? $_POST['exercise-title'] : null;
 		$desc 			= isset( $_POST['exercise-description'] ) ? $_POST['exercise-description'] : null;
 
+		// types
+		$image			= isset( $_POST['exercise-image']) ? $_POST['exercise-image'] : null;
+		$sketchfab		= isset( $_POST['exercise-sketchfab']) ? $_POST['exercise-sketchfab'] : null;
+		$unity			= isset( $_POST['exercise-unity']) ? $_POST['exercise-unity'] : null;
+		$video			= isset( $_POST['exercise-video']) ? $_POST['exercise-video'] : null;
+
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_submission' ) {
 
@@ -56,7 +62,21 @@ class cgc_exercises_process_submission {
 					// do the saving of submission ids and such 
 					cgc_edu_exercise_log_submission( $postid, $submission_id );
 
-					// success and stuffs
+					// save misc fields
+					if ( $image ) {
+						update_post_meta( $postid, '_cgc_edu_exercise_image', sanitize_text_field( $image ) );
+					}
+					if ( $sketchfab ) {
+						update_post_meta( $postid, '_cgc_edu_exercise_sketchfab', sanitize_text_field( $sketchfab ) );
+					}
+					if ( $unity ) {
+						update_post_meta( $postid, '_cgc_edu_exercise_unity', sanitize_text_field( $unity ) );
+					}
+					if ( $video ) {
+						update_post_meta( $postid, '_cgc_edu_exercise_video', sanitize_text_field( $video ) );
+					}
+
+					// @todo - display a new thanks modal in place of this
 					echo '<div class="success">Success! You can view your submission <a href="'.$submission_id.'">here</a></div>';
 
 				}

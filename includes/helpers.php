@@ -100,6 +100,9 @@ function cgc_edu_grading_modal(){
 */
 function cgc_edu_exercise_submission_modal(){
 
+	// type of exercise
+	$type = get_post_meta( get_the_ID(), 'cgc_edu_exercise_type', true);
+
 	ob_start();
 
 	?><div id="cgc-exercise-submission-modal" class="reveal-modal cgc-universal-modal">
@@ -114,8 +117,33 @@ function cgc_edu_exercise_submission_modal(){
 					<label for="exercise-title">Title</label>
 					<input type="text" name="exercise-title" value="" placeholder="My Awesome Submission">
 
-					<label for="exercise-url">URL</label>
-					<input type="text" name="exercise-url" value="" placeholder="http://">
+					<?php switch ($type) {
+						case 'image':
+							?>
+							<label for="exercise-title">Title</label>
+							<input type="file" name="exercise-image" value=""><?php
+							break;
+						case 'video':
+							?>
+							<label for="exercise-video">Video URL</label>
+							<input type="text" name="exercise-video" value=""><?php
+							break;
+						case 'sketchfab':
+							?>
+							<label for="exercise-sketchfab">Sketchfab URl</label>
+							<input type="text" name="exercise-sketchfab" value=""><?php
+							break;
+						case 'unity':
+							?>
+							<label for="exercise-unity">Unity</label>
+							<input type="text" name="exercise-unity" value=""><?php
+							break;
+						default:
+							?>
+							<label for="exercise-sketchfab">Sketchfab URL</label>
+							<input type="text" name="exercise-sketchfab" value=""><?php
+							break;
+					}?>
 
 					<label for="exercise-description">Description</label>
 					<textarea form="cgc-exercise-submit-form" name="exercise-description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques."></textarea>
