@@ -34,6 +34,25 @@ jQuery(document).ready(function($){
     	location.reload();
     });
 
+    // image upload ajax
+    var options = {
+        target:        results,
+        beforeSubmit:  showRequest,
+        success:       showResponse,
+        url:    		ajaxurl
+    };
+
+    // bind form using 'ajaxForm'
+    $('#cgc-exercise-submit-form').ajaxForm(options);
+
+    function showRequest(formData, jqForm, options) {
+		$(results).html('Sending...');
+		$('#submit-ajax').attr("disabled", "disabled");
+	}
+	function showResponse(responseText, statusText, xhr, $form)  {
+
+	}
+
 	// submission click handler
   	$('#cgc-exercise-submit-form').submit(function(e){
 
@@ -53,3 +72,4 @@ jQuery(document).ready(function($){
 	    });
     });
 });
+

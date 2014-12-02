@@ -67,21 +67,7 @@ class cgc_exercises_process_submission {
 					// save misc fields
 					if ( 'image' == $type ) {
 
-						require_once( ABSPATH . 'wp-admin/includes/image.php' );
-						require_once( ABSPATH . 'wp-admin/includes/file.php' );
-						require_once( ABSPATH . 'wp-admin/includes/media.php' );
-
-						$attachment_id = media_handle_upload( 'exercise-image', $_POST['post_id'] );
-
-						if ( is_wp_error( $attachment_id ) ) {
-
-							echo 'Error upload image';
-
-						} else {
-
-							echo $attachment_id;
-							//update_post_meta( $postid, '_cgc_edu_exercise_image', sanitize_text_field( $image ) );
-						}
+						self::process_image('exercise-image',$postid);
 					}
 					if ( $sketchfab ) {
 						update_post_meta( $postid, '_cgc_edu_exercise_sketchfab', sanitize_text_field( $sketchfab ) );
@@ -103,6 +89,31 @@ class cgc_exercises_process_submission {
 		}
 
 		exit(); // ajax
+	}
+
+	/**
+	*
+	*	Process the incoming images from teh file upload
+	*/
+	function process_image( $file, $postid ) {
+
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+		require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+		$attachment_id = '';
+
+		if ( $_FILES ) {
+	        foreach ($_FILES as $file => $array) {
+	            if ( $_FILES[$file]['error'] !== UPLOAD_ERR_OK ) {
+	                echo "upload error : " . $_FILES[$file]['error'];
+	                die();
+	            }
+	            $attachment_id = media_handle_upload( $file, $postid );
+	        }
+	    }
+
+	    update_post_meta($postid,'_cgc_edu_exercise_image',$attachment_id);
 	}
 }
 new cgc_exercises_process_submission;
