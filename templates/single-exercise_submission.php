@@ -7,11 +7,18 @@
 						$connected      = get_post_meta( get_the_ID(), '_cgc_exercise_submission_linked_to', true);
 						$criteria     	= get_post_meta( $connected, '_cgc_edu_exercise_criteria', true );
 
+						// submitted image
 						$image 			= get_post_meta( get_the_ID(), '_cgc_edu_exercise_image', true);
-						$image          = wp_get_attachment_image_src($image,'full');
+						$image          = $image ? wp_get_attachment_image_src($image,'full') : 'http://placekitten.com/800/500';
 
-						if ( empty( $image ) ) {
-							$image = 'http://placekitten.com/800/500';
+						// connected lesson
+						$lesson_id     = get_post_meta( get_the_ID(),'_cgc_exercise_submission_linked_to', true);
+						$lesson_link = $lesson_title = '';
+
+						if ( $lesson_id ) {
+
+							$lesson_link   = get_permalink( $lesson_id );
+							$lesson_title  = get_the_title( $lesson_id );
 						}
 
 					?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -20,12 +27,13 @@
 						<section class="cgc-edu-main cgc-edu-exercise-submission--header">
 							<aside class="cgc-edu-exercise-submission--meta">
 
-								<div>
-									TITLE
+								<div class="cgc-edu-exercise-submission--connection">
+									<i class="cgc-block-icon cgc-block-icon--exercise cgc_tooltip--bottom" data-original-title="Lesson - Hey yo Wes we need a description!"></i>
+									<a href="<?php echo esc_url($lesson_link);?>"><?php echo esc_html($lesson_title);?></a>
 								</div>
 
 								<div class="cgc-edu-helper cgc-edu-helper--exercise-submission">
-									How do exercises work?
+									<i class="icon icon-info-sign cgc_tooltip--bottom" data-original-title="How do lessons work? I dunno you tell me!"></i> How do exercises work?
 								</div>
 
 								<div class="cgc-edu-list cgc-edu-exercise-critera">

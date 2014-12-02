@@ -12,6 +12,17 @@
 
 }
 
+// title area
+.cgc-edu-exercise-submission--connection {
+	min-height:65px;
+	a {
+		padding-left:40px;
+	}
+	.cgc-block-icon {
+		left:10px;
+	}
+}
+
 // image wrap
 .cgc-edu-exercise-submission--image-wrap {
 	position:relative;
@@ -82,7 +93,7 @@
 		margin-bottom:0;
 
 		&:hover {
-			@include make-network-color('background');
+			//@include make-network-color('background');
 		}
 	}
 
