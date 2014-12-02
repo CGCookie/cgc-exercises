@@ -47,29 +47,16 @@ jQuery(document).ready(function($){
 
     function showRequest(formData, jqForm, options) {
 		$(results).html('Sending...');
-		$('#submit-ajax').attr("disabled", "disabled");
 	}
 	function showResponse(responseText, statusText, xhr, $form)  {
+		$(results).hide();
+		$(results).html(responseText);
+		$(results).fadeIn();
 
+		$(exercise_modal).find('h2').text('Congrats!');
+  		$(exercise_modal).find('.cgc-universal-modal--intro').text('Congrats on submitting your work to be graded by the community. That is huge first step in becoming better. Take a moment to share out your work or grade others in the exercise.')
+  		$(exercise_modal).find('form').fadeOut()
+  		$(exercise_modal).find(results).after('<a href="">Share</a>');
 	}
-
-	// submission click handler
-  	$('#cgc-exercise-submit-form').submit(function(e){
-
-  		e.preventDefault();
-
-  		var data = $(this).serialize();
-
-	  	$.post(ajaxurl, data, function(response) {
-	  		$(results).hide();
-	  		$(results).html(response);
-	  		$(results).fadeIn();
-
-	  		$(exercise_modal).find('h2').text('Congrats!');
-	  		$(exercise_modal).find('.cgc-universal-modal--intro').text('Congrats on submitting your work to be graded by the community. That is huge first step in becoming better. Take a moment to share out your work or grade others in the exercise.')
-	  		$(exercise_modal).find('form').fadeOut()
-	  		$(exercise_modal).find(results).after('<a href="">Share</a>');
-	    });
-    });
 });
 

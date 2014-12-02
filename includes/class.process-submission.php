@@ -67,7 +67,7 @@ class cgc_exercises_process_submission {
 					// save misc fields
 					if ( 'image' == $type ) {
 
-						self::process_image('exercise-image',$postid);
+						self::process_image('exercise-image', $postid, $submission_id);
 					}
 					if ( $sketchfab ) {
 						update_post_meta( $postid, '_cgc_edu_exercise_sketchfab', sanitize_text_field( $sketchfab ) );
@@ -95,7 +95,7 @@ class cgc_exercises_process_submission {
 	*
 	*	Process the incoming images from teh file upload
 	*/
-	function process_image( $file, $postid ) {
+	function process_image( $file, $postid, $submission_id ) {
 
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
 		require_once( ABSPATH . 'wp-admin/includes/file.php' );
@@ -113,7 +113,7 @@ class cgc_exercises_process_submission {
 	        }
 	    }
 
-	    update_post_meta($postid,'_cgc_edu_exercise_image',$attachment_id);
+	    update_post_meta($submission_id,'_cgc_edu_exercise_image',$attachment_id);
 	}
 }
 new cgc_exercises_process_submission;
