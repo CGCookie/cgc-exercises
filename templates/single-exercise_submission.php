@@ -7,6 +7,13 @@
 						$connected      = get_post_meta( get_the_ID(), '_cgc_exercise_submission_linked_to', true);
 						$criteria     	= get_post_meta( $connected, '_cgc_edu_exercise_criteria', true );
 
+						$image 			= get_post_meta( get_the_ID(), '_cgc_edu_exercise_image', true);
+						$image          = wp_get_attachment_image_src($image,'full');
+
+						if ( empty( $image ) ) {
+							$image = 'http://placekitten.com/800/500';
+						}
+
 					?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 						<!-- Image Mast -->
@@ -40,7 +47,7 @@
 							</aside>
 							<div class="cgc-edu-exercise-submission--image-wrap">
 								<div class="cgc-edu-exercise-submission--image">
-									<div style="background-image:url('http://placekitten.com/1200/800');"></div>
+									<div style="background-image:url('<?php echo esc_url($image[0]);?>');"></div>
 								</div>
 								<div class="cgc-edu-meta">
 
