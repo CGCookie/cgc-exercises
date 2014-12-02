@@ -27,10 +27,12 @@ class cgc_exercises_process_submission {
 		$desc 			= isset( $_POST['exercise-description'] ) ? $_POST['exercise-description'] : null;
 
 		// types
-		$image			= isset( $_POST['exercise-image']) ? $_POST['exercise-image'] : null;
 		$sketchfab		= isset( $_POST['exercise-sketchfab']) ? $_POST['exercise-sketchfab'] : null;
 		$unity			= isset( $_POST['exercise-unity']) ? $_POST['exercise-unity'] : null;
 		$video			= isset( $_POST['exercise-video']) ? $_POST['exercise-video'] : null;
+
+
+		$type           = get_post_meta( $postid , '_cgc_edu_exercise_type', true);
 
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_submission' ) {
@@ -63,8 +65,23 @@ class cgc_exercises_process_submission {
 					cgc_edu_exercise_log_submission( $postid, $submission_id );
 
 					// save misc fields
-					if ( $image ) {
-						update_post_meta( $postid, '_cgc_edu_exercise_image', sanitize_text_field( $image ) );
+					if ( 'image' == $type ) {
+
+						require_once( ABSPATH . 'wp-admin/includes/image.php' );
+						require_once( ABSPATH . 'wp-admin/includes/file.php' );
+						require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+						$attachment_id = media_handle_upload( 'exercise-image', $_POST['post_id'] );
+
+						if ( is_wp_error( $attachment_id ) ) {
+
+							echo 'Error upload image';
+
+						} else {
+
+							echo $attachment_id;
+							//update_post_meta( $postid, '_cgc_edu_exercise_image', sanitize_text_field( $image ) );
+						}
 					}
 					if ( $sketchfab ) {
 						update_post_meta( $postid, '_cgc_edu_exercise_sketchfab', sanitize_text_field( $sketchfab ) );
