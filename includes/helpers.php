@@ -101,7 +101,7 @@ function cgc_edu_grading_modal(){
 function cgc_edu_exercise_submission_modal(){
 
 	// type of exercise
-	$type = get_post_meta( get_the_ID(), 'cgc_edu_exercise_type', true);
+	$type = get_post_meta( get_the_ID(), '_cgc_edu_exercise_type', true);
 
 	ob_start();
 
