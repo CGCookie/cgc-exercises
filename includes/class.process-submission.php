@@ -77,7 +77,7 @@ class cgc_exercises_process_submission {
 					}
 
 					// @todo - display a new thanks modal in place of this
-					echo '<div class="success">Success! You can view your submission <a href="'.$submission_id.'">here</a></div>';
+					echo '<div class="success">Success! You can view your submission <a href="'.get_permalink($submission_id).'">here</a></div>';
 
 				}
 
