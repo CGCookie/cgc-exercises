@@ -33,7 +33,7 @@
 									<li class="nav-one"><a href="#about" class="current">About</a></li>
 									<li class="nav-two"><a href="#discussion">Discussion</a></li>
 									<li class="nav-three"><a href="#files">Exercise Files</a></li>
-									<li class="nav-four last"><a href="#submissions">Student Submissions</a></li>
+									<li class="nav-four last"><a href="#submissions">Submissions</a></li>
 								</ul>
 
 								<div class="tab-content">

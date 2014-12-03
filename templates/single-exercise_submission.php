@@ -21,6 +21,12 @@
 						$type_video  		= get_post_meta( get_the_ID(), '_cgc_edu_exercise_video', true);
 						$type_sketchfab  	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_sketchfab', true);
 
+
+						// get the yes votes
+						$total_votes 	= 	get_post_meta( get_the_ID(), '_cgc_edu_exercise_total_votes', true );
+						$votes_allowed   = 	get_post_meta( get_post_meta( get_the_ID(), '_cgc_exercise_submission_linked_to', true), '_cgc_edu_exercise_passing', true );
+
+
 						if ( $lesson_id ) {
 
 							$lesson_link   = get_permalink( $lesson_id );
@@ -94,7 +100,11 @@
 
 									<div id="cgc-edu-exercise--vote-info" class="<?php echo $vote_class;?>"><?php echo cgc_edu_exercise_grade();?></div>
 
-									<?php if ( !$has_voted ): ?>
+									<?php
+
+									// if the current logged in user hasnt voted and they are NOT the author of this submission,
+									// and this submission hasn't passed the threshold of allowed voets, then then show the form
+									if ( !$has_voted && get_current_user_ID() != get_the_author_meta('ID') && $total_votes < $votes_allowed ): ?>
 										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data">
 
 											<label for="vote-yes">
