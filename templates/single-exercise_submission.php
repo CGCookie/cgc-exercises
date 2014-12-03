@@ -17,7 +17,9 @@
 
 						// submission type
 						//$type        = get_post_meta( $connected, '_cgc_edu_exercise_type', true);
-						$type = 'sketchfab';
+						$type 				= 'video';
+						$type_video  		= get_post_meta( get_the_ID(), '_cgc_edu_exercise_video', true);
+						$type_sketchfab  	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_sketchfab', true);
 
 						if ( $lesson_id ) {
 
@@ -68,10 +70,13 @@
 											?><div style="background-image:url('<?php echo esc_url($image[0]);?>');"></div><?php
 											break;
 										case 'sketchfab':
-											?><iframe width="100%" height="500px" src="https://sketchfab.com/models/5cfede7837b842edb08439d61b7c3fd1/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
+											?><iframe width="100%" height="500px" src="//sketchfab.com/models/5cfede7837b842edb08439d61b7c3fd1/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
+											break;
+										case 'video':
+											?><iframe width="100%" height="500px" src="//www.youtube.com/embed/9Ip79C4glyA" frameborder="0" allowfullscreen></iframe><?php
 											break;
 										default:
-											# code...
+											?><div style="background-image:url('<?php echo esc_url($image[0]);?>');"></div><?php
 											break;
 									}
 
