@@ -17,7 +17,7 @@
 
 						// submission type
 						//$type        = get_post_meta( $connected, '_cgc_edu_exercise_type', true);
-						$type 				= 'video';
+						$type 				= 'sketchfab';
 						$type_video  		= get_post_meta( get_the_ID(), '_cgc_edu_exercise_video', true);
 						$type_sketchfab  	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_sketchfab', true);
 
@@ -61,8 +61,8 @@
 							</aside>
 							<div class="cgc-edu-exercise-submission--image-wrap">
 
-								<div class="cgc-edu-exercise-submission--media media-type__<?php echo sanitize_html_class($type);?>">
-
+								<div class="cgc-edu-exercise-submission--media media-type__<?php echo sanitize_html_class($type);?> cgc-fitvid">
+									<div id="cgc-media-loading" class="cgc-media-loading"><div class="cgc-media-loader"></div><span>Loading...</span></div>
 									<?php
 
 									switch ($type) {
@@ -70,10 +70,10 @@
 											?><div style="background-image:url('<?php echo esc_url($image[0]);?>');"></div><?php
 											break;
 										case 'sketchfab':
-											?><iframe width="100%" height="500px" src="//sketchfab.com/models/5cfede7837b842edb08439d61b7c3fd1/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
+											?><iframe width="100%" height="" src="//sketchfab.com/models/5cfede7837b842edb08439d61b7c3fd1/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
 											break;
 										case 'video':
-											?><iframe width="100%" height="500px" src="//www.youtube.com/embed/9Ip79C4glyA" frameborder="0" allowfullscreen></iframe><?php
+											?><iframe width="" height="" src="//www.youtube.com/embed/9Ip79C4glyA" frameborder="0" allowfullscreen></iframe><?php
 											break;
 										default:
 											?><div style="background-image:url('<?php echo esc_url($image[0]);?>');"></div><?php

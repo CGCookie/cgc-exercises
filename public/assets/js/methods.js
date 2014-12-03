@@ -58,5 +58,11 @@ jQuery(document).ready(function($){
   		$(exercise_modal).find('form').fadeOut()
   		$(exercise_modal).find(results).after('<a href="">Share</a>');
 	}
+
 });
 
+jQuery(window).load(function() {
+    //jQuery('.cgc-exercise-submission--media').css('opacity', 1);
+    jQuery('#cgc-media-loading').remove();
+
+});
