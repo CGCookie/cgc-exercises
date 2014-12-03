@@ -45,7 +45,18 @@
 		z-index:0;
 		text-align:right;
 	}
+
+	// voting status
+	.voting-open {
+
+	}
+	.voting-closed {
+		#cgc-edu-exercise--vote-info {
+			right:14px;
+		}
+	}
 }
+
 
 // image container
 .cgc-edu-exercise-submission--media {

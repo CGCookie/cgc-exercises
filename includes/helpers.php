@@ -175,6 +175,7 @@ function cgc_edu_exercise_submission_modal(){
 /**
 *
 *	Calculates the number of passes on any given exercise submission and determins a pass or fail
+*	This is only used to display the status of the vote to the user
 *
 *	@param $postid int id of the excersie submission to calcuate votes for
 *	@param $passing int number required to pass or fail a submission
@@ -210,7 +211,14 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 
 	} else {
 
-		$has_voted ? $return = 'Thanks for voting!' : $return = 'Does the above image meet the exercise criteria?';
+		if ( $has_voted ) {
+			$return = 'Thanks for voting!';
+		} elseif ( get_current_user_ID() == get_the_author_meta('ID') ) {
+			$return = 'Your submission is still be voted on, hang tight!';
+		} else {
+			$return = 'Does the above image meet the exercise criteria?';
+		}
+
 	}
 
 	return $return;

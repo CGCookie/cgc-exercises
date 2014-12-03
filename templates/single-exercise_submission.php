@@ -22,10 +22,13 @@
 						$type_sketchfab  	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_sketchfab', true);
 
 
-						// get the yes votes
-						$total_votes 	= 	get_post_meta( get_the_ID(), '_cgc_edu_exercise_total_votes', true );
-						$votes_allowed   = 	get_post_meta( get_post_meta( get_the_ID(), '_cgc_exercise_submission_linked_to', true), '_cgc_edu_exercise_passing', true );
+						// tally some votes
+						$total_votes 		= 	get_post_meta( get_the_ID(), '_cgc_edu_exercise_total_votes', true );
+						$votes_allowed   	= 	get_post_meta( get_post_meta( get_the_ID(), '_cgc_exercise_submission_linked_to', true), '_cgc_edu_exercise_passing', true );
+						$voting_still_open 	= 	$total_votes < $votes_allowed;
+						$voting_status 		= 	$voting_still_open ? 'voting-open' : 'voting-closed';
 
+						$not_the_submission_author 	= get_current_user_ID() != get_the_author_meta('ID');
 
 						if ( $lesson_id ) {
 
@@ -91,7 +94,7 @@
 
 								</div>
 
-								<div class="cgc-edu-meta">
+								<div class="cgc-edu-meta <?php echo sanitize_html_class( $voting_status );?>">
 
 									<?php
 
@@ -104,7 +107,7 @@
 
 									// if the current logged in user hasnt voted and they are NOT the author of this submission,
 									// and this submission hasn't passed the threshold of allowed voets, then then show the form
-									if ( !$has_voted && get_current_user_ID() != get_the_author_meta('ID') && $total_votes < $votes_allowed ): ?>
+									if ( !$has_voted && $not_the_submission_author && $voting_still_open ): ?>
 										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data">
 
 											<label for="vote-yes">
