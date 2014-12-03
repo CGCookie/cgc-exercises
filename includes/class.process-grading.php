@@ -28,12 +28,14 @@ class cgc_exercises_process_grading {
 		$postid 		= isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
 		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
 
-		// get number of passes
-		$votes_allowed 	= get_post_meta( $postid, '_cgc_edu_exercise_votes_allowed', true);
-		$total_votes 	= cgc_edu_exercise_count_votes( $postid );
+		// get the yes votes
+		$votes 			=	 get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+		$total_votes 	= 	get_post_meta( $postid, '_cgc_edu_exercise_total_votes', true );
 
 		$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
-		$passing     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
+
+		// total votes required to pass
+		$vote_allowed     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
 		$thanks = 'Thanks for your vote! We are still awaiting more votes to calculate a pass or fail';
 
@@ -55,30 +57,36 @@ class cgc_exercises_process_grading {
 
 				} elseif ( 'yes' == $vote ) { // user voted yes, so incremenet and set a flag for this user
 
-					echo $thanks;
+					// and increment
+					update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) + 1 );
 
-					// get the old value
-					$meta = get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+					// increment total overall votes
+					update_post_meta( $postid, '_cgc_edu_exercise_total_votes', intval( $total_votes ) + 1 );
+
+				} elseif ('no' == $vote) { // aww shcuks, they voted no, so subtract a point
 
 					// and increment
-					update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $meta ) + 1 );
+					update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) - 1 );
 
-				} else { // aww shcuks, they voted no, so let's gentlybail
-
-					echo $thanks;
+					// increment total overall votes
+					update_post_meta( $postid, '_cgc_edu_exercise_total_votes', intval( $total_votes ) + 1 );
 
 				}
 
 				// set a flag for this user so they can't vote anymore
 				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
-				// total votes pass the threshold of allowed votes
-				if ( $total_votes >= $passing ) {
+				// the total # of votes has reached the total number of votes allowed, proceed with grading stuff
+				if ( $total_votes >= $vote_allowed ) {
 
-					// award xp
+					if ( $votes >= $vote_allowed ) {
 
-					// send mail
+						// user passed
 
+					} else {
+
+						// user failed
+					}
 				}
 
 			}
@@ -86,6 +94,7 @@ class cgc_exercises_process_grading {
 		}
 		exit();
 	}
+
 
 }
 new cgc_exercises_process_grading;

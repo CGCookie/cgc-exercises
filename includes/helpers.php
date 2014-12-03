@@ -177,8 +177,10 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
 
+	$votes 			= get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+
 	// get total votes
-	$total_votes 	= cgc_edu_exercise_count_votes( $postid );
+	$total_votes 	= 	get_post_meta( $postid, '_cgc_edu_exercise_total_votes', true );
 
 	// get votes required to psas
 	$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
@@ -187,23 +189,25 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 	// has this user voted
 	$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.$postid.'_has_voted', true);
 
-	$thanks 		= 'Thanks for your vote! We are still awaiting more votes to calculate a pass or fail';
 
-	if ( $total_votes < $passing ) { // total votes haven't reached # required to pass
+	if ( $total_votes >= $passing ) { // total points have reacehd teh total number required to pass
 
-		$has_voted ? $return = 'Thanks for voting!' : $return = 'Does the above image meet the exercise criteria?';
+		if ( $votes >= $passing ) { // votes are greater than passing
 
-	} elseif ( $total_votes >= $passing ) { // ok we passed
+			$return = 'This piece has passed the community vote! <span class="passed">Passed!</span>';
 
-		$return = 'This piece has passed the community vote! <span class="passed">Passed!</span>';
+		} else {
+
+			$return = 'This piece did not pass the community vote. <span class="failed">Did not pass</span>';
+		}
 
 	} else {
 
-		$return = 'This piece did not pass the community vote. <span class="failed">Did not pass</span>';
-
+		$has_voted ? $return = 'Thanks for voting!' : $return = 'Does the above image meet the exercise criteria?';
 	}
 
 	return $return;
+
 }
 
 /**
@@ -214,12 +218,12 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 *	@return the number of votes for the specific submission
 *
 */
-function cgc_edu_exercise_count_votes( $postid = 0 ) {
+function cgc_edu_exercise_count_total_votes( $postid = 0 ) {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
 
-	$votes = get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+	$votes = get_post_meta( $postid, '_cgc_edu_exercise_total_votes', true );
 
 	return !empty( $votes ) ? $votes : '0';
 }
