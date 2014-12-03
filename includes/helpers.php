@@ -111,7 +111,14 @@ function cgc_edu_exercise_submission_modal(){
 			<h2 class="cgc-universal-modal--header">Submit your exercise</h2>
 			<div class="cgc-universal-modal--body">
 				<p class="cgc-universal-modal--intro">CG Cookie is excited to work along side you in offering education to your class or team. Fill out the form below and a friendly cookie crew member will reach out and discuss how we can help.</p>
+
 				<div id="cgc-edu-exercise--submission-results"></div>
+
+				<div class="cgc-edu-upload--progress">
+				    <div class="cgc-edu-upload--bar"></div >
+				    <div class="cgc-edu-upload--percent">0%</div >
+				</div>
+
 				<form id="cgc-exercise-submit-form" method="post" enctype="multipart/form-data">
 
 					<label for="exercise-title">Title</label>
@@ -277,7 +284,7 @@ function cgc_edu_exercise_log_submission( $postid = 0, $submission_id = 0 ) {
 	// retrieve the IDs of all submissions for this exercise
 	$submissions = cgc_edu_exercise_get_submissions( $postid );
 
-	// go through the submissions check if its empty or an array 
+	// go through the submissions check if its empty or an array
 	if ( ! empty( $submissions ) && is_array( $submissions ) ) {
 		$submissions[] = $submission_id;
 	} else {

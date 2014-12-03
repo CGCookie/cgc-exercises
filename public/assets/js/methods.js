@@ -34,16 +34,31 @@ jQuery(document).ready(function($){
     	location.reload();
     });
 
-    // image upload ajax
-    var options = {
-        target:        results,
-        beforeSubmit:  showRequest,
-        success:       showResponse,
-        url:    		ajaxurl
-    };
+    var bar = $('.cgc-edu-upload--bar');
+    var percent = $('.cgc-edu-upload--percent');
+
+    bar.hide();
+    percent.hide();
 
     // bind form using 'ajaxForm'
-    $('#cgc-exercise-submit-form').ajaxForm(options);
+    $('#cgc-exercise-submit-form').ajaxForm({
+    	target:        results,
+        beforeSubmit:  showRequest,
+        success:       showResponse,
+        url:    		ajaxurl,
+        beforeSend: function() {
+            var percentVal = '0%';
+            bar.fadeIn();
+            percent.fadeIn();
+            bar.width(percentVal);
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        }
+    });
 
     function showRequest(formData, jqForm, options) {
 		$(results).html('Sending...');
