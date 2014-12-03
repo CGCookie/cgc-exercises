@@ -15,6 +15,10 @@
 						$lesson_id     = get_post_meta( get_the_ID(),'_cgc_exercise_submission_linked_to', true);
 						$lesson_link = $lesson_title = '';
 
+						// submission type
+						//$type        = get_post_meta( $connected, '_cgc_edu_exercise_type', true);
+						$type = 'sketchfab';
+
 						if ( $lesson_id ) {
 
 							$lesson_link   = get_permalink( $lesson_id );
@@ -54,12 +58,31 @@
 
 							</aside>
 							<div class="cgc-edu-exercise-submission--image-wrap">
-								<div class="cgc-edu-exercise-submission--image">
-									<div style="background-image:url('<?php echo esc_url($image[0]);?>');"></div>
+
+								<div class="cgc-edu-exercise-submission--media media-type__<?php echo sanitize_html_class($type);?>">
+
+									<?php
+
+									switch ($type) {
+										case 'image':
+											?><div style="background-image:url('<?php echo esc_url($image[0]);?>');"></div><?php
+											break;
+										case 'sketchfab':
+											?><iframe width="100%" height="500px" src="https://sketchfab.com/models/5cfede7837b842edb08439d61b7c3fd1/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
+											break;
+										default:
+											# code...
+											break;
+									}
+
+
+									?>
+
 								</div>
+
 								<div class="cgc-edu-meta">
 
-									<?php 
+									<?php
 
 									$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.get_the_ID().'_has_voted', true);
 									$vote_class   = $has_voted ? 'has-voted' : 'not-voted';?>
@@ -67,7 +90,7 @@
 									<div id="cgc-edu-exercise--vote-info" class="<?php echo $vote_class;?>"><?php echo cgc_edu_exercise_grade();?></div>
 
 									<?php if ( !$has_voted ): ?>
-										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data"> 
+										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data">
 
 											<label for="vote-yes">
 												Yes

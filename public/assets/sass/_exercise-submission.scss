@@ -37,7 +37,7 @@
 }
 
 // image container
-.cgc-edu-exercise-submission--image {
+.cgc-edu-exercise-submission--media {
 	min-height:500px;
 	position:relative;
 	margin-bottom:15px;
@@ -53,6 +53,14 @@
 		background-repeat:no-repeat;
 		z-index:-1;
 
+	}
+	&.media-type__image {
+
+	}
+	&.media-type__sketchfab {
+		iframe {
+			width:100%;
+		}
 	}
 }
 
