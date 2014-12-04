@@ -34,6 +34,11 @@ jQuery(document).ready(function($){
     	location.reload();
     });
 
+    // hide the comment 
+    $('#cgc-grading-modal textarea').bind('input propertychange',function(){
+    	$('#cgc-grading-modal #submit').addClass('active');
+    });
+
     var bar = $('.cgc-edu-upload--bar'),
     	percent = $('.cgc-edu-upload--percent'),
     	progress = $('.cgc-edu-upload--progress')

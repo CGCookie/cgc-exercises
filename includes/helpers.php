@@ -329,7 +329,27 @@ function cgc_edu_exercise_get_files( $postid = '' ) {
 }
 
 
+/**
+*	add a hidden field to the exercise comment submission form to redirect the user to the same tab on the page
+*
+*/
+add_action('comment_form_logged_in_after','cgc_edu_exercise_add_redirect_field');
+function cgc_edu_exercise_add_redirect_field(){
 
+	if ( 'exercise_submission' == get_post_type() ) {?>
+		<input type="hidden" name="exercise_submission_redirect_to" value="<?php echo get_permalink(); ?>?tab=discussion">
+	<?php }
+}
 
+/**
+*	Redirect the comments to load the same page on exercise submission
+*
+*/
+
+add_filter( 'comment_post_redirect', 'cgc_edu_redirect_exercise_comment' );
+function cgc_edu_redirect_exercise_comment( $location ) {
+    if ( isset( $_POST['exercise_submission_redirect_to'] ) )
+        return $_POST['exercise_submission_redirect_to'];
+}
 
 

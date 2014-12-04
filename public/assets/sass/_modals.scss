@@ -28,6 +28,20 @@
 		min-height:150px;
 	}
 
+	#submit {
+		@include transition(opacity .5s ease);
+		@include opacity(0.05);
+		background:white;
+
+		&.active {
+			@include opacity(1.0);
+			@include make-network-color('background');
+		}
+	}
+	.comment-cancel {
+		right: 151px;
+		bottom: 29px;
+	}
 	// close button overrides
 }
 
