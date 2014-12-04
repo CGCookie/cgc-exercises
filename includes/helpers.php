@@ -308,7 +308,34 @@ function cgc_edu_exercise_log_submission( $postid = 0, $submission_id = 0 ) {
 
 }
 
+/**
+*
+*	Get the available downloadable files for this exercise
+*
+*	@param $postid int id of the post to retrieve downloadable files for
+*
+*/
+function cgc_edu_exercise_get_files( $postid = '' ) {
 
+	if ( empty( $postid ) )
+		$postid = get_the_ID();
+
+	$files = get_post_meta( $postid, '_cgc_edu_exercise_files', true );
+
+
+	$out = '';
+	if ( $files ):
+
+		foreach( (array) $files as $key => $file ) {
+
+			$out .= '<li><a href="'.$file.'">'.$file.'</a></li>';
+		}
+
+	endif;
+
+	if ( $files )
+		return $out;
+}
 
 
 

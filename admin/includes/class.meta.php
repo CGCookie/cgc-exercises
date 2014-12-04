@@ -79,6 +79,27 @@ class cgc_exercise_meta{
 			)
 		);
 
+		$meta_boxes[] = array(
+			'id'	=> '_exercise_files_setup',
+			'title' => __('Exercise Files', 'cgc-exercises'),
+			'object_types' 	=> array('exercise'),
+			'fields' => array(
+				array(
+					'id' 			=> '_cgc_edu_exercise_files',
+					'name' 			=> __('Exercise Files', 'cgc-exercises'),
+					'type' 			=> 'text',
+					'options'     => array(
+						'group_title'   => __( 'File {#}', 'cgc-exercises' ), // {#} gets replaced by row number
+						'add_button'    => __( 'Add Another File', 'cgc-exercises' ),
+						'remove_button' => __( 'Remove File', 'cgc-exercises' ),
+						'sortable'      => true
+					),
+					'repeatable'     => true,
+					'repeatable_max' => 20,
+					'desc'			=> __('Add any downloadable file URLs here.', 'cgc-exercises'),
+				)
+			)
+		);
 		return $meta_boxes;
 
 	}

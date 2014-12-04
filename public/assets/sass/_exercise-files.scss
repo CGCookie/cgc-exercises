@@ -1,0 +1,39 @@
+// exercise files tab
+#files {
+	.cgc-edu-downloadables {
+		list-style:none;
+
+		li {
+			background:$exercise-half-gray;
+			margin-bottom:5px;
+			position:relative;
+
+			a {
+				padding:15px;
+				display:block;
+				color:inherit;
+			}
+
+			&:after {
+				content:'\f0ed';
+				font-family:FontAwesome;
+				font-size:18px;
+				color:$black;
+				background:#eaeaea;
+				height:32px;
+				width:32px;
+				position:absolute;
+				right:10px;
+				top:10px;
+				padding:5px;
+				text-align:center;
+				border-radius:2px;
+			}
+
+			&:hover {
+				background:darken($exercise-half-gray,2);
+				cursor:pointer;
+			}
+		}
+	}
+}

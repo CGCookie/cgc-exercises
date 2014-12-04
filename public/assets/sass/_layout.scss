@@ -45,7 +45,7 @@
 		counter-increment: block-counter;
 		position:relative;
 		margin-bottom:5px;
-		background:lighten($black,4);
+		background:$exercise-half-gray;
 		line-height:1.2;
 		min-height:34px;
 
@@ -56,7 +56,7 @@
 			top:4px;
 			height:26px;
 			width:26px;
-			background:lighten($black,12);
+			background:$exercise-gray;
 			color:white;
 			text-align:center;
 			line-height:1.71429em;

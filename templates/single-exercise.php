@@ -49,8 +49,11 @@
 									</div>
 
 									<div id="files" class="tab-hide tab-display">
+										<h3>Exercise Project Files</h3>
 										<ul class="cgc-edu-downloadables">
-											<?php get_template_part( 'content', 'resource-files' ); ?>
+											<?php 
+											echo cgc_edu_exercise_get_files();
+											?>
 										</ul>
 									</div>
 
