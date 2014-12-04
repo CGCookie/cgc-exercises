@@ -322,19 +322,7 @@ function cgc_edu_exercise_get_files( $postid = '' ) {
 
 	$files = get_post_meta( $postid, '_cgc_edu_exercise_files', true );
 
-
-	$out = '';
-	if ( $files ):
-
-		foreach( (array) $files as $key => $file ) {
-
-			$out .= '<li><a href="'.$file.'">'.$file.'</a></li>';
-		}
-
-	endif;
-
-	if ( $files )
-		return $out;
+	return !empty($files) ? $files : false;
 }
 
 

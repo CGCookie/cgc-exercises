@@ -51,13 +51,20 @@
 									<div id="files" class="tab-hide tab-display">
 										<h3>Exercise Project Files</h3>
 										<ul class="cgc-edu-downloadables">
-											<?php 
-											echo cgc_edu_exercise_get_files();
+											<?php
+											$files =  cgc_edu_exercise_get_files();
+
+												foreach( (array) $files as $key => $file ) {
+
+													echo '<li><a href="'.$file.'">'.$file.'</a></li>';
+												}
+
 											?>
 										</ul>
 									</div>
 
 									<div id="submissions" class="tab-hide tab-display">
+										<h3>Exercise Submissions</h3>
 										<?php
 											$submissions = cgc_edu_exercise_get_submissions();
 
