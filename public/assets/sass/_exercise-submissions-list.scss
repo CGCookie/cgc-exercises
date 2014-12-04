@@ -1,0 +1,29 @@
+// exercise files tab
+#submissions {
+	.cgc-edu-submissions {
+		list-style:none;
+		@include clearfix();
+		position: relative;
+		margin: 0 -6px 0 0;
+
+		li {
+			background:$exercise-half-gray;
+			margin-bottom:5px;
+			position:relative;
+			float:left;
+			width:32.333%;
+			height:5vh;
+			margin-right:1%;
+
+			a {
+				padding:15px;
+				display:block;
+				color:inherit;
+			}
+			&:hover {
+				background:darken($exercise-half-gray,2);
+				cursor:pointer;
+			}
+		}
+	}
+}

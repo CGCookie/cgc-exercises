@@ -65,17 +65,28 @@
 
 									<div id="submissions" class="tab-hide tab-display">
 										<h3>Exercise Submissions</h3>
-										<?php
-											$submissions = cgc_edu_exercise_get_submissions();
+										<ul class="cgc-edu-submissions">
+											<?php
+												$submissions = cgc_edu_exercise_get_submissions();
 
-											if ( $submissions ):
 
-												foreach( (array) $submissions as $key => $submission ) {
-													echo '<p>'.$submission.'</p>';
-												}
+												if ( $submissions ):
 
-											endif;
-										?>
+													foreach( (array) $submissions as $key => $submission ) {
+
+														$id = $submission;
+														$sub = get_post($id);
+
+														if ( FALSE !== get_post_status( $id ) ) {
+
+														  	?><li><a href="<?php echo get_permalink( $id );?>"><?php echo isset( $sub->post_title ) ? esc_html( $sub->post_title ) : false;?></a></li><?php
+														}
+													}
+
+												endif;
+
+											?>
+										</ul>
 									</div>
 
 								</div>
