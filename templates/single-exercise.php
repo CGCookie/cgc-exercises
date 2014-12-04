@@ -53,8 +53,7 @@
 
 									<div id="files" class="tab-hide tab-display">
 										<h3>Exercise Project Files</h3>
-										<ul class="cgc-edu-downloadables">
-											<?php
+										<?php
 
 											$files_desc = get_post_meta( get_the_ID(), '_cgc_edu_exercise_files_desc', true );
 
@@ -62,6 +61,9 @@
 												echo wpautop( $files_desc );
 											}
 
+											?>
+										<ul class="cgc-edu-downloadables">
+											<?php
 											$files =  cgc_edu_exercise_get_files();
 
 												foreach( (array) $files as $key => $file ) {
