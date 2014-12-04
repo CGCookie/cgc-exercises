@@ -13,7 +13,10 @@
 
 						<header class="cgc-edu-mast">
 
-							<?php echo the_title('<h1>','</h1>');?>
+							<div class="cgc-edu-block-title">
+								<i class="cgc-block-icon cgc-block-icon--exercise cgc_tooltip--bottom" title="Exercise - Organized content to help you achieve a goal"></i>
+								<?php echo the_title('<h1>','</h1>');?>
+							</div>
 
 							<?php get_template_part( 'content', 'post-header' ); ?>
 
@@ -52,6 +55,13 @@
 										<h3>Exercise Project Files</h3>
 										<ul class="cgc-edu-downloadables">
 											<?php
+
+											$files_desc = get_post_meta( get_the_ID(), '_cgc_edu_exercise_files_desc', true );
+
+											if ( $files_desc ) {
+												echo wpautop( $files_desc );
+											}
+
 											$files =  cgc_edu_exercise_get_files();
 
 												foreach( (array) $files as $key => $file ) {

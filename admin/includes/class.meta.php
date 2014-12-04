@@ -85,6 +85,17 @@ class cgc_exercise_meta{
 			'object_types' 	=> array('exercise'),
 			'fields' => array(
 				array(
+					'id'		=> '_cgc_edu_exercise_files_desc',
+					'name'		=> 'Description to be used for the Project Files area',
+					'type'		=> 'wysiwyg',
+					'options' => array(
+				        'wpautop' => true, // use wpautop?
+				        'media_buttons' => false, // show insert/upload button(s)
+				        'textarea_rows' => get_option('default_post_edit_rows', 5)
+				    ),
+					'desc'		=> 'Add a description to be shown in the Project Files tab'
+				),
+				array(
 					'id' 			=> '_cgc_edu_exercise_files',
 					'name' 			=> __('Exercise Files', 'cgc-exercises'),
 					'type' 			=> 'text',

@@ -16,6 +16,16 @@
 	padding-left:0;
 }
 
+// block title
+.cgc-edu-block-title {
+	position:relative;
+	padding-left:45px;
+
+	.cgc-block-icon {
+		top:7px;
+	}
+}
+
 // sidebar
 .cgc-edu-sidebar--exercise {
 	@include column(4);
