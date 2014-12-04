@@ -130,6 +130,7 @@ function cgc_edu_exercise_submission_modal(){
 							<label class="file-upload" for="exercise-image">
 								<i class="icon icon-upload"></i>
 								<span>Upload Image</span>
+								<span class="filename"></span>
 								<input type="file" name="exercise-image" multiple="false">
 							</label><?php
 							break;

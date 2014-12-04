@@ -97,6 +97,19 @@
 
         }
 
+        .filename {
+        	width: 458px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			padding-left: 139px;
+			text-align: left;
+			top: 3px;
+			color: #6C6C6C;
+			font-family: Courier;
+			font-size: 12px;
+        }
+
 
         input[type="file"] {
         	position:absolute;

@@ -64,6 +64,11 @@ jQuery(document).ready(function($){
         }
     });
 
+     $('#cgc-exercise-submit-form input:file').live('change',function (){
+       var fileName = $(this).val();
+       $('.filename').text(fileName);
+     });
+
     function showRequest(formData, jqForm, options) {
 		$(results).html('Sending...');
 	}
