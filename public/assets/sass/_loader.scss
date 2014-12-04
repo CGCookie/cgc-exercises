@@ -54,7 +54,7 @@
 .cgc-edu-upload--progress {
 	.cgc-edu-upload--bar {
 		height:1px;
-		background:$blenderColor;
+		@include make-network-color('background');
 	}
 	.cgc-edu-upload--percent {
 

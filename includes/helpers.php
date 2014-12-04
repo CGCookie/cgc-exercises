@@ -127,8 +127,11 @@ function cgc_edu_exercise_submission_modal(){
 					<?php switch ($type) {
 						case 'image':
 							?>
-							<label for="exercise-image">Title</label>
-							<input type="file" name="exercise-image" multiple="false"><?php
+							<label class="file-upload" for="exercise-image">
+								<i class="icon icon-upload"></i>
+								Upload Image
+								<input type="file" name="exercise-image" multiple="false">
+							</label><?php
 							break;
 						case 'video':
 							?>

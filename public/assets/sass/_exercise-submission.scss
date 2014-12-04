@@ -132,7 +132,7 @@
 		margin-bottom:0;
 
 		&:hover {
-			//@include make-network-color('background');
+			@include make-network-color('background');
 		}
 	}
 
