@@ -34,11 +34,11 @@ jQuery(document).ready(function($){
     	location.reload();
     });
 
-    var bar = $('.cgc-edu-upload--bar');
-    var percent = $('.cgc-edu-upload--percent');
+    var bar = $('.cgc-edu-upload--bar'),
+    	percent = $('.cgc-edu-upload--percent'),
+    	progress = $('.cgc-edu-upload--progress')
 
-    bar.hide();
-    percent.hide();
+    progress.hide();
 
     // bind form using 'ajaxForm'
     $('#cgc-exercise-submit-form').ajaxForm({
@@ -48,8 +48,7 @@ jQuery(document).ready(function($){
         url:    		ajaxurl,
         beforeSend: function() {
             var percentVal = '0%';
-            bar.fadeIn();
-            percent.fadeIn();
+            progress.fadeIn();
             bar.width(percentVal);
             percent.html(percentVal);
         },
@@ -67,6 +66,7 @@ jQuery(document).ready(function($){
 		$(results).hide();
 		$(results).html(responseText);
 		$(results).fadeIn();
+		$(progress).fadeOut();
 
 		$(exercise_modal).find('h2').text('Congrats!');
   		$(exercise_modal).find('.cgc-universal-modal--intro').text('Congrats on submitting your work to be graded by the community. That is huge first step in becoming better. Take a moment to share out your work or grade others in the exercise.')

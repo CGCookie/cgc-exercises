@@ -65,34 +65,37 @@
 
 	 // upload button
     .file-upload {
-        height: 25px;
         background:#d7d7d7;
 		border-radius: 2px;
 		display: block;
 		padding: 2px 4px;
 		width: 127px;
-		text-align: center;
-		height: auto;
 		height: 29px;
+		text-align: center;
 		color:$black;
 		margin-bottom:5px;
+		position:relative;
+
+		*:hover { cursor:pointer; }
 
         i {
            	color:$black;
+
         }
 
-        span {
-            font-size:86%;
-            color:white;
-        }
 
         input[type="file"] {
-            @include opacity(0);
-            z-index: -1;
+        	position:absolute;
+        	top:0;
+        	left:0;
+        	right:0;
+           @include opacity(0);
+           //z-index: -1;
+           	width: 127px;
+			height: 29px;
         }
 
         &:hover {
-            cursor: pointer;
             @include make-network-color('background');
         }
     }
