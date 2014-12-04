@@ -98,16 +98,29 @@ class cgc_exercise_meta{
 				array(
 					'id' 			=> '_cgc_edu_exercise_files',
 					'name' 			=> __('Exercise Files', 'cgc-exercises'),
-					'type' 			=> 'text',
+					'type' 			=> 'group',
+					'repeatable'     => true,
+					'repeatable_max' => 20,
 					'options'     => array(
 						'group_title'   => __( 'File {#}', 'cgc-exercises' ), // {#} gets replaced by row number
 						'add_button'    => __( 'Add Another File', 'cgc-exercises' ),
 						'remove_button' => __( 'Remove File', 'cgc-exercises' ),
 						'sortable'      => true
 					),
-					'repeatable'     => true,
-					'repeatable_max' => 20,
-					'desc'			=> __('Add any downloadable file URLs here.', 'cgc-exercises'),
+					'fields'		=> array(
+						array(
+							'id' 			=> '_file',
+							'name' 			=> __('File', 'cgc-exercises'),
+							'type' 			=> 'text',
+							'desc'			=> __('Add any downloadable file URLs here.', 'cgc-exercises'),
+						),
+						array(
+							'id' 			=> '_title',
+							'name' 			=> __('Title', 'cgc-exercises'),
+							'type' 			=> 'text',
+							'desc'			=> __('Add any downloadable file URLs here.', 'cgc-exercises'),
+						)
+					)
 				)
 			)
 		);

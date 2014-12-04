@@ -68,7 +68,12 @@
 
 												foreach( (array) $files as $key => $file ) {
 
-													echo '<li><a href="'.$file.'">'.$file.'</a></li>';
+													$title = $link = '';
+
+													$title = $file['_title'];
+													$link = $file['_file'];
+
+													echo '<li><a href="'.$link.'">'.$title.'</a></li>';
 												}
 
 											?>
