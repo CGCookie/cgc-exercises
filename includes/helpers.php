@@ -67,8 +67,9 @@ function cgc_edu_submission_block( $id = 0 ) {
 		return;
 
 	?><li>
-		<a href="<?php echo get_permalink( $id );?>">
-			<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>
+		<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
+			IMAGE OR AVATAR
+			<span><?php echo cgc_edu_exercise_submission_status($id->ID);?></span>
 		</a>
 	</li>
 	<?php
@@ -267,6 +268,46 @@ function cgc_edu_exercise_count_total_votes( $postid = 0 ) {
 	$votes = get_post_meta( $postid, '_cgc_edu_exercise_total_votes', true );
 
 	return !empty( $votes ) ? $votes : '0';
+}
+
+/**
+*
+*
+*	Return the status of an exercise submission
+*	@param $postid int id of exercise submission
+*	@return the status of the submission - Passed for passing, Failed for failing, or ready for grading if grading still open
+*
+*/
+function cgc_edu_exercise_submission_status( $postid = '' ) {
+
+	if ( empty( $postid ) )
+		return;
+
+	$votes 			= get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+
+	// get total votes
+	$total_votes 	= 	get_post_meta( $postid, '_cgc_edu_exercise_total_votes', true );
+
+	// get votes required to psas
+	$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
+	$passing     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
+
+	if ( $total_votes >= $passing ) { // total points have reacehd teh total number required to pass
+
+		if ( $votes >= $passing ) { // votes are greater than passing
+
+			return 'Passed';
+
+		} else {
+
+			return 'Failed';
+		}
+
+	} else {
+
+		return 'Ready for grading!';
+	}
+
 }
 
 /**
