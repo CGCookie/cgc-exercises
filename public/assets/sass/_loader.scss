@@ -58,11 +58,15 @@
 	left: 0;
 
 	.cgc-edu-upload--bar {
-		height:1px;
+		height:25px;
 		@include make-network-color('background');
 	}
 	.cgc-edu-upload--percent {
-		text-align: right;
-		padding: 5px 9px
+		position:absolute;
+		top:0;
+		right:0;
+		padding:1px 5px 0 0;
+		color:white;
+		font-weight:bold;
 	}
 }
