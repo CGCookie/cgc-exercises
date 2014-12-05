@@ -21,6 +21,8 @@
 						$type_video  		= get_post_meta( get_the_ID(), '_cgc_edu_exercise_video', true);
 						$type_sketchfab  	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_sketchfab', true);
 
+						var_dump($type_video);
+
 
 						// tally some votes
 						$total_votes 		= 	get_post_meta( get_the_ID(), '_cgc_edu_exercise_total_votes', true );
@@ -82,7 +84,14 @@
 											?><iframe width="100%" height="" src="//sketchfab.com/models/5cfede7837b842edb08439d61b7c3fd1/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
 											break;
 										case 'video':
-											?><iframe width="" height="" src="//www.youtube.com/embed/9Ip79C4glyA" frameborder="0" allowfullscreen></iframe><?php
+											$provider = cgc_edu_video_provider( $type_video );
+
+											if ( 'youtube' == $provider ) {
+												?><iframe width="100%" height="" src="//www.youtube.com/embed/<?php echo esc_attr($type_video);?>" frameborder="0" allowfullscreen></iframe><?php
+											} elseif( 'vimeo' == $provider ) {
+												?><iframe width="100%" height="" src="//player.vimeo.com/video/<?php echo esc_attr($type_video);?>" frameborder="0" allowfullscreen></iframe><?php
+											}
+
 											break;
 										default:
 											?><div style="background-image:url('<?php echo esc_url($image[0]);?>');"></div><?php

@@ -29,8 +29,9 @@ class cgc_exercises_process_submission {
 		// types
 		$sketchfab		= isset( $_POST['exercise-sketchfab']) ? $_POST['exercise-sketchfab'] : null;
 		$unity			= isset( $_POST['exercise-unity']) ? $_POST['exercise-unity'] : null;
-		$video			= isset( $_POST['exercise-video']) ? $_POST['exercise-video'] : null;
 
+		$video			= isset( $_POST['exercise-video']) ? $_POST['exercise-video'] : null;
+		$video_provider	= isset( $_POST['exercise-video-provider']) ? $_POST['exercise-video-provider'] : null;
 
 		$type           = get_post_meta( $postid , '_cgc_edu_exercise_type', true);
 
@@ -70,13 +71,16 @@ class cgc_exercises_process_submission {
 						self::process_image('exercise-image', $postid, $submission_id);
 					}
 					if ( $sketchfab ) {
-						update_post_meta( $postid, '_cgc_edu_exercise_sketchfab', sanitize_text_field( $sketchfab ) );
+						update_post_meta( $submission_id, '_cgc_edu_exercise_sketchfab', sanitize_text_field( $sketchfab ) );
 					}
 					if ( $unity ) {
-						update_post_meta( $postid, '_cgc_edu_exercise_unity', sanitize_text_field( $unity ) );
+						update_post_meta( $submission_id, '_cgc_edu_exercise_unity', sanitize_text_field( $unity ) );
 					}
 					if ( $video ) {
-						update_post_meta( $postid, '_cgc_edu_exercise_video', sanitize_text_field( $video ) );
+
+						$data = array($video,$video_provider);
+
+						update_post_meta( $submission_id, '_cgc_edu_exercise_video', serialize($data) );
 					}
 
 					// @todo - display a new thanks modal in place of this

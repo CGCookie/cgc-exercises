@@ -96,6 +96,31 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 /**
 *
+*	Find out if the video url they are submitting is vimeo or youtube
+*
+*/
+function cgc_edu_video_provider( $source = ''){
+
+	if ( empty( $source ) )
+		return;
+
+    if (strpos($source, 'youtube') > 0) {
+
+        return 'youtube';
+
+    } elseif (strpos($source, 'vimeo') > 0) {
+
+        return 'vimeo';
+
+    } else {
+
+        return 'unknown';
+
+    }
+}
+
+/**
+*
 * Modal displayed after grading
 *
 *
@@ -134,7 +159,7 @@ function cgc_edu_grading_modal(){
 
 /**
 *
-* Modal displayed after grading
+* Modal displayed to the user allowing them to submit an exercise
 *
 *
 */
@@ -176,8 +201,9 @@ function cgc_edu_exercise_submission_modal(){
 							break;
 						case 'video':
 							?>
-							<label for="exercise-video">Video URL</label>
-							<input type="text" name="exercise-video" value=""><?php
+							<label for="exercise-video">Video URL <span class="exercise-video-source"></span></label>
+							<input id="exercise-video" type="text" name="exercise-video" value="">
+							<input id="exercise-video-provider" type="hidden" name="exercise-video-provider" value=""><?php
 							break;
 						case 'sketchfab':
 							?>

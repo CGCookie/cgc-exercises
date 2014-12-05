@@ -84,6 +84,44 @@ jQuery(document).ready(function($){
   		$(exercise_modal).find(results).after('<a href="">Share</a>');
 	}
 
+	// attempt to detect video source
+
+	$('#exercise-video').live('change',function(){
+
+		var val = $(this).val();
+		var provider = check_url(val);
+
+		$('.exercise-video-source').text(''+provider+' Detected');
+		$('#exercise-video-provider').val(provider)
+		/*
+		if('youtube' == provider) {
+			$('.exercise-video-source').text('YouTube Detected');
+			$('#exercise-video-provider').val(provider)
+		} else if( 'vimeo' == provider ) {
+			$('.exercise-video-source').text('Vimeo Detected');
+		}
+		*/
+	});
+
+	var regYoutube = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+	var regVimeo = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?([0-9]+)/;
+	var regDailymotion = /^.+dailymotion.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?/;
+	var regMetacafe = /^.*(metacafe\.com)(\/watch\/)(\d+)(.*)/i;
+	function check_url(url) {
+	    if(regYoutube.test(url)) {
+	        return 'youtube';
+	    }else if (regMetacafe.test(url)) {
+	        return 'metacafe';
+	    }else if(regDailymotion.test(url)){
+	        return 'dailymotion';
+	    }else if(regVimeo.test(url)) {
+	        return 'vimeo';
+	    }else{
+	        return false;
+	    }
+	}
+
+
 });
 
 jQuery(window).load(function() {
