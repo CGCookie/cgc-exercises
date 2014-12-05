@@ -79,11 +79,11 @@ class cgc_exercises_process_submission {
 					if ( $video ) {
 
 						$data = array(
-							'url' => $video,
-							'provider' => $video_provider
+							'url'		=> $video,
+							'provider' 	=> $video_provider
 						);
 
-						update_post_meta( $submission_id, '_cgc_edu_exercise_video', serialize($data) );
+						update_post_meta( $submission_id, '_cgc_edu_exercise_video', $data );
 					}
 
 					// @todo - display a new thanks modal in place of this

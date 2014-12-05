@@ -77,6 +77,15 @@
 		font-weight:bold;
 	}
 
+	.exercise-video-source {
+		@include make-network-color('color');
+	}
+
+	.icon-vimeo:before {
+		content:'Vimeo';
+		float:right;
+	}
+
 	 // upload button
     .file-upload {
         background:#d7d7d7;

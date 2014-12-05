@@ -18,7 +18,7 @@
 						// submission type
 						$type        = get_post_meta( $connected, '_cgc_edu_exercise_type', true);
 
-						$video  		= get_post_meta( get_the_ID(), '_cgc_edu_exercise_video', true);
+						$video  		= get_post_meta( get_the_ID(), '_cgc_edu_exercise_video');
 
 						$type_sketchfab  	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_sketchfab', true);
 
@@ -75,6 +75,7 @@
 									<div id="cgc-media-loading" class="cgc-media-loading"><div class="cgc-media-loader"></div><span>Loading...</span></div>
 									<?php
 
+									// @todo this relaly needs to be moved to its own fucntion its gotten diryt
 									switch ($type) {
 										case 'image':
 											?><div class="media--img" style="background-image:url('<?php echo esc_url($image[0]);?>');"></div><?php
@@ -83,12 +84,20 @@
 											?><iframe width="100%" height="" src="//sketchfab.com/models/5cfede7837b842edb08439d61b7c3fd1/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
 											break;
 										case 'video':
-											var_dump($video);
 
-											if ( 'youtube' == $provider ) {
-												?><iframe width="100%" height="" src="//www.youtube.com/embed/<?php echo esc_attr($type_video);?>" frameborder="0" allowfullscreen></iframe><?php
-											} elseif( 'vimeo' == $provider ) {
-												?><iframe width="100%" height="" src="//player.vimeo.com/video/<?php echo esc_attr($type_video);?>" frameborder="0" allowfullscreen></iframe><?php
+											if ( 'youtube' == $video[0]['provider'] ) {
+
+												$yt_vid_id = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video[0]['url'], $match);
+												$yt_vid_id = $yt_vid_id && $match ? $match[1] : false;
+
+												?><iframe width="100%" height="" src="//www.youtube.com/embed/<?php echo esc_attr($yt_vid_id);?>" frameborder="0" allowfullscreen></iframe><?php
+
+											} elseif( 'vimeo' == $video[0]['provider'] ) {
+
+												$vim_vid_id = preg_match_all('#https?://(player\.)?vimeo\.com(/video)?/(\d+)#i', $video[0]['url'], $match);
+												$vim_vid_id = $vim_vid_id && $match ? $match[3][0] : false;
+
+												?><iframe width="100%" height="" src="//player.vimeo.com/video/<?php echo esc_attr($vim_vid_id);?>" frameborder="0" allowfullscreen></iframe><?php
 											}
 
 											break;

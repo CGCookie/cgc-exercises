@@ -201,7 +201,7 @@ function cgc_edu_exercise_submission_modal(){
 							break;
 						case 'video':
 							?>
-							<label for="exercise-video">Video URL <span class="exercise-video-source"></span></label>
+							<label for="exercise-video">Video URL <i class="exercise-video-source icon "></i></label>
 							<input id="exercise-video" type="text" name="exercise-video" value="">
 							<input id="exercise-video-provider" type="hidden" name="exercise-video-provider" value=""><?php
 							break;

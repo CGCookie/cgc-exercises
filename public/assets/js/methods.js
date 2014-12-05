@@ -91,7 +91,7 @@ jQuery(document).ready(function($){
 		var val = $(this).val();
 		var provider = check_url(val);
 
-		$('.exercise-video-source').text(''+provider+' Detected');
+		$('.exercise-video-source').addClass('icon-'+provider+' ');
 		$('#exercise-video-provider').val(provider)
 
 	});
