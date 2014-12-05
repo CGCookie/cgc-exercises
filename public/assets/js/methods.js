@@ -93,14 +93,7 @@ jQuery(document).ready(function($){
 
 		$('.exercise-video-source').text(''+provider+' Detected');
 		$('#exercise-video-provider').val(provider)
-		/*
-		if('youtube' == provider) {
-			$('.exercise-video-source').text('YouTube Detected');
-			$('#exercise-video-provider').val(provider)
-		} else if( 'vimeo' == provider ) {
-			$('.exercise-video-source').text('Vimeo Detected');
-		}
-		*/
+
 	});
 
 	var regYoutube = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;

@@ -78,7 +78,10 @@ class cgc_exercises_process_submission {
 					}
 					if ( $video ) {
 
-						$data = array($video,$video_provider);
+						$data = array(
+							'url' => $video,
+							'provider' => $video_provider
+						);
 
 						update_post_meta( $submission_id, '_cgc_edu_exercise_video', serialize($data) );
 					}
