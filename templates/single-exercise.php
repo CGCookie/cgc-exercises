@@ -89,20 +89,20 @@
 										<?php if ( $submissions ) {
 											?><ul class="cgc-edu-submissions"><?php
 
-													if ( $submissions ):
+												if ( $submissions ):
 
-														foreach( (array) $submissions as $key => $submission ) {
+													foreach( (array) $submissions as $key => $submission ) {
 
-															$id = $submission;
-															$sub = get_post($id);
+														$id = $submission;
+														$sub = get_post($id);
 
-															if ( FALSE !== get_post_status( $id ) ) {
+														if ( FALSE !== get_post_status( $id ) ) {
 
-															  	?><li><a href="<?php echo get_permalink( $id );?>"><?php echo isset( $sub->post_title ) ? esc_html( $sub->post_title ) : false;?></a></li><?php
-															}
+														  	echo cgc_edu_submission_block( $sub );
 														}
+													}
 
-													endif;
+												endif;
 
 											?></ul><?php
 										} ?>

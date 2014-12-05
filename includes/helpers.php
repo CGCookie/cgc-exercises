@@ -56,6 +56,28 @@ function cgc_edu_author_block( $postid = 0, $submission = false ) {
 
 /**
 *
+*	Draws teh submission block shown in the submissions tab of a single exercise post type
+*
+*	@param $id int id of the post to pull author data from
+* 	@return a formatted block of html with the submission and pass/fail actions
+*/
+function cgc_edu_submission_block( $id = 0 ) {
+
+	if ( empty( $id ) )
+		return;
+
+	?><li>
+		<a href="<?php echo get_permalink( $id );?>">
+			<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>
+		</a>
+	</li>
+	<?php
+
+
+}
+
+/**
+*
 * Modal displayed after grading
 *
 *
