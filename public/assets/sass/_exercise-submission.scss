@@ -165,9 +165,9 @@
 		margin-right:-11px;
 	}
 	.passed {
-		background:#5cb85c;
+		background:$exercise-green;
 	}
 	.failed {
-		background:#d9534f;
+		background:$exercise-red;
 	}
 }

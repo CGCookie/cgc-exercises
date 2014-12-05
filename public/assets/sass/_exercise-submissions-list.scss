@@ -12,13 +12,14 @@
 			position:relative;
 			float:left;
 			width:32.333%;
-			height:10vh;
 			margin-right:1%;
 
 			a {
 				padding:15px;
 				display:block;
 				color:inherit;
+				position:relative;
+				height:10vh;
 
 				span {
 					display:block;
@@ -27,31 +28,27 @@
 					font-size:12px;
 					line-height:1.4;
 					color:$black;
+					position:absolute;
+					left:10px;
+					right:10px;
+					bottom:10px;
 				}
-			}
-
-			&.passed {
-
-				@include make-network-color('background');
-
-			}
-
-			&.failed,
-			&.open {
-				background:#333;
-				color:#eaeaea;
-			}
-
-			&.failed {
-
-			}
-			&.open {
-
 			}
 
 			&:hover {
 				background:darken($exercise-half-gray,2);
 				cursor:pointer;
+			}
+
+			&.submission-status--open span{
+				background:$black;
+				color:#eaeaea;
+			}
+			&.submission-status--passed span{
+				background:$exercise-green;
+			}
+			&.submission-status--failed span{
+				background:$exercise-red;
 			}
 		}
 	}
