@@ -4,7 +4,6 @@ class cgc_exercise_meta{
 
 	public function __construct(){
 		add_filter( 'cmb2_meta_boxes', array($this,'exercise_meta') );
-
 	}
 
 	public function exercise_meta( array $meta_boxes ) {
@@ -113,6 +112,12 @@ class cgc_exercise_meta{
 							'name' 			=> __('File', 'cgc-exercises'),
 							'type' 			=> 'text',
 							'desc'			=> __('Add any downloadable file URLs here.', 'cgc-exercises'),
+						),
+						array(
+							'id' 			=> '_size',
+							'name' 			=> __('File Size', 'cgc-exercises'),
+							'type' 			=> 'text_small',
+							'desc'			=> __('File size of video', 'cgc-exercises'),
 						),
 						array(
 							'id' 			=> '_title',

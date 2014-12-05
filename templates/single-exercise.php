@@ -6,7 +6,9 @@
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 
 					// setup some vars for this template
-					$auth_id = get_the_author_meta('ID');
+					$auth_id 		= get_the_author_meta('ID');
+					$files 			= cgc_edu_exercise_get_files();
+					$submissions 	= cgc_edu_exercise_get_submissions();
 
 					?>
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -55,55 +57,55 @@
 										<h3>Exercise Project Files</h3>
 										<?php
 
-											$files_desc = get_post_meta( get_the_ID(), '_cgc_edu_exercise_files_desc', true );
+										$files_desc = get_post_meta( get_the_ID(), '_cgc_edu_exercise_files_desc', true );
 
-											if ( $files_desc ) {
-												echo wpautop( $files_desc );
-											}
+										if ( $files_desc ) {
+											echo wpautop( $files_desc );
+										}
 
-											?>
-										<ul class="cgc-edu-downloadables">
-											<?php
-											$files =  cgc_edu_exercise_get_files();
+										if ( $files ) {
+
+											?><ul class="cgc-edu-downloadables"><?php
 
 												foreach( (array) $files as $key => $file ) {
 
-													$title = $link = '';
+													$title = $link = $size = '';
 
 													$title = $file['_title'];
 													$link = $file['_file'];
+													$size = isset( $file['_size'] ) ? sprintf('<span>( %s )</span>', $file['_size']) : false;
 
-													echo '<li><a href="'.$link.'">'.$title.'</a></li>';
+													echo '<li><a href="'.$link.'">'.$title.' '.$size.'</a></li>';
 												}
 
-											?>
-										</ul>
+											?></ul><?php
+
+										} ?>
 									</div>
 
 									<div id="submissions" class="tab-hide tab-display">
 										<h3>Exercise Submissions</h3>
-										<ul class="cgc-edu-submissions">
-											<?php
-												$submissions = cgc_edu_exercise_get_submissions();
 
+										<?php if ( $submissions ) {
+											?><ul class="cgc-edu-submissions"><?php
 
-												if ( $submissions ):
+													if ( $submissions ):
 
-													foreach( (array) $submissions as $key => $submission ) {
+														foreach( (array) $submissions as $key => $submission ) {
 
-														$id = $submission;
-														$sub = get_post($id);
+															$id = $submission;
+															$sub = get_post($id);
 
-														if ( FALSE !== get_post_status( $id ) ) {
+															if ( FALSE !== get_post_status( $id ) ) {
 
-														  	?><li><a href="<?php echo get_permalink( $id );?>"><?php echo isset( $sub->post_title ) ? esc_html( $sub->post_title ) : false;?></a></li><?php
+															  	?><li><a href="<?php echo get_permalink( $id );?>"><?php echo isset( $sub->post_title ) ? esc_html( $sub->post_title ) : false;?></a></li><?php
+															}
 														}
-													}
 
-												endif;
+													endif;
 
-											?>
-										</ul>
+											?></ul><?php
+										} ?>
 									</div>
 
 								</div>
