@@ -71,7 +71,7 @@
 							</aside>
 							<div class="cgc-edu-exercise-submission--image-wrap">
 
-								<div class="cgc-edu-exercise-submission--media media-type__<?php echo sanitize_html_class($type);?> cgc-fitvid">
+								<div class="cgc-edu-exercise-submission--media media-type__<?php echo sanitize_html_class($type);?> cgc-edu-vid">
 									<div id="cgc-media-loading" class="cgc-media-loading"><div class="cgc-media-loader"></div><span>Loading...</span></div>
 									<?php
 
