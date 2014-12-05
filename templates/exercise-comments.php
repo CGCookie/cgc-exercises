@@ -1,6 +1,5 @@
 <?php if ( comments_open() ) : ?>
 	<div id="comments" class="exercise-comments">
-
 		<?php if ( have_comments() ) : ?>
 			<strong><?php comments_number('No Conversations', 'One Conversation', '% Conversations' );?> on &#8220;<?php the_title(); ?>&#8221;</strong>
 			<ol class="commentlist clearfix">
@@ -16,5 +15,16 @@
 		<?php endif; ?>
 
 	</div>
+				<?php
+					$args = array(
+					   	'label_submit'			=>'Leave a Comment',
+					    'title_reply'			=>'',
+					    'comment_notes_after' 	=> '',
+					    'logged_in_as'			=> '',
+					   	'comment_field' 		=> '<p class="comment-form-comment"><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
+					);
+
+					comment_form($args);
+				?>
 <?php endif; // if you delete this the sky will fall on your head ?>
 

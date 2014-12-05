@@ -71,7 +71,10 @@ class CGC_Exercises {
 		require_once(CGC_EXERCISES_DIR.'/includes/class.process-submission.php');
 		require_once(CGC_EXERCISES_DIR.'/includes/class.process-grading.php');
 
-		add_filter( 'comments_template', array($this,'exercise_submission_comment_template' ));
+		add_filter( 'comments_template', 			array($this,'exercise_submission_comment_template' ));
+
+		add_filter( 'comment_post_redirect', 		array($this,'cgc_edu_redirect_exercise_comment' ));
+		add_action('comment_form_logged_in_after',	array($this,'cgc_edu_exercise_add_redirect_field'));
 
 	}
 
@@ -257,6 +260,31 @@ class CGC_Exercises {
 	        return CGC_EXERCISES_DIR.'/templates/exercise-comments.php';
 	    }
 	}
+
+
+	/**
+	*	add a hidden field to the exercise comment submission form to redirect the user to the same tab on the page
+	*
+	*/
+
+	function cgc_edu_exercise_add_redirect_field(){
+
+		if ( 'exercise_submission' == get_post_type() || 'exercise' == get_post_type() ) {?>
+			<input type="hidden" name="exercise_submission_redirect_to" value="<?php echo get_permalink(); ?>?tab=discussion">
+		<?php }
+	}
+
+	/**
+	*	Redirect the comments to load the same page on exercise submission
+	*
+	*/
+
+
+	function cgc_edu_redirect_exercise_comment( $location ) {
+	    if ( isset( $_POST['exercise_submission_redirect_to'] ) )
+	        return $_POST['exercise_submission_redirect_to'];
+	}
+
 }
 
 
