@@ -66,10 +66,27 @@ function cgc_edu_submission_block( $id = 0 ) {
 	if ( empty( $id ) )
 		return;
 
-	?><li>
+
+	$status = cgc_edu_exercise_submission_status($id->ID);
+
+	if ( 'true' == $status ) {
+
+		$class = 'passed';
+
+	} elseif( 'false' == $status ) {
+
+		$class = 'failed';
+
+	} elseif( 'open' == $status ) {
+
+		$class = 'open';
+
+	}
+
+	?><li class="submission-status--<?php echo $class;?>">
 		<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
 			IMAGE OR AVATAR
-			<span><?php echo cgc_edu_exercise_submission_status($id->ID);?></span>
+			<span><?php echo $class;?></span>
 		</a>
 	</li>
 	<?php
@@ -296,16 +313,16 @@ function cgc_edu_exercise_submission_status( $postid = '' ) {
 
 		if ( $votes >= $passing ) { // votes are greater than passing
 
-			return 'Passed';
+			return 'true';
 
 		} else {
 
-			return 'Failed';
+			return 'false';
 		}
 
 	} else {
 
-		return 'Ready for grading!';
+		return 'open';
 	}
 
 }

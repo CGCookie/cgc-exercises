@@ -19,7 +19,36 @@
 				padding:15px;
 				display:block;
 				color:inherit;
+
+				span {
+					display:block;
+					padding:6px 12px;
+					text-align:center;
+					font-size:12px;
+					line-height:1.4;
+					color:$black;
+				}
 			}
+
+			&.passed {
+
+				@include make-network-color('background');
+
+			}
+
+			&.failed,
+			&.open {
+				background:#333;
+				color:#eaeaea;
+			}
+
+			&.failed {
+
+			}
+			&.open {
+
+			}
+
 			&:hover {
 				background:darken($exercise-half-gray,2);
 				cursor:pointer;

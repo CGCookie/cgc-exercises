@@ -107,7 +107,7 @@
 
 									// if the current logged in user hasnt voted and they are NOT the author of this submission,
 									// and this submission hasn't passed the threshold of allowed voets, then then show the form
-									if ( !$has_voted && !$not_the_submission_author && $voting_still_open ): ?>
+									if ( !$has_voted && $not_the_submission_author && $voting_still_open ): ?>
 										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data">
 
 											<label for="vote-yes">
