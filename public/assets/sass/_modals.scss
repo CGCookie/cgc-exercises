@@ -135,6 +135,14 @@
             @include make-network-color('background');
         }
     }
+    .cgc-universal-modal--header {
+    	@include transition(padding-top .2s linear);
+    }
+    &.image-uploading {
+    	.cgc-universal-modal--header {
+    		padding-top:1.2em;
+    	}
+    }
 }
 
 .success a {

@@ -56,6 +56,7 @@ jQuery(document).ready(function($){
             progress.fadeIn();
             bar.width(percentVal);
             percent.html(percentVal);
+            $(exercise_modal).addClass('image-uploading');
         },
         uploadProgress: function(event, position, total, percentComplete) {
             var percentVal = percentComplete + '%';
