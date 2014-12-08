@@ -37,7 +37,11 @@ class cgc_exercises_process_grading {
 		// total votes required to pass
 		$vote_allowed     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
-		$thanks = 'Thanks for your vote! We are still awaiting more votes to calculate a pass or fail';
+		// get submission author
+		$submission_author = get_post_field( 'post_author', $connected );
+
+		// get xp point value
+		$xp_point_value   = get_post_meta( $connected,'_cgc_edu_exercise_xp_worth', true);
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_grading' ) {
 
@@ -77,16 +81,18 @@ class cgc_exercises_process_grading {
 				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
 				// the total # of votes has reached the total number of votes allowed, proceed with grading stuff
-				if ( $total_votes >= $vote_allowed ) {
+				if ( $total_votes && $votes >= $vote_allowed && function_exists('cgc_increment_user_xp') ) {
 
-					if ( $votes >= $vote_allowed ) {
+					$args = array(
+						'user_id'		=>	$submission_author,
+						'xp_type'		=>  'exercise',
+						'xp_date'		=>	current_time('timestamp'),
+						'xp_amount'		=>	$xp_point_value,
+						'last_page'		=> 	''
+			   		);
+			        cgc_increment_user_xp( $args );
 
-						// user passed
 
-					} else {
-
-						// user failed
-					}
 				}
 
 			}
