@@ -82,21 +82,21 @@ class cgc_exercises_process_grading {
 				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
 				// the total # of votes has reached the total number of votes allowed, proceed with grading stuff
-				if ( $total_votes && $votes >= $vote_allowed && function_exists('cgc_increment_user_xp') ) {
+				if ( $total_votes >= $vote_allowed && $votes >= $vote_allowed && function_exists('cgc_increment_user_xp') ) {
 
 					// award xp
 					$args = array(
 						'user_id'		=>	$submission_author,
 						'xp_type'		=>  'exercise',
 						'xp_date'		=>	current_time('timestamp'),
-						'xp_amount'		=>	absint($xp_point_value),
+						'xp_amount'		=>	$xp_point_value,
 						'last_page'		=> 	''
 			   		);
 			        cgc_increment_user_xp( $args );
 
 			        // mail the user
 					$message = "Hi $author_data->display_name,\n\n";
-					$message .= "Your image has passed and ".absint($xp_point_value)." XP points have been awarded.\n\n";
+					$message .= "Your image has passed and ".$xp_point_value." XP points have been awarded.\n\n";
 					$message .= "Great job!\n\n";
 					$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
