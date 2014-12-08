@@ -39,6 +39,7 @@ class cgc_exercises_process_grading {
 
 		// get submission author
 		$submission_author = get_post_field( 'post_author', $connected );
+		$author_data = get_userdata( $submission_author );
 
 		// get xp point value
 		$xp_point_value   = get_post_meta( $connected,'_cgc_edu_exercise_xp_worth', true);
@@ -83,17 +84,36 @@ class cgc_exercises_process_grading {
 				// the total # of votes has reached the total number of votes allowed, proceed with grading stuff
 				if ( $total_votes && $votes >= $vote_allowed && function_exists('cgc_increment_user_xp') ) {
 
+					// award xp
 					$args = array(
 						'user_id'		=>	$submission_author,
 						'xp_type'		=>  'exercise',
 						'xp_date'		=>	current_time('timestamp'),
-						'xp_amount'		=>	$xp_point_value,
+						'xp_amount'		=>	absint($xp_point_value),
 						'last_page'		=> 	''
 			   		);
 			        cgc_increment_user_xp( $args );
 
+			        // mail the user
+					$message = "Hi $author_data->display_name,\n\n";
+					$message .= "Your image has passed and ".absint($xp_point_value)." XP points have been awarded.\n\n";
+					$message .= "Great job!\n\n";
+					$message .= "Best regards from the Crew at CG Cookie, Inc.";
+
+				} else {
+
+					// mail the user
+					$message = "Hi $author_data->display_name,\n\n";
+					$message .= "Unfortuately your exercise submission didn't pass and no XP was awarded.\n\n";
+					$message .= "Better luck next time!\n\n";
+					$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
 				}
+
+				if ( $message )
+					// email the user telling them their submission didnt pass
+					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+
 
 			}
 
