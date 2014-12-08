@@ -30,7 +30,8 @@ jQuery(document).ready(function($){
 	    $(modal).reveal();
     });
 
-    $('.comment-cancel').click(function(){
+    $('.comment-cancel').click(function(e){
+    	e.preventDefault();
     	location.reload();
     });
 
