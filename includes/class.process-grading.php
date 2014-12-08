@@ -110,9 +110,10 @@ class cgc_exercises_process_grading {
 
 				}
 
-				if ( $message )
+				if ( $message ) {
 					// email the user telling them their submission didnt pass
 					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+				}
 
 
 			}
