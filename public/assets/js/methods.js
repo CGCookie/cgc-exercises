@@ -66,7 +66,7 @@ jQuery(document).ready(function($){
     });
 
      $('#cgc-exercise-submit-form input:file').live('change',function (){
-       var fileName = $(this).val();
+       var fileName = $(this).val().split('\\').pop();
        $('.filename').text(fileName);
      });
 
