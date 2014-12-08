@@ -16,4 +16,15 @@
 		<?php endif; ?>
 
 	</div>
+					<?php
+					$args = array(
+					   	'label_submit'			=>'Leave Feedback',
+					    'title_reply'			=>'Your Feedback',
+					    'comment_notes_after' 	=> '',
+					    'logged_in_as'			=> '',
+					   	'comment_field' 		=> '<p class="comment-form-comment"><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
+					);
+
+					comment_form($args);
+				?>
 <?php endif; // if you delete this the sky will fall on your head ?>
