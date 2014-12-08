@@ -88,24 +88,23 @@
 
 										<?php if ( $submissions ) {
 											?><ul class="cgc-edu-submissions"><?php
+		
+												foreach( (array) $submissions as $key => $submission ) {
 
-												if ( $submissions ):
+													$id = $submission;
+													$sub = get_post($id);
 
-													foreach( (array) $submissions as $key => $submission ) {
+													if ( FALSE !== get_post_status( $id ) ) {
 
-														$id = $submission;
-														$sub = get_post($id);
-
-														if ( FALSE !== get_post_status( $id ) ) {
-
-														  	echo cgc_edu_submission_block( $sub );
-														}
+													  	echo cgc_edu_submission_block( $sub );
 													}
+												}
 
-												endif;
+											?></ul>
 
-											?></ul><?php
-										} ?>
+										<?php } else { ?>
+											<p class="empty">No submissions yet. Perhaps be the first? Submit button is on your right!</p>
+										<?php } ?>
 									</div>
 
 								</div>

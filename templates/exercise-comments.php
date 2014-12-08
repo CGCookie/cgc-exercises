@@ -18,7 +18,7 @@
 				<?php
 					$args = array(
 					   	'label_submit'			=>'Leave a Comment',
-					    'title_reply'			=>'',
+					    'title_reply'			=>'Your Comment',
 					    'comment_notes_after' 	=> '',
 					    'logged_in_as'			=> '',
 					   	'comment_field' 		=> '<p class="comment-form-comment"><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
