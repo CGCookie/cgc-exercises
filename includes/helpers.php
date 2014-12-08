@@ -18,6 +18,7 @@ function cgc_edu_author_block( $postid = 0, $submission = false ) {
 	$auth_id 	= get_the_author_meta('ID');
 	$user_id    = get_current_user_ID();
 	$avatar 	= get_user_meta($auth_id, 'profile_avatar_image', true);
+	$bio        = get_user_meta($auth_id,'description', true);
 
 	$who_dis_is = true == $submission ? 'Image by' : 'Instructor';
 	$auth_link  = sprintf('<a href="%s">%s</a>', cgc_get_profile_url( $auth_id ), get_the_author_meta('display_name', $auth_id) );
@@ -30,7 +31,7 @@ function cgc_edu_author_block( $postid = 0, $submission = false ) {
 
 		} else {
 
-			echo get_avatar( $auth_id, 80 );
+			echo get_avatar( $auth_id, 75 );
 		}
 		?>
 
@@ -47,8 +48,8 @@ function cgc_edu_author_block( $postid = 0, $submission = false ) {
 		<?php } ?>
 
 		<?php if ( false == $submission ): ?>
-			<p>Big bio</p>
-			<a href="#">More by this instructor</a>
+			<p class="cgc-author-block--bio"><?php echo esc_html( $bio );?></p>
+			<a class="cgc-author-block--more" href="<?php echo get_author_posts_url( $auth_id ); ?>">More by this instructor</a>
 		<?php endif;
 
 	return ob_get_clean();
