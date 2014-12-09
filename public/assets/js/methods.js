@@ -10,16 +10,18 @@ jQuery(document).ready(function($){
 		results         = $('#cgc-edu-exercise--submission-results');
 
 	// trigger the click when they vote
-	$('#cgc-exercise-vote-form label').click(function( ){
+	$('#cgc-exercise-vote-form label').click(function( event ){
 		//e.preventDefault();
 		$(this).next('input').attr('checked', true);
 		$('#cgc-exercise-vote').trigger('click');
+
 	});
 
 	// vote click handler
   	$('#cgc-exercise-vote-form').submit(function(e) {
 
   		e.preventDefault();
+  		e.stopImmediatePropagation();
 
   		var data = $(this).serialize();
 
