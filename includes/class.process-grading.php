@@ -84,7 +84,7 @@ class cgc_exercises_process_grading {
 				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
 				// the total # of votes has reached the total number of votes allowed, proceed with grading stuff
-				if ( $total_votes && $votes >= $vote_allowed ) {
+				if ( $total_votes || $votes >= $vote_allowed ) {
 
 			        do_action('cgc_edu_exercise_passed', $submission_author, $xp_point_value );
 
@@ -94,6 +94,8 @@ class cgc_exercises_process_grading {
 					$message .= "Great job!\n\n";
 					$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
+					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+
 				} else {
 
 					// mail the user
@@ -102,13 +104,9 @@ class cgc_exercises_process_grading {
 					$message .= "Better luck next time!\n\n";
 					$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
-				}
-
-				if ( $message ) {
-					// email the user telling them their submission didnt pass
 					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
-				}
 
+				}
 
 			}
 
