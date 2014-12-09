@@ -38,7 +38,7 @@ class cgc_exercises_process_grading {
 		$vote_allowed     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
 		// get submission author
-		$submission_author = get_post_field( 'post_author', $connected );
+		$submission_author = get_post_field( 'post_author', $postid );
 		$author_data = get_userdata( $submission_author );
 
 		// get xp point value
@@ -82,17 +82,9 @@ class cgc_exercises_process_grading {
 				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
 				// the total # of votes has reached the total number of votes allowed, proceed with grading stuff
-				if ( $total_votes >= $vote_allowed && $votes >= $vote_allowed && function_exists('cgc_increment_user_xp') ) {
+				if ( $total_votes && $votes >= $vote_allowed ) {
 
-					// award xp
-					$args = array(
-						'user_id'		=>	$submission_author,
-						'xp_type'		=>  'exercise',
-						'xp_date'		=>	current_time('timestamp'),
-						'xp_amount'		=>	$xp_point_value,
-						'last_page'		=> 	''
-			   		);
-			        cgc_increment_user_xp( $args );
+			        do_action('cgc_edu_exercise_passed', $submission_author, $xp_point_value );
 
 			        // mail the user
 					$message = "Hi $author_data->display_name,\n\n";
@@ -120,6 +112,23 @@ class cgc_exercises_process_grading {
 
 		}
 		exit();
+	}
+
+	// award xp
+	function cgc_edu_exercise_passed( $submission_author, $xp_point_value ) {
+
+		if ( function_exists('cgc_increment_user_xp') ):
+
+			$args = array(
+				'user_id'		=>	$submission_author,
+				'xp_type'		=>  'exercise',
+				'xp_date'		=>	current_time('timestamp'),
+				'xp_amount'		=>	$xp_point_value,
+				'last_page'		=> 	''
+	   		);
+	        cgc_increment_user_xp( $args );
+
+	    endif;
 	}
 
 
