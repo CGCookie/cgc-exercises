@@ -10,28 +10,24 @@ jQuery(document).ready(function($){
 		results         = $('#cgc-edu-exercise--submission-results');
 
 	// trigger the click when they vote
-	$('#cgc-exercise-vote-form label').click(function( event ){
+	$('#cgc-exercise-vote-form input').click(function(){
 		//e.preventDefault();
-		$(this).next('input').attr('checked', true);
-		$('#cgc-exercise-vote').trigger('click');
+		$(this).attr('checked', true);
+		$('#cgc-exercise-vote-form').trigger('submit');
 
 	});
 
 	// vote click handler
-  	$('#cgc-exercise-vote-form').submit(function(e) {
-
-  		e.preventDefault();
-  		e.stopImmediatePropagation();
+  	$('#cgc-exercise-vote-form').submit(function(event) {
 
   		var data = $(this).serialize();
 
 	  	$.post(ajaxurl, data, function(response) {
 	  		$('#cgc-edu-exercise--vote-results').html(response);
-
-	  		console.log(response);
 	    });
 
 	    $(modal).reveal();
+
     });
 
     $('.comment-cancel').click(function(e){
