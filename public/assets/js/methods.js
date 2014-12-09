@@ -20,6 +20,8 @@ jQuery(document).ready(function($){
 	// vote click handler
   	$('#cgc-exercise-vote-form').submit(function(event) {
 
+  		event.preventDefault();
+
   		var data = $(this).serialize();
 
 	  	$.post(ajaxurl, data, function(response) {
