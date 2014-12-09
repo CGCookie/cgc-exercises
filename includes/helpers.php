@@ -1,5 +1,44 @@
 <?php
 
+
+/**
+*	Used on the front end to properly escape attributes where users have control over what input is entered
+*	as well as through a callback upon saving in the backend
+*
+*	@since 1.0
+*	@return a sanitized string
+*/
+function cgc_edu_media_filter( $input = '' ) {
+
+	// bail if no input
+	if ( empty( $input ) )
+		return;
+
+	// setup our array of allowed content to pass
+	$allowed_html = array(
+		'a' 			=> array(
+		    'href' 		=> array(),
+		    'title' 	=> array(),
+		    'rel'		=> array(),
+		    'target'	=> array(),
+		    'name' 		=> array()
+		),
+		'img'			=> array(
+			'src' 		=> array(),
+			'alt'		=> array(),
+			'title'		=> array()
+		),
+		'p'				=> array(),
+		'br' 			=> array(),
+		'em' 			=> array(),
+		'strong' 		=> array()
+	);
+
+	$out = wp_kses( $input, $allowed_html );
+
+	return $out;
+}
+
 /**
 *
 *	Draws teh author block used on exercise and exercise submission templates

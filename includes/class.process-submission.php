@@ -54,8 +54,8 @@ class cgc_exercises_process_submission {
 
 					// create an exercise submission
 					$post_args = array(
-					  'post_title'    => $title,
-					  'post_content'  => $desc,
+					  'post_title'    => wp_strip_all_tags( $title ),
+					  'post_content'  => cgc_edu_media_filter( $desc ),
 					  'post_status'   => 'publish',
 					  'post_type'	  => 'exercise_submission',
 					  'post_author'   => $userid
