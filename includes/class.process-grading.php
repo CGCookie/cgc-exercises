@@ -13,7 +13,7 @@ class cgc_exercises_process_grading {
 		add_action( 'wp_ajax_process_grading', 				array($this, 'process_grading' ));
 		add_action( 'wp_ajax_nopriv_process_grading', 		array($this, 'process_grading' ));
 
-		add_action('cgc_edu_exercise_passed', array($this,'cgc_edu_exercise_passed'), 10, 2);
+		add_action('cgc_edu_exercise_voted', array($this,'cgc_edu_exercise_voted'), 10, 3);
 	}
 
 	/**
@@ -34,18 +34,6 @@ class cgc_exercises_process_grading {
 		$votes 			=	 get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
 		$total_votes 	= 	get_post_meta( $postid, '_cgc_edu_exercise_total_votes', true );
 
-		$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
-
-		// total votes required to pass
-		$vote_allowed     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
-
-		// get submission author
-		$submission_author = get_post_field( 'post_author', $postid );
-		$author_data = get_userdata( $submission_author );
-
-		// get xp point value
-		$xp_point_value   = get_post_meta( $connected,'_cgc_edu_exercise_xp_worth', true);
-
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_grading' ) {
 
 			// only run for logged in users
@@ -64,7 +52,7 @@ class cgc_exercises_process_grading {
 
 				} elseif ( 'yes' == $vote ) { // user voted yes, so incremenet and set a flag for this user
 
-					// and increment
+					// increment
 					update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) + 1 );
 
 					// increment total overall votes
@@ -72,41 +60,15 @@ class cgc_exercises_process_grading {
 
 				} elseif ('no' == $vote) { // aww shcuks, they voted no, so subtract a point
 
-					// and increment
+					// decrement
 					update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) - 1 );
 
-					// increment total overall votes
+					// decrement total overall votes
 					update_post_meta( $postid, '_cgc_edu_exercise_total_votes', intval( $total_votes ) + 1 );
 
 				}
 
-				// set a flag for this user so they can't vote anymore
-				update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
-
-				// the total # of votes has reached the total number of votes allowed, proceed with grading stuff
-				if ( $total_votes || $votes >= $vote_allowed ) {
-
-			        do_action('cgc_edu_exercise_passed', $submission_author, $xp_point_value );
-
-			        // mail the user
-					$message = "Hi $author_data->display_name,\n\n";
-					$message .= "Your image has passed and ".$xp_point_value." XP points have been awarded.\n\n";
-					$message .= "Great job!\n\n";
-					$message .= "Best regards from the Crew at CG Cookie, Inc.";
-
-					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
-
-				} else {
-
-					// mail the user
-					$message = "Hi $author_data->display_name,\n\n";
-					$message .= "Unfortuately your exercise submission didn't pass and no XP was awarded.\n\n";
-					$message .= "Better luck next time!\n\n";
-					$message .= "Best regards from the Crew at CG Cookie, Inc.";
-
-					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
-
-				}
+				do_action('cgc_edu_exercise_voted', $postid, $userid, $vote );
 
 			}
 
@@ -114,10 +76,36 @@ class cgc_exercises_process_grading {
 		exit();
 	}
 
-	// award xp
-	function cgc_edu_exercise_passed( $submission_author, $xp_point_value ) {
+	// award xp based on a pass or fail status
+	function cgc_edu_exercise_voted( $postid, $userid, $vote ) {
 
-		if ( function_exists('cgc_increment_user_xp') ):
+		// get the yes votes
+		$votes 			= get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
+		$total_votes 	= get_post_meta( $postid, '_cgc_edu_exercise_total_votes', true );
+		$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
+
+		// total votes required to pass
+		$vote_allowed     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
+
+		// get submission author
+		$submission_author = get_post_field( 'post_author', $postid );
+		$author_data 		= get_userdata( $submission_author );
+
+		// get xp point value
+		$xp_point_value   = get_post_meta( $connected,'_cgc_edu_exercise_xp_worth', true);
+
+		/**
+		*
+		*	START LOGIC
+		*
+		*/
+
+		// 1. set a flag for this user so they can't vote anymore
+		update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
+
+		// 2. if the total # of votes is more than votes allowed and the total yes votes are also more than votes allowed
+		//	  then increment xp and mail the user
+		if ( $total_votes >= $vote_allowed && $votes >= $vote_allowed ) {
 
 			$args = array(
 				'user_id'		=>	$submission_author,
@@ -128,7 +116,30 @@ class cgc_exercises_process_grading {
 	   		);
 	        cgc_increment_user_xp( $args );
 
-	    endif;
+	        /*
+	        // mail the user
+			$message = "Hi $author_data->display_name,\n\n";
+			$message .= "Your image has passed and ".$xp_point_value." XP points have been awarded.\n\n";
+			$message .= "Great job!\n\n";
+			$message .= "Best regards from the Crew at CG Cookie, Inc.";
+
+			wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+			*/
+
+		// 3. this exercise did not pass so run our logic here
+		} else {
+
+			/*
+			// mail the user
+			$message = "Hi $author_data->display_name,\n\n";
+			$message .= "Unfortuately your exercise submission didn't pass and no XP was awarded.\n\n";
+			$message .= "Better luck next time!\n\n";
+			$message .= "Best regards from the Crew at CG Cookie, Inc.";
+
+			wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+			*/
+
+		}
 	}
 
 
