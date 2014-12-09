@@ -123,7 +123,7 @@ class cgc_exercises_process_grading {
 			$message .= "Great job!\n\n";
 			$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
-			wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+			wp_mail( 'nick@cgcookie.com', 'Your Exercise Submission', $message );
 
 
 		// 3. this exercise did not pass so run our logic here
@@ -136,7 +136,7 @@ class cgc_exercises_process_grading {
 			$message .= "Better luck next time!\n\n";
 			$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
-			wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+			wp_mail( 'nick@cgcookie.com', 'Your Exercise Submission', $message );
 	
 
 		}
