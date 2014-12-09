@@ -12,6 +12,8 @@ class cgc_exercises_process_grading {
 
 		add_action( 'wp_ajax_process_grading', 				array($this, 'process_grading' ));
 		add_action( 'wp_ajax_nopriv_process_grading', 		array($this, 'process_grading' ));
+
+		add_action('cgc_edu_exercise_passed', array($this,'cgc_edu_exercise_passed'), 10, 2);
 	}
 
 	/**
