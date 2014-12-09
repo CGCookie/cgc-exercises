@@ -116,28 +116,28 @@ class cgc_exercises_process_grading {
 	   		);
 	        cgc_increment_user_xp( $args );
 
-	        /*
+
 	        // mail the user
 			$message = "Hi $author_data->display_name,\n\n";
 			$message .= "Your image has passed and ".$xp_point_value." XP points have been awarded.\n\n";
 			$message .= "Great job!\n\n";
 			$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
-			wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
-			*/
+			wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+
 
 		// 3. this exercise did not pass so run our logic here
 		} else {
 
-			/*
+
 			// mail the user
 			$message = "Hi $author_data->display_name,\n\n";
 			$message .= "Unfortuately your exercise submission didn't pass and no XP was awarded.\n\n";
 			$message .= "Better luck next time!\n\n";
 			$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
-			wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
-			*/
+			wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+	
 
 		}
 	}
