@@ -140,14 +140,17 @@ function cgc_edu_submission_block( $id = 0 ) {
 		$vim_vid_id = preg_match_all('#https?://(player\.)?vimeo\.com(/video)?/(\d+)#i', $video_url, $match);
 		$vim_vid_id = $vim_vid_id && $match ? $match[3][0] : false;
 
-		$yt_cover  = 'youtube' == $video_provider ? sprintf('//img.youtube.com/vi/%/1.jpg',$yt_vid_id) : null;
-
+		$get_yt_cover  = 'youtube' == $video_provider ? sprintf('https://img.youtube.com/vi/%s/0.jpg',$yt_vid_id) : null;
+		$yt_cover 		= $get_yt_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_yt_cover) : null;
 	}
+
+	//echo 'https://img.youtube.com/vi/'.$yt_vid_id.'/0.jpg';
 
 	?><li class="submission-status--<?php echo $class;?>">
 		<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
 			IMAGE OR AVATAR
 			<span><?php echo $class;?></span>
+			<?php echo $yt_cover;?>
 		</a>
 	</li>
 	<?php
