@@ -6,6 +6,7 @@
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 
 					// setup some vars for this template
+					$post_id 		= get_the_ID();
 					$auth_id 		= get_the_author_meta('ID');
 					$files 			= cgc_edu_exercise_get_files();
 					$submissions 	= cgc_edu_exercise_get_submissions();
@@ -72,10 +73,11 @@
 													$title = $link = $size = '';
 
 													$title = $file['_title'];
-													$link = $file['_file'];
+													$link = is_user_logged_in() && cgc_user_has_download_access( $post_id ) ? $file['_file'] : '#';
+													$modal = is_user_logged_in() && cgc_user_has_download_access( $post_id ) ? false : 'data-reveal-id="header-login-form"';
 													$size = isset( $file['_size'] ) ? sprintf('<span>( %s )</span>', $file['_size']) : false;
 
-													echo '<li><a href="'.$link.'">'.$title.' '.$size.'</a></li>';
+													echo '<li><a href="'.$link.'" '.$modal.'>'.$title.' '.$size.'</a></li>';
 												}
 
 											?></ul><?php
@@ -114,7 +116,11 @@
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__actions">
 									<ul>
-										<li><a href="#" data-reveal-id="cgc-exercise-submission-modal"><i class="icon icon-upload"></i>Submit Exercise</a></li>
+										<?php if ( cgc_user_has_post_access() ) { ?>
+											<li><a href="#" data-reveal-id="cgc-exercise-submission-modal"><i class="icon icon-upload"></i>Submit Exercise</a></li>
+										<?php } else { ?>
+											<li><a href="#" href="#" data-reveal-id="header-login-form"><i class="icon icon-upload"></i>Submit Exercise</a></li>
+										<?php } ?>
 										<li><a href="#"><i class="icon icon-upload"></i>Add to Watchlist</a></li>
 										<li><a href="#"><i class="icon icon-upload"></i>Download HD Video</a></li>
 									</ul>
