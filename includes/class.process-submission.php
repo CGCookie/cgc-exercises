@@ -58,7 +58,7 @@ class cgc_exercises_process_submission {
 					  'post_content'  => cgc_edu_media_filter( $desc ),
 					  'post_status'   => 'publish',
 					  'post_type'	  => 'exercise_submission',
-					  'post_author'   => $userid
+					  'post_author'   => absint($userid)
 					);
 					$submission_id = wp_insert_post( $post_args );
 

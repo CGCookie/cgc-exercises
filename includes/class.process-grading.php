@@ -108,18 +108,17 @@ class cgc_exercises_process_grading {
 		if ( $total_votes >= $vote_allowed && $votes >= $vote_allowed ) {
 
 			$args = array(
-				'user_id'		=>	$submission_author,
+				'user_id'		=>	absint($submission_author),
 				'xp_type'		=>  'exercise',
 				'xp_date'		=>	current_time('timestamp'),
-				'xp_amount'		=>	$xp_point_value,
+				'xp_amount'		=>	absint($xp_point_value),
 				'last_page'		=> 	''
 	   		);
 	        cgc_increment_user_xp( $args );
 
-
 	        // mail the user
-			$message = "Hi $author_data->display_name,\n\n";
-			$message .= "Your image has passed and ".$xp_point_value." XP points have been awarded.\n\n";
+			$message = "Hi ".$author_data->display_name.",\n";
+			$message .= "Your image has passed and ".$xp_point_value." XP have been awarded!\n\n";
 			$message .= "Great job!\n\n";
 			$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
@@ -129,15 +128,13 @@ class cgc_exercises_process_grading {
 		// 3. this exercise did not pass so run our logic here
 		} else {
 
-
 			// mail the user
-			$message = "Hi $author_data->display_name,\n\n";
+			$message = "Hi ".$author_data->display_name.",\n";
 			$message .= "Unfortuately your exercise submission didn't pass and no XP was awarded.\n\n";
 			$message .= "Better luck next time!\n\n";
 			$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
 			wp_mail( 'nick@cgcookie.com', 'Your Exercise Submission', $message );
-	
 
 		}
 	}
