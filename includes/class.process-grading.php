@@ -11,17 +11,14 @@ class cgc_exercises_process_grading {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_grading', 				array($this, 'process_grading' ));
-		add_action( 'wp_ajax_nopriv_process_grading', 		array($this, 'process_grading' ));
-
-		add_action('cgc_edu_exercise_voted', array($this,'cgc_edu_exercise_voted'), 10, 3);
+		add_action('cgc_edu_exercise_voted', 				array($this,'cgc_edu_exercise_voted'), 10, 3);
 	}
 
 	/**
 	*
 	*	Process the form submission
 	*
-	*	@todo - work in XP awarding
-	*	@todo - work in total grading process logic
+	*	@todo - wp_mail isn't even firing
 	*
 	*/
 	function process_grading(){
@@ -35,6 +32,11 @@ class cgc_exercises_process_grading {
 		$total_votes 	= 	get_post_meta( $postid, '_cgc_edu_exercise_total_votes', true );
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_grading' ) {
+
+			//////////////////////////////
+			// THIS TEST ISN"T EVEN FIRING
+			//////////////////////////////
+			wp_mail('email@nickhaskins.com','Test','Test message');
 
 			// only run for logged in users
 			if( !is_user_logged_in() )
@@ -118,13 +120,13 @@ class cgc_exercises_process_grading {
 
 	        // mail the user
 			$message = "Hi ".$author_data->display_name.",\n";
-			$message .= "Your image has passed and ".$xp_point_value." XP have been awarded!\n\n";
+			$message .= "Congrats on passing this exercise, certainly something to be excited and proud of! ".$xp_point_value." XP have been awarded!\n\n";
 			$message .= "Great job!\n\n";
 			$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
-			if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-				wp_mail( 'nick@cgcookie.com', 'Your Exercise Submission', $message );
-			}
+			//if ( !get_user_meta( $userid, 'no_emails', true ) ) {
+				wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+			//}
 
 
 		// 3. this exercise did not pass so run our logic here
@@ -136,13 +138,12 @@ class cgc_exercises_process_grading {
 			$message .= "Better luck next time!\n\n";
 			$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
-			if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-				wp_mail( 'nick@cgcookie.com', 'Your Exercise Submission', $message );
-			}
+			//if ( !get_user_meta( $userid, 'no_emails', true ) ) {
+				wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+			//}
 
 		}
 	}
-
 
 }
 new cgc_exercises_process_grading;
