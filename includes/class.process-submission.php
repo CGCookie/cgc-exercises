@@ -71,16 +71,16 @@ class cgc_exercises_process_submission {
 						self::process_image('exercise-image', $postid, $submission_id);
 					}
 					if ( $sketchfab ) {
-						update_post_meta( $submission_id, '_cgc_edu_exercise_sketchfab', sanitize_text_field( $sketchfab ) );
+						update_post_meta( $submission_id, '_cgc_edu_exercise_sketchfab', sanitize_text_field( trim( $sketchfab ) ) );
 					}
 					if ( $unity ) {
-						update_post_meta( $submission_id, '_cgc_edu_exercise_unity', sanitize_text_field( $unity ) );
+						update_post_meta( $submission_id, '_cgc_edu_exercise_unity', sanitize_text_field( trim( $unity ) ) );
 					}
 					if ( $video ) {
 
 						$data = array(
-							'url'		=> $video,
-							'provider' 	=> $video_provider
+							'url'		=> trim( $video ),
+							'provider' 	=> sanitize_text_field( trim( $video_provider ) )
 						);
 
 						update_post_meta( $submission_id, '_cgc_edu_exercise_video', $data );
