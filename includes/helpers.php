@@ -126,23 +126,42 @@ function cgc_edu_submission_block( $id = 0 ) {
 	// get the type
 	$type        = get_post_meta( get_the_ID(), '_cgc_edu_exercise_type', true);
 
-	$yt_cover = '';
+	$cover = '';
 	if ( 'video' == $type ) {
 
 		// get the info about video
 		$video  		= get_post_meta( $id, '_cgc_edu_exercise_video');
 		$video_provider = $video ? $video[0]['provider'] : false;
-		$video_url 		= $video ? $video[0]['url'] : false;
+		$video_url 		= $video ? trim($video[0]['url']) : false;
 
-		$yt_vid_id = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match);
-		$yt_vid_id = $yt_vid_id && $match ? $match[1] : false;
 
-		$vim_vid_id = preg_match_all('#https?://(player\.)?vimeo\.com(/video)?/(\d+)#i', $video_url, $match);
-		$vim_vid_id = $vim_vid_id && $match ? $match[3][0] : false;
+		$yt_vid_id = 'youtube' == $video_provider ? preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $yt_match) : null;
+		$yt_vid_id = $yt_vid_id && $yt_match ? $yt_match[1] : false;
+
+		$vim_vid_id = 'vimeo' == $video_provider ? preg_match_all('%(?:player\.)?vimeo\.com(/video)?/(\d+)%i', $video_url, $vim_match) : null;
+		$vim_vid_id = $vim_vid_id && $vim_match ? $vim_match[2][0] : false;
+
+		//var_dump($vim_match);
+
 
 		$get_yt_cover  = 'youtube' == $video_provider ? sprintf('https://img.youtube.com/vi/%s/0.jpg',$yt_vid_id) : null;
 		$yt_cover 		= $get_yt_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_yt_cover) : null;
+
+		// vimeo
+		$get_vim_cover = 'vimeo' == $video_provider ? sprintf('http://i.vimeocdn.com/video/%s.jpg',$vim_vid_id) : false;
+		$vim_cover 		= $get_vim_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_vim_cover) : null;
+
+
+		if ( 'youtube' == $video_provider ) {
+			$cover = $yt_cover;
+		} elseif ( 'vimeo' == $video_provider ) {
+			$cover = $vim_cover;
+		} else {
+			$cover = false;
+		}
 	}
+
+
 
 	//echo 'https://img.youtube.com/vi/'.$yt_vid_id.'/0.jpg';
 
@@ -150,7 +169,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 		<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
 			IMAGE OR AVATAR
 			<span><?php echo $class;?></span>
-			<?php echo $yt_cover;?>
+			<?php echo $cover;?>
 		</a>
 	</li>
 	<?php
@@ -498,5 +517,14 @@ function cgc_edu_exercise_get_files( $postid = '' ) {
 	$files = get_post_meta( $postid, '_cgc_edu_exercise_files', true );
 
 	return !empty($files) ? $files : false;
+}
+
+/**
+*
+*	Get the video ID from a string containing a youtube or vimeo video
+*
+*/
+function cgc_get_video_id_from_string( $string = '' ) {
+
 }
 
