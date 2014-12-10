@@ -90,15 +90,14 @@
 
 										<?php if ( $submissions ) {
 											?><ul class="cgc-edu-submissions"><?php
-		
-												foreach( (array) $submissions as $key => $submission ) {
 
-													$id = $submission;
+												foreach( (array) $submissions as $key => $id ) {
+
 													$sub = get_post($id);
 
-													if ( FALSE !== get_post_status( $id ) ) {
+													if ( FALSE !== get_post_status( $id ) && 'publish' == get_post_status( $id ) ) {
 
-													  	echo cgc_edu_submission_block( $sub );
+													  	echo cgc_edu_submission_block( $id );
 													}
 												}
 

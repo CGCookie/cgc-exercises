@@ -107,7 +107,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 		return;
 
 
-	$status = cgc_edu_exercise_submission_status($id->ID);
+	$status = cgc_edu_exercise_submission_status($id);
 
 	if ( 'true' == $status ) {
 
@@ -120,6 +120,27 @@ function cgc_edu_submission_block( $id = 0 ) {
 	} elseif( 'open' == $status ) {
 
 		$class = 'open';
+
+	}
+
+	// get the type
+	$type        = get_post_meta( get_the_ID(), '_cgc_edu_exercise_type', true);
+
+	$yt_cover = '';
+	if ( 'video' == $type ) {
+
+		// get the info about video
+		$video  		= get_post_meta( $id, '_cgc_edu_exercise_video');
+		$video_provider = $video ? $video[0]['provider'] : false;
+		$video_url 		= $video ? $video[0]['url'] : false;
+
+		$yt_vid_id = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match);
+		$yt_vid_id = $yt_vid_id && $match ? $match[1] : false;
+
+		$vim_vid_id = preg_match_all('#https?://(player\.)?vimeo\.com(/video)?/(\d+)#i', $video_url, $match);
+		$vim_vid_id = $vim_vid_id && $match ? $match[3][0] : false;
+
+		$yt_cover  = 'youtube' == $video_provider ? sprintf('//img.youtube.com/vi/%/1.jpg',$yt_vid_id) : null;
 
 	}
 
@@ -413,6 +434,7 @@ function cgc_edu_exercise_get_connected( $postid = 0 ) {
 /**
 *	Get a list of submissions linked to this exercise post
 *
+*	@param $id int id of the post to get the submissions for
 *	@return array of postids
 */
 function cgc_edu_exercise_get_submissions( $postid = ''){
