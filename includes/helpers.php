@@ -135,20 +135,13 @@ function cgc_edu_submission_block( $id = 0 ) {
 		$video_url 		= $video ? trim($video[0]['url']) : false;
 
 
-		$yt_vid_id = 'youtube' == $video_provider ? preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $yt_match) : null;
-		$yt_vid_id = $yt_vid_id && $yt_match ? $yt_match[1] : false;
+		$video_id      = cgc_get_video_id_from_string($video_provider,$video_url);
 
-		$vim_vid_id = 'vimeo' == $video_provider ? preg_match_all('%(?:player\.)?vimeo\.com(/video)?/(\d+)%i', $video_url, $vim_match) : null;
-		$vim_vid_id = $vim_vid_id && $vim_match ? $vim_match[2][0] : false;
-
-		//var_dump($vim_match);
-
-
-		$get_yt_cover  = 'youtube' == $video_provider ? sprintf('https://img.youtube.com/vi/%s/0.jpg',$yt_vid_id) : null;
+		$get_yt_cover  = 'youtube' == $video_provider ? sprintf('https://img.youtube.com/vi/%s/0.jpg',$video_id) : null;
 		$yt_cover 		= $get_yt_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_yt_cover) : null;
 
 		// vimeo
-		$get_vim_cover = 'vimeo' == $video_provider ? sprintf('http://i.vimeocdn.com/video/%s.jpg',$vim_vid_id) : false;
+		$get_vim_cover = 'vimeo' == $video_provider ? sprintf('http://i.vimeocdn.com/video/%s.jpg',$video_id) : false;
 		$vim_cover 		= $get_vim_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_vim_cover) : null;
 
 
@@ -201,6 +194,41 @@ function cgc_edu_video_provider( $source = ''){
 
     }
 }
+
+
+/**
+*
+*	Get the video ID from a string containing a youtube or vimeo video
+*
+*	@param $url string url of video
+*	@param $provider string vimeo or youtube
+*/
+function cgc_get_video_id_from_string( $provider = '', $url = '') {
+
+	// bail if no provider or url
+	if ( empty( $provider ) || empty( $url ) )
+		return;
+
+	switch ($provider) {
+		case 'youtube':
+			$find = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $matches);
+			$id = $matches[1];
+			break;
+		case 'vimeo':
+			$find = preg_match_all('%(?:player\.)?vimeo\.com(/video)?/(\d+)%i', $url, $matches);
+			$id = $matches[2][0];
+			break;
+		default:
+			$find = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $matches);
+			$id = $matches[1];
+			break;
+	}
+
+	if ( $id )
+		return $id;
+
+}
+
 
 /**
 *
@@ -518,13 +546,3 @@ function cgc_edu_exercise_get_files( $postid = '' ) {
 
 	return !empty($files) ? $files : false;
 }
-
-/**
-*
-*	Get the video ID from a string containing a youtube or vimeo video
-*
-*/
-function cgc_get_video_id_from_string( $string = '' ) {
-
-}
-

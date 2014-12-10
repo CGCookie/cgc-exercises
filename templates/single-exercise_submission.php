@@ -87,17 +87,15 @@
 
 											if ( 'youtube' == $video[0]['provider'] ) {
 
-												$yt_vid_id = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video[0]['url'], $match);
-												$yt_vid_id = $yt_vid_id && $match ? $match[1] : false;
+												$video_id      = cgc_get_video_id_from_string('youtube', $video[0]['url']);
 
-												?><iframe width="100%" height="" src="//www.youtube.com/embed/<?php echo esc_attr($yt_vid_id);?>" frameborder="0" allowfullscreen></iframe><?php
+												?><iframe width="100%" height="" src="//www.youtube.com/embed/<?php echo esc_attr($video_id);?>" frameborder="0" allowfullscreen></iframe><?php
 
 											} elseif( 'vimeo' == $video[0]['provider'] ) {
 
-												$vim_vid_id = preg_match_all('#https?://(player\.)?vimeo\.com(/video)?/(\d+)#i', $video[0]['url'], $match);
-												$vim_vid_id = $vim_vid_id && $match ? $match[3][0] : false;
+												$video_id      = cgc_get_video_id_from_string('vimeo', $video[0]['url']);
 
-												?><iframe width="100%" height="" src="//player.vimeo.com/video/<?php echo esc_attr($vim_vid_id);?>" frameborder="0" allowfullscreen></iframe><?php
+												?><iframe width="100%" height="" src="//player.vimeo.com/video/<?php echo esc_attr($video_id);?>" frameborder="0" allowfullscreen></iframe><?php
 											}
 
 											break;
@@ -124,7 +122,7 @@
 
 									// if the current logged in user hasnt voted and they are NOT the author of this submission,
 									// and this submission hasn't passed the threshold of allowed voets, then then show the form
-									if ( !$has_voted && $not_the_submission_author && $voting_still_open ): ?>
+									if ( !$has_voted && $not_the_submission_author && $voting_still_open && is_user_logged_in() ): ?>
 										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data">
 
 											<label for="vote-yes">
