@@ -75,6 +75,13 @@ jQuery(document).ready(function($){
 
     function showRequest(formData, jqForm, options) {
 		$(results).html('Sending...');
+
+		if ( $.trim( $('#exercise-description').val() ) === '' || $.trim( $('#exercise-title').val() ) === '' ) {
+	        $(results).html('All fields are required!');
+	        $('#cgc-exercise-submit-form input').css('border','1px solid #d9534f');
+	        $('#cgc-exercise-submit-form textarea').css('border','1px solid #d9534f');
+	        return false;
+	    }
 	}
 	function showResponse(responseText, statusText, xhr, $form)  {
 		$(results).hide();

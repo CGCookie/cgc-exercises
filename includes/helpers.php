@@ -334,7 +334,7 @@ function cgc_edu_exercise_submission_modal(){
 					}?>
 
 					<label for="exercise-description">Description</label>
-					<textarea form="cgc-exercise-submit-form" name="exercise-description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques."></textarea>
+					<textarea id="exercise-description" form="cgc-exercise-submit-form" name="exercise-description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques."></textarea>
 
 					<input type="hidden" name="action" value="process_submission">
 					<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
