@@ -10,6 +10,7 @@
 					$auth_id 		= get_the_author_meta('ID');
 					$files 			= cgc_edu_exercise_get_files();
 					$submissions 	= cgc_edu_exercise_get_submissions();
+					$sub_count      =  $submissions ? sprintf('<span class="cgc-edu-circle-badge">%s</span>', absint( cgc_edu_exercise_count_submissions() ) ) : false;
 
 					?>
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -39,7 +40,7 @@
 									<li class="nav-one"><a href="#about" class="current">About</a></li>
 									<li class="nav-two"><a href="#discussion">Discussion</a></li>
 									<li class="nav-three"><a href="#files">Exercise Files</a></li>
-									<li class="nav-four last"><a href="#submissions">Submissions</a></li>
+									<li class="nav-four last"><a href="#submissions">Submissions <?php echo $sub_count;?></a></li>
 								</ul>
 
 								<div class="tab-content">

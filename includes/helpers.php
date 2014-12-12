@@ -500,6 +500,42 @@ function cgc_edu_exercise_get_submissions( $postid = ''){
 
 /**
 *
+*	Count the total number of submission that are published and not trashed
+*
+*	@param $postid int id of the exercise to count the submissions of
+*	@return int total number of active submissions
+*/
+function cgc_edu_exercise_count_submissions( $postid = '' ) {
+
+	if ( empty( $postid ) )
+		$postid = get_the_ID();
+
+	$submissions 	= cgc_edu_exercise_get_submissions( $postid );
+
+	if ( empty( $submissions ) )
+		return;
+
+	$count = 0;
+
+	foreach( (array) $submissions as $key => $id ) {
+
+		$sub = get_post($id);
+
+		if ( FALSE !== get_post_status( $id ) && 'publish' == get_post_status( $id ) ) {
+
+			$count++;
+
+		  	$return = $count;
+
+		}
+	}
+
+	return $return;
+
+}
+
+/**
+*
 *	Add a submission postid to the array of ids for this exercise
 *
 *	@param $postid - int - id of the exercise to store the submissions to
