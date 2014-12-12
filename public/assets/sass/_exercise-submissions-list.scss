@@ -20,18 +20,35 @@
 				color:inherit;
 				position:relative;
 				height:150px;
+				@include transition(opacity .15s ease);
 
 				span {
 					display:block;
-					padding:6px 12px;
+					padding:6px 12px 4px;
 					text-align:center;
 					font-size:12px;
-					line-height:1.4;
+					line-height:1.7;
 					color:$black;
 					position:absolute;
 					left:10px;
 					right:10px;
 					bottom:10px;
+					z-index:1;
+					border-radius:2px;
+					text-transform:uppercase;
+					font-weight:bold;
+
+					&:before {
+						font-family:FontAwesome;
+						position:relative;
+						left:-5px;
+						top:-1px;
+						font-size:12px;
+					}
+				}
+
+				&:hover {
+					@include opacity(0.85);
 				}
 			}
 
@@ -51,14 +68,31 @@
 			}
 
 			&.submission-status--open span{
-				background:$black;
+				@include make-network-color('background');
 				color:#eaeaea;
+				color:$black;
+				text-shadow:0 1px 1px rgba(255,255,255,0.2);
 			}
 			&.submission-status--passed span{
 				background:$exercise-green;
+				color:darken($exercise-green,40);
+				text-shadow:0 1px 1px rgba(255,255,255,0.2);
+
+				&:before {
+					content:'\f14a';
+					color:darken($exercise-green,30);
+				}
 			}
 			&.submission-status--failed span{
 				background:$exercise-red;
+				color:darken($exercise-red,40);
+				text-shadow:0 1px 1px rgba(255,255,255,0.2);
+
+				&:before {
+					content:'\f147';
+					color:darken($exercise-red,30);
+					top:0;
+				}
 			}
 		}
 	}

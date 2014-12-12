@@ -154,13 +154,8 @@ function cgc_edu_submission_block( $id = 0 ) {
 		}
 	}
 
-
-
-	//echo 'https://img.youtube.com/vi/'.$yt_vid_id.'/0.jpg';
-
 	?><li class="submission-status--<?php echo $class;?>">
 		<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
-			IMAGE OR AVATAR
 			<span><?php echo $class;?></span>
 			<?php echo $cover;?>
 		</a>
