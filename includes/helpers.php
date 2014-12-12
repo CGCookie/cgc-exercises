@@ -141,8 +141,8 @@ function cgc_edu_submission_block( $id = 0 ) {
 		$yt_cover 		= $get_yt_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_yt_cover) : null;
 
 		// vimeo
-		$get_vim_cover = 'vimeo' == $video_provider ? sprintf('http://i.vimeocdn.com/video/%s.jpg',$video_id) : false;
-		$vim_cover 		= $get_vim_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_vim_cover) : null;
+		$get_vim_cover = 'vimeo' == $video_provider ? unserialize(file_get_contents('http://vimeo.com/api/v2/video/'.$video_id.'.php')) : false;
+		$vim_cover 		= $get_vim_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_vim_cover[0]['thumbnail_medium']) : null;
 
 
 		if ( 'youtube' == $video_provider ) {
