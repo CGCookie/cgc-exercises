@@ -66,7 +66,7 @@ function cgc_edu_author_block( $postid = 0, $submission = false ) {
 
 		if ( $avatar ) {
 
-			printf('<img src="%s" alt="%s">', $avatar, the_author_meta('display_name',$auth_id) );
+			printf('<img src="%s" alt="%s">', $avatar, get_the_author_meta('display_name',$auth_id) );
 
 		} else {
 
