@@ -116,7 +116,7 @@
 							<div id="cgc-edu-sidebar" class="cgc-edu-sidebar--exercise">
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__actions">
 									<ul>
-										<?php if ( cgc_user_has_post_access() ) { ?>
+										<?php if ( is_user_logged_in() ) { ?>
 											<li><a href="#" data-reveal-id="cgc-exercise-submission-modal"><i class="icon icon-upload"></i>Submit Exercise</a></li>
 										<?php } else { ?>
 											<li><a href="#" href="#" data-reveal-id="header-login-form"><i class="icon icon-upload"></i>Submit Exercise</a></li>
@@ -146,6 +146,6 @@
 		</div>
 	</div>
 
-	<?php if ( function_exists('cgc_edu_exercise_submission_modal') ) echo cgc_edu_exercise_submission_modal() ;?>
+	<?php if ( function_exists('cgc_edu_exercise_submission_modal') && is_user_logged_in() ) echo cgc_edu_exercise_submission_modal() ;?>
 
 <?php get_footer();
