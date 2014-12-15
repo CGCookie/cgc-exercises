@@ -81,7 +81,7 @@
 											?><div class="media--img" style="background-image:url('<?php echo esc_url($image[0]);?>');"></div><?php
 											break;
 										case 'sketchfab':
-											?><iframe width="100%" height="" src="//sketchfab.com/models/5cfede7837b842edb08439d61b7c3fd1/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
+											?><iframe width="100%" height="" src="//sketchfab.com/models/<?php echo esc_attr($type_sketchfab);?>/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
 											break;
 										case 'video':
 
