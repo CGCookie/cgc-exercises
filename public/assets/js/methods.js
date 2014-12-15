@@ -48,6 +48,19 @@ jQuery(document).ready(function($){
 
     progress.hide();
 
+    $('#cgc-exercise-submit-form').submit(function(e){
+
+    	if ( $('#cgc-exercise-submit-form textarea').val() == '' || $('#cgc-exercise-submit-form input[type="text"]').val() == '' ) {
+
+    		e.preventDefault();
+        	$(results).text('All fields required!');
+        	$('#cgc-exercise-submit-form textarea, #cgc-exercise-submit-form input[type="text"]').css({'border':'1px solid #d9534f'});
+        	return false;
+
+        }
+
+    });
+
     // bind form using 'ajaxForm'
     $('#cgc-exercise-submit-form').ajaxForm({
     	target:        results,
@@ -55,11 +68,13 @@ jQuery(document).ready(function($){
         success:       showResponse,
         url:    		ajaxurl,
         beforeSend: function() {
+
             var percentVal = '0%';
             progress.fadeIn();
             bar.width(percentVal);
             percent.html(percentVal);
             $(exercise_modal).addClass('image-uploading');
+
         },
         uploadProgress: function(event, position, total, percentComplete) {
             var percentVal = percentComplete + '%';

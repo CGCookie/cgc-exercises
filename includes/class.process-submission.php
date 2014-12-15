@@ -49,6 +49,7 @@ class cgc_exercises_process_submission {
 				if ( empty( $title ) || empty( $desc ) ) {
 
 					echo '<div class="error">Whoopsy! Looks like you forgot the Title and/or description.</div>';
+					exit();
 
 				} else {
 
