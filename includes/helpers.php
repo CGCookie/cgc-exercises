@@ -210,15 +210,15 @@ function cgc_get_video_id_from_string( $provider = '', $url = '') {
 	switch ($provider) {
 		case 'youtube':
 			$find = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $matches);
-			$id = $matches[1];
+			$id = $matches ? $matches[1] : null;
 			break;
 		case 'vimeo':
 			$find = preg_match_all('%(?:player\.)?vimeo\.com(/video)?/(\d+)%i', $url, $matches);
-			$id = $matches[2][0];
+			$id = $matches ? $matches[2][0] : null;
 			break;
 		default:
 			$find = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $matches);
-			$id = $matches[1];
+			$id = $matches ? $matches[1] : null;
 			break;
 	}
 
