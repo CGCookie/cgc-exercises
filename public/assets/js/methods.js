@@ -55,6 +55,7 @@ jQuery(document).ready(function($){
     		e.preventDefault();
         	$(results).text('All fields required!');
         	$('#cgc-exercise-submit-form textarea, #cgc-exercise-submit-form input[type="text"]').css({'border':'1px solid #d9534f'});
+        	$('#cgc-edu-exercise--submission-results').addClass('error');
         	return false;
 
         }

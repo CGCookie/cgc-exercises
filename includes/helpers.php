@@ -303,6 +303,7 @@ function cgc_edu_exercise_submission_modal(){
 					    		e.preventDefault();
 					        	$('#cgc-edu-exercise--submission-results').text('Image required!');
 					        	$('#cgc-exercise-submit-form textarea, #cgc-exercise-submit-form input[type="text"]').css({'border':'1px solid #d9534f'});
+					        	$('#cgc-edu-exercise--submission-results').addClass('error');
 					        	return false;
 
 					        }
