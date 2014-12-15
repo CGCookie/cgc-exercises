@@ -129,7 +129,6 @@
 										<?php } else { ?>
 											<li><a href="#" href="#" data-reveal-id="header-login-form"><i class="icon icon-upload"></i>Submit Exercise</a></li>
 										<?php } ?>
-										<li><a href="#"><i class="icon icon-upload"></i>Add to Watchlist</a></li>
 										<li><a href="#"><i class="icon icon-upload"></i>Download HD Video</a></li>
 									</ul>
 								</div>
