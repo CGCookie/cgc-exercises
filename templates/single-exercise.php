@@ -11,6 +11,7 @@
 					$files 			= cgc_edu_exercise_get_files();
 					$submissions 	= cgc_edu_exercise_get_submissions();
 					$sub_count      =  $submissions ? sprintf('<span class="cgc-edu-circle-badge">%s</span>', absint( cgc_edu_exercise_count_submissions() ) ) : false;
+					$xp_point_value   = get_post_meta( $post_id, '_cgc_edu_exercise_xp_worth', true ) ? sprintf('<span>XP</span>%s', get_post_meta( $post_id, '_cgc_edu_exercise_xp_worth', true ) ) : '0';
 
 					?>
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -25,7 +26,12 @@
 							<?php get_template_part( 'content', 'post-header' ); ?>
 
 							<div class="cgc-edu-meta">
+
 								<?php cgc_connected_course(true);?>
+
+								<div class="cgc-edu-meta--xp">
+									<?php echo $xp_point_value;?>
+								</div>
 							</div>
 
 						</header>

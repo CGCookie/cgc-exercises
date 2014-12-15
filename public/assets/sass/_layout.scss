@@ -16,9 +16,35 @@
 // meta
 .cgc-edu-meta {
 	background:$black;
-	padding:$padding;
+	padding:12px;
 	position:relative;
 	@include clearfix();
+
+	.cgc-connection-nav {
+		float:left;
+	}
+	.cgc-edu-meta--xp {
+		float:right;
+		font-family: $bebas;
+		font-weight: normal;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-size:30px;
+		position:relative;
+		top:2px;
+
+		span { // xp badge symbol
+			padding:4px 3px 0 4px;
+			background:$exercise-gray;
+			position:relative;
+			right:10px;
+			line-height:0.95;
+			display:inline-block;
+			border-radius:2px;
+			font-size:26px;
+			top:-1px;
+		}
+	}
 }
 
 // bg filler used to provide a 100% background height without usin gjs
