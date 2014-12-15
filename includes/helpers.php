@@ -294,22 +294,22 @@ function cgc_edu_exercise_submission_modal(){
 				</div>
 
 				<?php if( 'image' == $type ) { ?>
-				<script>
-				jQuery(document).ready(function($){
-				    $('#cgc-exercise-submit-form').submit(function(e){
+					<script>
+					jQuery(document).ready(function($){
+					    $('#cgc-exercise-submit-form').submit(function(e){
 
-				    	if ( $('#cgc-exercise-submit-form input[type="file"]').val() == '' ) {
+					    	if ( $('#cgc-exercise-submit-form input[type="file"]').val() == '' ) {
 
-				    		e.preventDefault();
-				        	$('#cgc-edu-exercise--submission-results').text('Image required!');
-				        	$('#cgc-exercise-submit-form textarea, #cgc-exercise-submit-form input[type="text"]').css({'border':'1px solid #d9534f'});
-				        	return false;
+					    		e.preventDefault();
+					        	$('#cgc-edu-exercise--submission-results').text('Image required!');
+					        	$('#cgc-exercise-submit-form textarea, #cgc-exercise-submit-form input[type="text"]').css({'border':'1px solid #d9534f'});
+					        	return false;
 
-				        }
+					        }
 
-				    });
-				});
-				</script>
+					    });
+					});
+					</script>
 				<?php } ?>
 
 				<form id="cgc-exercise-submit-form" method="post" enctype="multipart/form-data">
