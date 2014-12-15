@@ -112,14 +112,17 @@ function cgc_edu_submission_block( $id = 0 ) {
 	if ( 'true' == $status ) {
 
 		$class = 'passed';
+		$label = 'Passed!';
 
 	} elseif( 'false' == $status ) {
 
 		$class = 'failed';
+		$label = 'Did not pass';
 
 	} elseif( 'open' == $status ) {
 
 		$class = 'open';
+		$label = 'Ready for Grading';
 
 	}
 
@@ -156,7 +159,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	?><li class="submission-status--<?php echo $class;?>">
 		<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
-			<span><?php echo $class;?></span>
+			<span><?php echo $label;?></span>
 			<?php echo $cover;?>
 		</a>
 	</li>
