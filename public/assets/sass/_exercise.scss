@@ -116,19 +116,56 @@
 
 		li {
 			display:inline-block;
-			a,i{
-				display:block;
-			}
 
-			i {
-				font-size:32px;
-				margin-bottom:6px;
-			}
 			a {
 				font-size:12px;
 				color:inherit;
 				padding:4px 8px;
+				display:block;
+
+				&:before {
+					font-family:FontAwesome;
+					font-size:32px;
+					display:block;
+					margin-bottom:5px;
+				}
+
+				&:hover {
+					@include make-network-color('color');
+				}
+			}
+
+			&.cgc-fb-share-link a:before {
+				content:'\f082';
+			}
+			&.cgc-twitter-share-link a:before {
+				content:'\f081';
+			}
+			&.cgc-pinterest-share-link a:before {
+				content:'\f0d3';
 			}
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
