@@ -144,7 +144,7 @@
 											</form>
 										<?php endif; ?>
 									<?php else: ?>
-										<a href="#" data-reveal-id="header-login-form">Login</a> to grade this exercise!
+										<p class="cgc-edu-meta-logged-out"><a href="#" data-reveal-id="header-login-form">Login</a> to grade this exercise!</p>
 									<?php endif; ?>
 								</div>
 							</div>
