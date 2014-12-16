@@ -155,6 +155,13 @@ function cgc_edu_submission_block( $id = 0 ) {
 		} else {
 			$cover = false;
 		}
+	} elseif ( 'image' == $type ) {
+
+		$image 			= get_post_meta( $id, '_cgc_edu_exercise_image', true);
+		$image          = $image ? wp_get_attachment_image_src($image,'medium') : 'http://placekitten.com/800/500';
+
+		$cover 		= $image ? sprintf('<div class="submission--cover" style="background-image:url(\'%s\');"></div>',$image[0]) : null;
+
 	}
 
 	?><li class="submission-status--<?php echo $class;?>">
