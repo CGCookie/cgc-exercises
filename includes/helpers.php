@@ -147,21 +147,32 @@ function cgc_edu_submission_block( $id = 0 ) {
 		$get_vim_cover = 'vimeo' == $video_provider ? unserialize(file_get_contents('http://vimeo.com/api/v2/video/'.$video_id.'.php')) : false;
 		$vim_cover 		= $get_vim_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_vim_cover[0]['thumbnail_medium']) : null;
 
-
 		if ( 'youtube' == $video_provider ) {
+
 			$cover = $yt_cover;
+
 		} elseif ( 'vimeo' == $video_provider ) {
+
 			$cover = $vim_cover;
+
 		} else {
+
 			$cover = false;
+
 		}
+
 	} elseif ( 'image' == $type ) {
 
-		$image 			= get_post_meta( $id, '_cgc_edu_exercise_image', true);
-		$image          = $image ? wp_get_attachment_image_src($image,'medium') : 'http://placekitten.com/800/500';
+		$image 		= get_post_meta( $id, '_cgc_edu_exercise_image', true);
+		$image      = $image ? wp_get_attachment_image_src($image,'medium') : 'http://placekitten.com/800/500';
 
 		$cover 		= $image ? sprintf('<div class="submission--cover" style="background-image:url(\'%s\');"></div>',$image[0]) : null;
 
+	} elseif ( 'sketchfab' == $type ) {
+
+		$model  			= get_post_meta( $id , '_cgc_edu_exercise_sketchfab', true);
+		$sketchfab_cover 	= cgc_edu_get_sketcfab_cover( $model );
+		$cover 				= $sketchfab_cover ? sprintf('<div class="submission--cover" style="background-image:url(\'%s\');"></div>',$sketchfab_cover) : null;
 	}
 
 	?><li class="submission-status--<?php echo $class;?>">
@@ -232,6 +243,34 @@ function cgc_get_video_id_from_string( $provider = '', $url = '') {
 	if ( $id )
 		return $id;
 
+}
+
+/**
+*
+*	Return the thumbnail from the sketchfab api for the model being queried
+*
+*	@param $model string id of the sketchfab model
+*	@return a thumbnail image
+*	@todo this API call be need to be cached
+*/
+function cgc_edu_get_sketcfab_cover( $model = '' ) {
+
+	if ( empty( $model ) )
+		return;
+
+    $apiurl = sprintf('https://sketchfab.com/oembed?url=https://sketchfab.com/models/%s', $model );
+
+    $fetch = wp_remote_get($apiurl, array('sslverify'=>true));
+    $remote = wp_remote_retrieve_body($fetch);
+
+    if( !is_wp_error( $remote ) ) {
+        $return = json_decode( $remote,true);
+    }
+
+    $out = $return['thumbnail_url'];
+
+    if ( $out )
+		return $out;
 }
 
 
@@ -343,7 +382,7 @@ function cgc_edu_exercise_submission_modal(){
 							break;
 						case 'sketchfab':
 							?>
-							<label for="exercise-sketchfab">Sketchfab URl</label>
+							<label for="exercise-sketchfab">Sketchfab Model ID</label>
 							<input type="text" name="exercise-sketchfab" value=""><?php
 							break;
 						case 'unity':
