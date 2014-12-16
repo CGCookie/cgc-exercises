@@ -416,6 +416,8 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 			$return = 'Your submission is still be voted on, hang tight!';
 		} elseif( is_user_logged_in() ) {
 			$return = 'Does the above image meet the exercise criteria?';
+		} elseif( !is_user_logged_in() ) {
+			$return = '<span class="cgc-edu-meta-login"><a href="#" data-reveal-id="header-login-form">Login</a> to grade this exercise!</span>';
 		} else {
 			$return = '';
 		}
