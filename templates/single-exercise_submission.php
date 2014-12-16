@@ -21,6 +21,7 @@
 						$video  		= get_post_meta( get_the_ID(), '_cgc_edu_exercise_video');
 
 						$type_sketchfab  	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_sketchfab', true);
+						$type_unity  	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_unity', true);
 
 
 						// tally some votes
@@ -82,6 +83,9 @@
 											break;
 										case 'sketchfab':
 											?><iframe width="100%" height="" src="//sketchfab.com/models/<?php echo esc_attr($type_sketchfab);?>/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
+											break;
+										case 'unity':
+											?><iframe width="100%" height="" src="<?php echo esc_url( $type_unity );?>" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
 											break;
 										case 'video':
 
