@@ -33,11 +33,6 @@ class cgc_exercises_process_grading {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_grading' ) {
 
-			//////////////////////////////
-			// THIS TEST ISN"T EVEN FIRING
-			//////////////////////////////
-			wp_mail('email@nickhaskins.com','Test','Test message');
-
 			// only run for logged in users
 			if( !is_user_logged_in() )
 				return;
@@ -105,42 +100,46 @@ class cgc_exercises_process_grading {
 		// 1. set a flag for this user so they can't vote anymore
 		update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
-		// 2. if the total # of votes is more than votes allowed and the total yes votes are also more than votes allowed
-		//	  then increment xp and mail the user
-		if ( $total_votes >= $vote_allowed && $votes >= $vote_allowed ) {
+		// 2. if the total # of votes is more than votes allowed
+		if ( $total_votes >= $vote_allowed ) {
 
-			$args = array(
-				'user_id'		=>	absint($submission_author),
-				'xp_type'		=>  'exercise',
-				'xp_date'		=>	current_time('timestamp'),
-				'xp_amount'		=>	absint($xp_point_value),
-				'last_page'		=> 	''
-	   		);
-	        cgc_increment_user_xp( $args );
+			// 3. if total yes votes are also more than votes allowed
+			if ( $votes >= $vote_allowed ) {
 
-	        // mail the user
-			$message = "Hi ".$author_data->display_name.",\n";
-			$message .= "Congrats on passing this exercise, certainly something to be excited and proud of! ".$xp_point_value." XP have been awarded!\n\n";
-			$message .= "Great job!\n\n";
-			$message .= "Best regards from the Crew at CG Cookie, Inc.";
+				$args = array(
+					'user_id'		=>	absint($submission_author),
+					'xp_type'		=>  'exercise',
+					'xp_date'		=>	current_time('timestamp'),
+					'xp_amount'		=>	absint($xp_point_value),
+					'last_page'		=> 	''
+		   		);
+		        cgc_increment_user_xp( $args );
 
-			//if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-				wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
-			//}
+		        // mail the user
+				$message = "Hi ".$author_data->display_name.",\n";
+				$message .= "Congrats on passing this exercise, certainly something to be excited and proud of! ".$xp_point_value." XP have been awarded!\n\n";
+				$message .= "Great job!\n\n";
+				$message .= "Best regards from the Crew at CG Cookie, Inc.";
+
+				if ( !get_user_meta( $userid, 'no_emails', true ) ) {
+					wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+				}
 
 
-		// 3. this exercise did not pass so run our logic here
-		} else {
+			// 4. this exercise did not pass so run our logic here
+			} else {
 
-			// mail the user
-			$message = "Hi ".$author_data->display_name.",\n";
-			$message .= "Unfortuately your exercise submission didn't pass and no XP was awarded.\n\n";
-			$message .= "Better luck next time!\n\n";
-			$message .= "Best regards from the Crew at CG Cookie, Inc.";
+				// mail the user
+				$message = "Hi ".$author_data->display_name.",\n";
+				$message .= "Unfortuately your exercise submission didn't pass and no XP was awarded.\n\n";
+				$message .= "Better luck next time!\n\n";
+				$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
-			//if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-				wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
-			//}
+				if ( !get_user_meta( $userid, 'no_emails', true ) ) {
+					wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+				}
+
+			}
 
 		}
 	}
