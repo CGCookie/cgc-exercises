@@ -1,9 +1,25 @@
 @media( max-width: 767px ) {
 
-	.cgc-edu-main {
-		padding-left:15px;
-		padding-right:15px;
+	// UNIVERSAL TABS
+	#cgc-edu-tabs,
+	#cgc-edu-sidebar {
+		width:100%;
+		float:none;
+		margin-left:0;
+		margin-right:0;
 	}
+
+	#cgc-edu-sidebar {
+		padding-left:0;
+		padding-right:0;
+	}
+
+	.cgc-edu-main {
+		margin-bottom:25px;
+	}
+
+	//////////////
+	// SUBMISSIONS
 
 	.cgc-edu-exercise-submission--meta,
 	.cgc-edu-exercise-submission--image-wrap {
@@ -54,28 +70,27 @@
 	}
 }
 
-@media( max-width:650px ) {
+@media( max-width:600px ) {
+	#submissions .cgc-edu-submissions li {
 
-	#cgc-edu-tabs,
-	#cgc-edu-sidebar {
-		width:100%;
-		float:none;
-		margin-left:0;
-		margin-right:0;
-	}
+		width:49%;
 
-	#cgc-edu-sidebar {
-		padding-left:0;
-		padding-right:0;
-	}
+		a {
+			height:150px;
+		}
 
-	.cgc-edu-main {
-		margin-bottom:25px;
 	}
 }
 
-@media( max-width:450px ) {
 
+@media( max-width:450px ) {
+	.cgc-edu-main {
+		padding-left:15px;
+		padding-right:15px;
+	}
+
+	//////////////
+	// SUBMISSIONS
 	.cgc-edu-exercise-submission--connection,
 	.cgc-edu-helper--exercise-submission {
 		width:100%;
@@ -88,6 +103,45 @@
 
 	.cgc-edu-exercise-submission--header {
 		margin-top:20px;
+	}
+	// END SUBMISSIONS
+	//////////////
+
+
+	// UNIVERSAL TABS
+	#cgc-edu-tabs .tab-nav li {
+		float:none;
+		width:100%;
+	}
+
+	// META BAR
+	.cgc-connection-nav,
+	.cgc-edu-meta--xp {
+		float:none;
+		display:block;
+	}
+	body .cgc-connection-nav {
+		li {
+			display:block;
+			float:none;
+
+			&:first-child {
+				margin-bottom:10px;
+			}
+		}
+	}
+}
+
+@media (max-width:320px) {
+	#submissions .cgc-edu-submissions li {
+
+		width:100%;
+		margin:4px 0;
+
+		a {
+			height:150px;
+		}
+
 	}
 }
 
