@@ -414,8 +414,10 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 			$return = 'Thanks for voting!';
 		} elseif ( get_current_user_ID() == get_the_author_meta('ID') ) {
 			$return = 'Your submission is still be voted on, hang tight!';
-		} else {
+		} elseif( is_user_logged_in() ) {
 			$return = 'Does the above image meet the exercise criteria?';
+		} else {
+			$return = '';
 		}
 
 	}

@@ -122,24 +122,29 @@
 
 									// if the current logged in user hasnt voted and they are NOT the author of this submission,
 									// and this submission hasn't passed the threshold of allowed voets, then then show the form
-									if ( !$has_voted && $not_the_submission_author && $voting_still_open && is_user_logged_in() ): ?>
-										<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data">
 
-											<label for="vote-yes">
-												Yes
-							                	<input id="vote-yes" type="radio" name="vote" value="yes"/>
-							                </label>
+									if ( is_user_logged_in() ):
+										if ( !$has_voted && $not_the_submission_author && $voting_still_open ): ?>
+											<form id="cgc-exercise-vote-form" method="post" enctype="multipart/form-data">
 
-											<label for="vote-no">
-												No
-							                	<input id="vote-no" type="radio" name="vote" value="no"/>
-							                </label>
-							                <input type="hidden" name="action" value="process_grading">
-							                <input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
-							                <input type="hidden" name="post_id" value="<?php echo get_the_ID(); ?>">
-							                <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('cgc-exercise-nonce'); ?>"/>
-									        <input id="cgc-exercise-vote" type="submit" value="Submit">
-										</form>
+												<label for="vote-yes">
+													Yes
+								                	<input id="vote-yes" type="radio" name="vote" value="yes"/>
+								                </label>
+
+												<label for="vote-no">
+													No
+								                	<input id="vote-no" type="radio" name="vote" value="no"/>
+								                </label>
+								                <input type="hidden" name="action" value="process_grading">
+								                <input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
+								                <input type="hidden" name="post_id" value="<?php echo get_the_ID(); ?>">
+								                <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('cgc-exercise-nonce'); ?>"/>
+										        <input id="cgc-exercise-vote" type="submit" value="Submit">
+											</form>
+										<?php endif; ?>
+									<?php else: ?>
+										<a href="#" data-reveal-id="header-login-form">Login</a> to grade this exercise!
 									<?php endif; ?>
 								</div>
 							</div>
