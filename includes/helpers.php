@@ -396,7 +396,6 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 	// has this user voted
 	$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.$postid.'_has_voted', true);
 
-
 	if ( $total_votes >= $passing ) { // total points have reacehd teh total number required to pass
 
 		if ( $votes >= $passing ) { // votes are greater than passing
@@ -411,15 +410,25 @@ function cgc_edu_exercise_grade( $postid = 0 ) {
 	} else {
 
 		if ( $has_voted ) {
+
 			$return = 'Thanks for voting!';
+
 		} elseif ( get_current_user_ID() == get_the_author_meta('ID') ) {
+
 			$return = 'Your submission is still be voted on, hang tight!';
+
 		} elseif( is_user_logged_in() ) {
+
 			$return = 'Does the above image meet the exercise criteria?';
+
 		} elseif( !is_user_logged_in() ) {
+
 			$return = '<span class="cgc-edu-meta-login"><a href="#" data-reveal-id="header-login-form">Login</a> to grade this exercise!</span>';
+
 		} else {
+
 			$return = '';
+
 		}
 
 	}
