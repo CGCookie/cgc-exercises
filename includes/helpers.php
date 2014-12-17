@@ -137,21 +137,23 @@ function cgc_edu_submission_block( $id = 0 ) {
 		$video_provider = $video ? $video[0]['provider'] : false;
 		$video_url 		= $video ? trim($video[0]['url']) : false;
 
-
 		$video_id      = cgc_get_video_id_from_string($video_provider,$video_url);
 
-		$get_yt_cover  = 'youtube' == $video_provider ? sprintf('https://img.youtube.com/vi/%s/0.jpg',$video_id) : null;
-		$yt_cover 		= $get_yt_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_yt_cover) : null;
-
-		// vimeo
-		$get_vim_cover = 'vimeo' == $video_provider ? unserialize(file_get_contents('http://vimeo.com/api/v2/video/'.$video_id.'.php')) : false;
-		$vim_cover 		= $get_vim_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_vim_cover[0]['thumbnail_medium']) : null;
 
 		if ( 'youtube' == $video_provider ) {
+
+			$get_yt_cover  = sprintf('https://img.youtube.com/vi/%s/0.jpg',$video_id);
+			$yt_cover 	   = $get_yt_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_yt_cover) : null;
 
 			$cover = $yt_cover;
 
 		} elseif ( 'vimeo' == $video_provider ) {
+
+			// vimeo
+			//$get_vim_cover = 'vimeo' == $video_provider ? unserialize(file_get_contents('http://vimeo.com/api/v2/video/'.$video_id.'.php')) : false;
+			$get_vim_cover = cgc_edu_get_vimeo_cover( $video_id );
+
+			$vim_cover 		= $get_vim_cover ? sprintf('<div class="submission--cover" style="background-image:url(%s);"></div>',$get_vim_cover) : null;
 
 			$cover = $vim_cover;
 
@@ -251,7 +253,6 @@ function cgc_get_video_id_from_string( $provider = '', $url = '') {
 *
 *	@param $model string id of the sketchfab model
 *	@return a thumbnail image
-*	@todo this API call be need to be cached
 */
 function cgc_edu_get_sketcfab_cover( $model = '' ) {
 
@@ -263,8 +264,14 @@ function cgc_edu_get_sketcfab_cover( $model = '' ) {
     $fetch = wp_remote_get($apiurl, array('sslverify'=>true));
     $remote = wp_remote_retrieve_body($fetch);
 
-    if( !is_wp_error( $remote ) ) {
+    $return = wp_cache_get('cgc_edu_sketchfab_cover-'.$model.'');
+
+    if( !is_wp_error( $remote ) && false === $return ) {
+
         $return = json_decode( $remote,true);
+
+        wp_cache_set( 'cgc_edu_sketchfab_cover-'.$model.'', $return );
+
     }
 
     $out = $return['thumbnail_url'];
@@ -273,6 +280,36 @@ function cgc_edu_get_sketcfab_cover( $model = '' ) {
 		return $out;
 }
 
+/**
+*
+*	Return the thumbnail from the vimeo api for the video being queried
+*
+*	@param $id int id of the vimeo video
+*	@return a thumbnail image
+*/
+function cgc_edu_get_vimeo_cover( $id = '' ) {
+
+	if ( empty( $id ) )
+		return;
+
+    $apiurl = sprintf('http://vimeo.com/api/v2/video/%s.json', $id );
+
+    $fetch = wp_remote_get($apiurl, array('sslverify'=>false));
+    $remote = wp_remote_retrieve_body($fetch);
+
+    $return = wp_cache_get('cgc_edu_vimeo_cover-'.$id.'');
+
+    if( !is_wp_error( $remote ) && false === $return ) {
+
+        $return = json_decode( $remote, true );
+        wp_cache_set( 'cgc_edu_vimeo_cover-'.$id.'', $return );
+    }
+
+   	$out = $return[0]['thumbnail_medium'];
+
+    if ( $out )
+		return $out;
+}
 
 /**
 *
