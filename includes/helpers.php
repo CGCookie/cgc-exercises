@@ -348,7 +348,6 @@ function cgc_edu_exercise_submission_modal(){
 
 					    		e.preventDefault();
 					        	$('#cgc-edu-exercise--submission-results').text('Image required!');
-					        	$('#cgc-exercise-submit-form textarea, #cgc-exercise-submit-form input[type="text"]').css({'border':'1px solid #d9534f'});
 					        	$('#cgc-edu-exercise--submission-results').addClass('error');
 					        	return false;
 
@@ -362,7 +361,7 @@ function cgc_edu_exercise_submission_modal(){
 				<form id="cgc-exercise-submit-form" method="post" enctype="multipart/form-data">
 
 					<label for="exercise-title">Title</label>
-					<input type="text" name="exercise-title" value="" placeholder="My Awesome Submission">
+					<input class="exercise-field-required" type="text" name="exercise-title" value="" placeholder="My Awesome Submission">
 
 					<?php switch ($type) {
 						case 'image':
@@ -377,28 +376,28 @@ function cgc_edu_exercise_submission_modal(){
 						case 'video':
 							?>
 							<label for="exercise-video">Video URL <i class="exercise-video-source icon "></i></label>
-							<input id="exercise-video" type="text" name="exercise-video" value="">
+							<input class="exercise-field-required" id="exercise-video" type="text" name="exercise-video" value="">
 							<input id="exercise-video-provider" type="hidden" name="exercise-video-provider" value=""><?php
 							break;
 						case 'sketchfab':
 							?>
 							<label for="exercise-sketchfab">Sketchfab Model ID</label>
-							<input type="text" name="exercise-sketchfab" value=""><?php
+							<input class="exercise-field-required" type="text" name="exercise-sketchfab" value=""><?php
 							break;
 						case 'unity':
 							?>
 							<label for="exercise-unity">Unity</label>
-							<input type="text" name="exercise-unity" value=""><?php
+							<input class="exercise-field-required" type="text" name="exercise-unity" value=""><?php
 							break;
 						default:
 							?>
 							<label for="exercise-sketchfab">Sketchfab URL</label>
-							<input type="text" name="exercise-sketchfab" value=""><?php
+							<input class="exercise-field-required" type="text" name="exercise-sketchfab" value=""><?php
 							break;
 					}?>
 
 					<label for="exercise-description">Description</label>
-					<textarea id="exercise-description" form="cgc-exercise-submit-form" name="exercise-description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques."></textarea>
+					<textarea class="exercise-field-required" id="exercise-description" form="cgc-exercise-submit-form" name="exercise-description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques."></textarea>
 
 					<input type="hidden" name="action" value="process_submission">
 					<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">

@@ -48,9 +48,38 @@ jQuery(document).ready(function($){
 
     progress.hide();
 
+
+    // validation
     $('#cgc-exercise-submit-form').submit(function(e){
 
-    	if ( $('#cgc-exercise-submit-form textarea').val() == '' || $('#cgc-exercise-submit-form input[type="text"]').val() == '' ) {
+
+    	$('.exercise-field-required').each(function(){
+
+	    	if ( $(this).val() == '' ) {
+
+	    		e.preventDefault();
+	        	$(results).text('All fields required!');
+	        	$(this).css({'border':'1px solid #d9534f'});
+	        	$('#cgc-edu-exercise--submission-results').addClass('error');
+	        	return false;
+
+       	 	}
+       	});
+    });
+
+	$('.exercise-field-required').each(function(){
+		$(this).keyup(function(event) {
+		    var input = $(this);
+		    var message = $(this).val();
+		    console.log(message);
+		    if(message){input.removeClass("invalid").addClass("valid");}
+		    else{input.removeClass("valid").addClass("invalid");}
+		});
+	});
+
+    $('#cgc-exercise-submit-form').submit(function(e){
+
+    	if ( $('.exercise-field-required').val() == '' ) {
 
     		e.preventDefault();
         	$(results).text('All fields required!');
@@ -97,6 +126,7 @@ jQuery(document).ready(function($){
 		$(results).html(responseText);
 		$(results).fadeIn();
 		$(progress).fadeOut();
+		$(results).removeClass('error');
 
 		$(exercise_modal).find('h2').text('Congrats!');
   		$(exercise_modal).find('.cgc-universal-modal--intro').text('Congrats on submitting your work to be graded by the community. That is huge first step in becoming better. Take a moment to share out your work or grade others in the exercise.')

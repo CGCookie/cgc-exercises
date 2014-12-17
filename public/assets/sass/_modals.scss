@@ -143,6 +143,15 @@
     		padding-top:1.2em;
     	}
     }
+
+    .exercise-field-required {
+    	&.invalid {
+    		border:1px solid $red;
+    	}
+    	&.valid {
+    		border:1px solid $green;
+    	}
+    }
 }
 
 .success a {
