@@ -39,8 +39,9 @@ class cgc_exercises_process_submission {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_submission' ) {
 
 			// only run for logged in users
-			if( !is_user_logged_in() )
+			if( !is_user_logged_in() || !current_user_can('edit_posts') )
 				return;
+
 
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'cgc-exercise-submission-nonce' ) ) {
