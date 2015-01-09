@@ -40,9 +40,13 @@
 	}
 	.comment-cancel {
 		right: 151px;
-		bottom: 29px;
+		bottom: 105px;
 	}
 	// close button overrides
+	.comment-form-subscriptions {
+		clear:left;
+		padding-top:20px;
+	}
 }
 
 // exercise submission modal
