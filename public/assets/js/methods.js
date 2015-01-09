@@ -122,6 +122,7 @@ jQuery(document).ready(function($){
 		$(results).html('Sending...');
 	}
 	function showResponse(responseText, statusText, xhr, $form)  {
+
 		$(results).hide();
 		$(results).html(responseText);
 		$(results).fadeIn();
@@ -132,6 +133,11 @@ jQuery(document).ready(function($){
   		$(exercise_modal).find('.cgc-universal-modal--intro').text('Congrats on submitting your work to be graded by the community. That is huge first step in becoming better. Take a moment to share out your work or grade others in the exercise.')
   		$(exercise_modal).find('form').fadeOut()
   		$(exercise_modal).find(results).after(cgc_exercise_meta.shareExercise);
+
+  		$('.close-modal').live('click',function(e){
+  			e.preventDefault();
+  			location.reload();
+  		})
 	}
 
 	// attempt to detect video source

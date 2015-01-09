@@ -709,8 +709,8 @@ function cgc_exercises_share_exercise(){
 	ob_start();?>
 
 	<div class="cgc-exercise--submission__share">
-		<a href="#">Okay got it</a>
-		<a href="#" class="cgc--share__twitter">Share</a>
+		<a class="button close-modal" href="#">Okay got it</a>
+		<a href="https://twitter.com/intent/tweet?text=I just submitted my work into <?php echo esc_attr( get_the_title() );?> via @cgcookie&nbsp;<?php echo get_permalink();?>&url=<?php echo get_permalink();?> " class="button cgc--share__twitter"><i class="icon icon-twitter"></i>Share</a>
 	</div>
 
 	<?php return ob_get_clean();

@@ -159,9 +159,33 @@
 
     #cgc-edu-exercise--submission-results {
     	position: absolute;
-		top: 0;
+		top: -5px;
 		left: 0;
 		right: 0;
+    }
+
+    .cgc-exercise--submission__share {
+    	margin: 30px auto 20px;
+		display: block;
+
+    	a:first-child {
+    		@include make-network-color('background');
+    		margin-right:4px;
+    	}
+
+    	.cgc--share__twitter {
+    		color:$exercise-off-white;
+    		background:$exercise-gray;
+    		padding-left:40px;
+    		margin-left:4px;
+
+    		i {
+				font-size: 19px;
+				position: absolute;
+				left: 14px;
+				top: 9px;
+    		}
+    	}
     }
 }
 
