@@ -175,6 +175,9 @@ function cgc_edu_submission_block( $id = 0 ) {
 		$model  			= get_post_meta( $id , '_cgc_edu_exercise_sketchfab', true);
 		$sketchfab_cover 	= cgc_edu_get_sketcfab_cover( $model );
 		$cover 				= $sketchfab_cover ? sprintf('<div class="submission--cover" style="background-image:url(\'%s\');"></div>',$sketchfab_cover) : null;
+
+	} elseif ( 'unity' == $type ) {
+
 	}
 
 	?><li class="submission-status--<?php echo $class;?>">
@@ -694,4 +697,21 @@ function cgc_edu_exercise_get_files( $postid = '' ) {
 	$files = get_post_meta( $postid, '_cgc_edu_exercise_files', true );
 
 	return !empty($files) ? $files : false;
+}
+
+/**
+*
+*
+*
+*/
+function cgc_exercises_share_exercise(){
+
+	ob_start();?>
+
+	<div class="cgc-exercise--submission__share">
+		<a href="#">Okay got it</a>
+		<a href="#" class="cgc--share__twitter">Share</a>
+	</div>
+
+	<?php return ob_get_clean();
 }

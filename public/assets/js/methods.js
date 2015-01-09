@@ -131,7 +131,7 @@ jQuery(document).ready(function($){
 		$(exercise_modal).find('h2').text('Congrats!');
   		$(exercise_modal).find('.cgc-universal-modal--intro').text('Congrats on submitting your work to be graded by the community. That is huge first step in becoming better. Take a moment to share out your work or grade others in the exercise.')
   		$(exercise_modal).find('form').fadeOut()
-  		$(exercise_modal).find(results).after('<a href="">Share</a>');
+  		$(exercise_modal).find(results).after(cgc_exercise_meta.shareExercise);
 	}
 
 	// attempt to detect video source
@@ -163,7 +163,6 @@ jQuery(document).ready(function($){
 	        return false;
 	    }
 	}
-
 
 });
 

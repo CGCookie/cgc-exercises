@@ -137,8 +137,8 @@
 								</div>
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__share">
 									<ul>
-										<li class="cgc-fb-share-link"><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink());?>&t=<?php echo the_title();?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=800');return false;" target="_blank" title="Share on Facebook">Share This</a></li>
-										<li class="cgc-twitter-share-link"><a href="http://twitter.com/intent/tweet/?text=What do you think of my @cgcookie image submission? <?php echo get_permalink();?> " onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=800');return false;" target="_blank" title="Share on Twitter" >Tweet This</a></li>
+										<li class="cgc-fb-share-link"><a href="#" class="cgc--share__fb" title="Share on Facebook">Share This</a></li>
+										<li class="cgc-twitter-share-link"><a href="#" class="cgc--share__twitter" title="Share on Twitter" >Tweet This</a></li>
 										<li class="cgc-pinterest-share-link"><a href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode(get_permalink());?>&media=<?php echo $feat_image[0];?>&description=<?php echo the_title();?>" class="pin-it-button" count-layout="horizontal"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=800');return false;" target="_blank" >Pin This</a></li>
 									</ul>
 								</div>

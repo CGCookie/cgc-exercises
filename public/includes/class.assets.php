@@ -16,7 +16,8 @@ class cgc_exercises_assets {
 
 			wp_localize_script('cgc-exercises', 'cgc_exercise_meta', array(
 				'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
-				'nonce'			=> wp_create_nonce('cgc-exercise-nonce')
+				'nonce'			=> wp_create_nonce('cgc-exercise-nonce'),
+				'shareExercise' => cgc_exercises_share_exercise()
 			));
 
 		endif;
