@@ -114,8 +114,19 @@ jQuery(document).ready(function($){
     });
 
      $('#cgc-exercise-submit-form input:file').live('change',function (){
-       var fileName = $(this).val().split('\\').pop();
-       $('.filename').text(fileName);
+       	var fileName = $(this).val().split('\\').pop();
+       	$('.filename').text(fileName);
+
+       	// if the file size is above 1mb then warn them with a tip, and disable the submit button until we have an approprpriate size
+       	if ( this.files[0].size > 1000000 ) {
+       		alert('Your image is too big! Try resizing to under 1mb using a tool like http://tinyjpg.com or http://tinypng.com.')
+       		$(this).val('');
+       		$('.filename').text('');
+       		$('input[type="submit"').attr('disabled','disabled');
+       	} else {
+       		$('input[type="submit"').removeAttr('disabled')
+       	}
+
      });
 
     function showRequest(formData, jqForm, options) {
