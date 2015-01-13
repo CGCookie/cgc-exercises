@@ -10,6 +10,7 @@
 					$auth_id 		= get_the_author_meta('ID');
 					$files 			= cgc_edu_exercise_get_files();
 					$submissions 	= cgc_edu_exercise_get_submissions();
+					$submissions 		= array_reverse($submissions);
 					$sub_count      =  $submissions ? sprintf('<span class="cgc-edu-circle-badge">%s</span>', absint( cgc_edu_exercise_count_submissions() ) ) : false;
 					$xp_point_value   = get_post_meta( $post_id, '_cgc_edu_exercise_xp_worth', true ) ? sprintf('<span>XP</span>%s', get_post_meta( $post_id, '_cgc_edu_exercise_xp_worth', true ) ) : '0';
 

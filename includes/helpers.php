@@ -178,7 +178,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	} elseif ( 'unity' == $type ) {
 
-		$cover 				= '<div class="submission--cover" style="background-image:url(http://placekitten.com/400/400);"></div>';
+		$cover 				= '<div class="submission--cover" style="background-image:url(\'http://placebacon.net/400/400\');"></div>';
 
 	}
 
