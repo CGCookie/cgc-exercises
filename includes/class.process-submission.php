@@ -22,7 +22,6 @@ class cgc_exercises_process_submission {
 	function process_submission(){
 
 		$postid 		= isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
-		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
 		$title 			= isset( $_POST['exercise-title'] ) ? $_POST['exercise-title'] : null;
 		$desc 			= isset( $_POST['exercise-description'] ) ? $_POST['exercise-description'] : null;
 
@@ -59,8 +58,7 @@ class cgc_exercises_process_submission {
 					  'post_title'    => wp_strip_all_tags( $title ),
 					  'post_content'  => cgc_edu_media_filter( $desc ),
 					  'post_status'   => 'publish',
-					  'post_type'	  => 'exercise_submission',
-					  'post_author'   => absint($userid)
+					  'post_type'	  => 'exercise_submission'
 					);
 					$submission_id = wp_insert_post( $post_args );
 

@@ -440,7 +440,6 @@ function cgc_edu_exercise_submission_modal(){
 					<textarea class="exercise-field-required" id="exercise-description" form="cgc-exercise-submit-form" name="exercise-description" value="" placeholder="This is your chance to shine. Be very descriptive to encourage discussion and critiques."></textarea>
 
 					<input type="hidden" name="action" value="process_submission">
-					<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
 					<input type="hidden" name="post_id" value="<?php echo get_the_ID(); ?>">
 					<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('cgc-exercise-submission-nonce'); ?>"/>
 					<div class="form-bottom">
