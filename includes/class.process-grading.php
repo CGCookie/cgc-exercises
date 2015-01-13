@@ -122,7 +122,7 @@ class cgc_exercises_process_grading {
 				$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
 				if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-					wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
 				}
 
 
@@ -136,7 +136,7 @@ class cgc_exercises_process_grading {
 				$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
 				if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-					wp_mail( 'email@nickhaskins.com', 'Your Exercise Submission', $message );
+					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
 				}
 
 			}
