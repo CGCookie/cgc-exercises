@@ -178,6 +178,8 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	} elseif ( 'unity' == $type ) {
 
+		$cover 				= '<div class="submission--cover" style="background-image:url(http://placekitten.com/400/400);"></div>';
+
 	}
 
 	?><li class="submission-status--<?php echo $class;?>">
@@ -426,7 +428,7 @@ function cgc_edu_exercise_submission_modal(){
 							break;
 						case 'unity':
 							?>
-							<label for="exercise-unity">Unity</label>
+							<label for="exercise-unity">Link to Unity HTML File</label>
 							<input class="exercise-field-required" type="text" name="exercise-unity" value=""><?php
 							break;
 						default:
