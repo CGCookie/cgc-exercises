@@ -74,7 +74,9 @@ class cgc_exercises_process_submission {
 						update_post_meta( $submission_id, '_cgc_edu_exercise_sketchfab', sanitize_text_field( trim( $sketchfab ) ) );
 					}
 					if ( $unity ) {
-						update_post_meta( $submission_id, '_cgc_edu_exercise_unity', sanitize_text_field( trim( $unity ) ) );
+						$crossDomain = parse_url( trim( $unity ) );
+						$unityClean = $crossDomain['host'];
+						update_post_meta( $submission_id, '_cgc_edu_exercise_unity', sanitize_text_field( trim( $unityClean ) ) );
 					}
 					if ( $video ) {
 
