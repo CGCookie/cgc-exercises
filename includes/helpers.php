@@ -87,7 +87,7 @@ function cgc_edu_author_block( $postid = 0, $submission = false ) {
 		<?php } ?>
 
 		<?php if ( false == $submission ): ?>
-			<p class="cgc-author-block--bio"><?php echo esc_html( wp_trim_words(20,'...',$bio ) );?></p>
+			<p class="cgc-author-block--bio"><?php echo wp_trim_words( $bio, 25, '...' );?></p>
 			<a class="cgc-author-block--more" href="<?php echo get_author_posts_url( $auth_id ); ?>">More by this instructor</a>
 		<?php endif;
 
