@@ -126,11 +126,11 @@
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__actions">
 									<ul>
 										<?php if ( is_user_logged_in() ) { ?>
-											<li><a href="#" data-reveal-id="cgc-exercise-submission-modal"><i class="icon icon-upload"></i>Submit Exercise</a></li>
+											<li class="cgc-edu-submit-exercise"><a href="#" data-reveal-id="cgc-exercise-submission-modal"><i class="icon icon-upload"></i>Submit Exercise</a></li>
 										<?php } else { ?>
 											<li><a href="#" href="#" data-reveal-id="header-login-form"><i class="icon icon-upload"></i>Submit Exercise</a></li>
 										<?php } ?>
-										<li><a href="#"><i class="icon icon-upload"></i>Download HD Video</a></li>
+										<li class="cgc-edu-vid-dl"><a href="#"><i class="icon icon-cloud-download"></i>Download HD Video</a></li>
 									</ul>
 								</div>
 								<div class="cgc-edu-sidebar--block cgc-edu-sidebar--block__author">

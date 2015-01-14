@@ -65,15 +65,30 @@
 			border-radius:5px;
 			display:block;
 			position:relative;
+
 		}
 
 		i {
 			font-size:28px;
 			margin-right:5px;
 			position:absolute;
-			left:8px;
+			left:10px;
 			top:7px;
+
+			&.icon-cloud-download {
+				margin-right:10px;
+			}
 		}
+	}
+
+	.cgc-edu-submit-exercise {
+		i {
+			left:12px;
+		}
+	}
+	.cgc-edu-vid-dl a{
+		padding-left:36px;
+
 	}
 }
 
