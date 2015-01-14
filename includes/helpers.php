@@ -428,7 +428,7 @@ function cgc_edu_exercise_submission_modal(){
 							break;
 						case 'unity':
 							?>
-							<label for="exercise-unity">Link to Unity HTML File</label>
+							<label for="exercise-unity">Link to Unity HTML File <small>Upload your Unity Files onto the web (Dropbox works great for this), then paste the link to the HTML file here.</small></label>
 							<input class="exercise-field-required" type="text" name="exercise-unity" value=""><?php
 							break;
 						default:

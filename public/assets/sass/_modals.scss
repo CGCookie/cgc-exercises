@@ -79,6 +79,14 @@
 
 	label {
 		font-weight:bold;
+
+		small {
+			display:block;
+			font-size:80%;
+			line-height:1.2;
+			color: darken(#e7e7e7,25);
+			margin-bottom:8px;
+		}
 	}
 
 	.exercise-video-source {
