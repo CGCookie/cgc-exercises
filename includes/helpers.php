@@ -163,7 +163,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 		}
 
-	} elseif ( 'image' == $type ) {
+	} elseif ( 'image' == $type || 'unity' == $type ) {
 
 		$image 		= get_post_meta( $id, '_cgc_edu_exercise_image', true);
 		$image      = $image ? wp_get_attachment_image_src($image,'medium') : 'http://placekitten.com/800/500';
@@ -175,10 +175,6 @@ function cgc_edu_submission_block( $id = 0 ) {
 		$model  			= get_post_meta( $id , '_cgc_edu_exercise_sketchfab', true);
 		$sketchfab_cover 	= cgc_edu_get_sketcfab_cover( $model );
 		$cover 				= $sketchfab_cover ? sprintf('<div class="submission--cover" style="background-image:url(\'%s\');"></div>',$sketchfab_cover) : null;
-
-	} elseif ( 'unity' == $type ) {
-
-		$cover 				= '<div class="submission--cover" style="background-image:url(\'http://placebacon.net/400/400\');"></div>';
 
 	}
 
@@ -372,7 +368,7 @@ function cgc_edu_exercise_submission_modal(){
 
 			<h2 class="cgc-universal-modal--header">Submit your exercise</h2>
 			<div class="cgc-universal-modal--body">
-				<p class="cgc-universal-modal--intro">CG Cookie is excited to work along side you in offering education to your class or team. Fill out the form below and a friendly cookie crew member will reach out and discuss how we can help.</p>
+				<p class="cgc-universal-modal--intro">You are submitting your work to be graded by the community here at CG Cookie. This is a huge step for any artist while gaining the experience, challenge and critiques of our peers.</p>
 
 				<div id="cgc-edu-exercise--submission-results"></div>
 
@@ -429,7 +425,14 @@ function cgc_edu_exercise_submission_modal(){
 						case 'unity':
 							?>
 							<label for="exercise-unity">Link to Unity HTML File <small>Upload your Unity Files onto the web (Dropbox works great for this), then paste the link to the HTML file here.</small></label>
-							<input class="exercise-field-required" type="text" name="exercise-unity" value=""><?php
+							<input class="exercise-field-required" type="text" name="exercise-unity" value="">
+							<label class="file-upload" for="exercise-image">
+								<i class="icon icon-upload"></i>
+								<span>Screenshot</span>
+								<span class="filename">Recommended size - 300 x 300</span>
+								<input type="file" name="exercise-image" multiple="false">
+							</label>
+							<?php
 							break;
 						default:
 							?>

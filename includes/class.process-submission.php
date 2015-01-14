@@ -68,15 +68,19 @@ class cgc_exercises_process_submission {
 					// save misc fields
 					if ( 'image' == $type ) {
 
+						// process the image
 						self::process_image('exercise-image', $postid, $submission_id);
 					}
 					if ( $sketchfab ) {
 						update_post_meta( $submission_id, '_cgc_edu_exercise_sketchfab', sanitize_text_field( trim( $sketchfab ) ) );
 					}
 					if ( $unity ) {
-						$crossDomain = parse_url( trim( $unity ) );
-						$unityClean = $crossDomain['host'];
-						update_post_meta( $submission_id, '_cgc_edu_exercise_unity', sanitize_text_field( trim( $unityClean ) ) );
+
+						// process the thumbnail image
+						self::process_image('exercise-image', $postid, $submission_id);
+
+						update_post_meta( $submission_id, '_cgc_edu_exercise_unity', sanitize_text_field( trim( $unity ) ) );
+
 					}
 					if ( $video ) {
 
