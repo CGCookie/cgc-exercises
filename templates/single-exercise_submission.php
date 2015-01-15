@@ -164,7 +164,7 @@
 								<div class="tab-content">
 
 									<div id="about" class="tab-display">
-										<?php echo the_content();?>
+										<?php echo make_clickable( apply_filters('the_content',get_the_content()) ) ;?>
 									</div>
 
 									<div id="discussion" class="tab-hide tab-display">
