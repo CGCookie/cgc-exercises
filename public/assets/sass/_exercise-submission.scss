@@ -31,11 +31,22 @@
 // title area
 .cgc-edu-exercise-submission--connection {
 	min-height:65px;
+	@include clearfix();
 	a {
 		padding-left:40px;
+		float: left;
+		line-height: 1.2;
+		position: relative;
+		top:5px;
+
+		&.tall-boy {
+			top:-3px;
+		}
 	}
 	.cgc-block-icon {
+		float:left;
 		left:10px;
+		top:10px;
 	}
 }
 

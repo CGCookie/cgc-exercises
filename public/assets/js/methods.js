@@ -181,6 +181,15 @@ jQuery(document).ready(function($){
 	    }
 	}
 
+	////////////////
+	// EXERCISE TILTE HELPER
+	///////////////
+	var titHeight = $('.cgc-edu-exercise-submission--connection a').height()
+
+	if ( titHeight > 18 ) {
+		$('.cgc-edu-exercise-submission--connection a').addClass('tall-boy')
+	}
+
 	/////////////////
 	// UNITY MODAL MODS
 	/////////////////
