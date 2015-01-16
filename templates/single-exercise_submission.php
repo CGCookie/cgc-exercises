@@ -85,7 +85,12 @@
 											?><iframe width="100%" height="" src="//sketchfab.com/models/<?php echo esc_attr($type_sketchfab);?>/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
 											break;
 										case 'unity':
-											?><iframe width="100%" height="500px" src="<?php echo esc_url( $type_unity );?>" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe><?php
+											?>
+												<div class="unity--holder">
+													<a href="#" data-reveal-id="cgc-unity-modal"><i class="icon icon-play-sign"></i>Open Player</a>
+												</div>
+
+											<?php
 											break;
 										case 'video':
 
@@ -193,6 +198,7 @@
 		</div>
 	</div>
 
-	<?php if ( function_exists('cgc_edu_grading_modal') ) echo cgc_edu_grading_modal(); ?>
+	<?php echo cgc_edu_grading_modal(); ?>
+	<?php echo cgc_edu_unity_modal( get_post_meta( get_the_ID(), '_cgc_edu_exercise_unity', true) );?>
 
 <?php get_footer();

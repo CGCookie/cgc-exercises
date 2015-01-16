@@ -197,6 +197,39 @@
     }
 }
 
+// unity viewer modal
+#cgc-unity-modal {
+	width: 90%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	bottom:70px;
+	padding:0;
+	top:70px !important;
+	position:fixed;
+
+	iframe {
+		position:absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		right:0;
+	}
+	.close-reveal-modal {
+		z-index:2;
+		top:0;
+		right:-27px;
+
+		&:hover {
+			@include make-network-color('color');
+		}
+
+		i {
+			font-size:45px;
+		}
+	}
+}
+
 .success a {
 	color: inherit;
 	text-decoration:underline;

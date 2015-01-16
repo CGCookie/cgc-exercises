@@ -350,6 +350,32 @@ function cgc_edu_grading_modal(){
 	return ob_get_clean();
 }
 
+
+/**
+*
+* Modal displayed after grading
+*
+*	@param $player_url string the url to the users submittd unity html file
+*/
+function cgc_edu_unity_modal( $player_url = '' ){
+
+	ob_start();
+
+	?>
+	<div id="cgc-unity-modal" class="reveal-modal cgc-universal-modal">
+		<a class="close-reveal-modal "><i class="dashicons dashicons-no-alt"></i></a>
+		<div class="cgc-universal-modal--wrap">
+			<div class="cgc-universal-modal--body">
+				<iframe width="100%" height="500px" src="<?php echo esc_url( $player_url );?>" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
+			</div>
+
+		</div>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+
+
 /**
 *
 * Modal displayed to the user allowing them to submit an exercise

@@ -181,6 +181,18 @@ jQuery(document).ready(function($){
 	    }
 	}
 
+	/////////////////
+	// UNITY MODAL MODS
+	/////////////////
+	$('a[data-reveal-id="cgc-unity-modal"').on('click',function(){
+		$('body').css('overflow','hidden')
+	});
+	$('#cgc-unity-modal iframe').css('height', $(window).height() - 80 );
+
+	$(window).resize(function(){
+		$('#cgc-unity-modal iframe').css('height', $(window).height() - 80 );
+	});
+
 });
 
 jQuery(window).load(function() {
