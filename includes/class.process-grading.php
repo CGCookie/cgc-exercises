@@ -11,7 +11,7 @@ class cgc_exercises_process_grading {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_grading', 				array($this, 'process_grading' ));
-		add_action('cgc_edu_exercise_voted', 				array($this,'cgc_edu_exercise_voted'), 10, 3);
+		//add_action('cgc_edu_exercise_voted', 				array($this,'award_and_mail'), 10, 3);
 	}
 
 	/**
@@ -74,7 +74,7 @@ class cgc_exercises_process_grading {
 	}
 
 	// award xp based on a pass or fail status
-	function cgc_edu_exercise_voted( $postid, $userid, $vote ) {
+	function award_and_mail( $postid, $userid, $vote ) {
 
 		// get the yes votes
 		$votes 			= get_post_meta( $postid, '_cgc_edu_exercise_vote', true );
