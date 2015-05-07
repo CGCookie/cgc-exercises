@@ -1,5 +1,23 @@
 <?php
 
+/**
+*	Get the video for an exercise
+*
+*	@param $exercise_id int id of the lesson to get the video id for
+*
+*	@return string video id of the exercise
+*	@since 5.0
+*/
+function cgc_exercise_get_video( $exercise_id = 0 ){
+
+	if ( empty( $exercise_id ) )
+		return;
+
+	$id = get_post_meta( $exercise_id, '_exercise_video', true );
+
+	return !empty( $id ) ? $id : false;
+}
+
 
 /**
 *	Used on the front end to properly escape attributes where users have control over what input is entered

@@ -48,7 +48,7 @@ class cgc_exercise_meta{
 			'priority'		=> 'low',
 			'fields' => array(
 				array(
-					'id'			=> 'cgc_video_id',
+					'id'			=> '_exercise_video',
 					'name'			=> '',
 					'desc'			=> 'Enter the Wistia Video ID for this exercise if applicable',
 					'type'			=> 'text_small'
