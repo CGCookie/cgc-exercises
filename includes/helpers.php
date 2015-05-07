@@ -428,7 +428,7 @@ function cgc_exercise_count_submissions( $postid = '' ) {
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
 
-	$submissions 	= cgc_edu_exercise_get_submissions( $postid );
+	$submissions 	= cgc_exercise_get_submissions( $postid );
 
 	if ( empty( $submissions ) )
 		return;
@@ -491,7 +491,7 @@ function cgc_exercise_log_submission( $postid = 0, $submission_id = 0 ) {
 *	@param $postid int id of the post to retrieve downloadable files for
 *
 */
-function cgc_edu_exercise_get_files( $postid = '' ) {
+function cgc_exercise_get_files( $postid = '' ) {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
