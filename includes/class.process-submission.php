@@ -21,6 +21,7 @@ class cgc_exercises_process_submission {
 	*/
 	function process_submission(){
 
+
 		$postid 		= isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
 		$title 			= isset( $_POST['exercise-title'] ) ? $_POST['exercise-title'] : null;
 		$desc 			= isset( $_POST['exercise-description'] ) ? $_POST['exercise-description'] : null;
@@ -38,9 +39,8 @@ class cgc_exercises_process_submission {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_submission' ) {
 
 			// only run for logged in users
-			if( !is_user_logged_in() || !current_user_can('edit_posts') )
+			if( !is_user_logged_in() )
 				return;
-
 
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'cgc-exercise-submission-nonce' ) ) {
@@ -53,6 +53,8 @@ class cgc_exercises_process_submission {
 
 				} else {
 
+
+
 					// create an exercise submission
 					$post_args = array(
 					  'post_title'    => wp_strip_all_tags( $title ),
@@ -63,7 +65,7 @@ class cgc_exercises_process_submission {
 					$submission_id = wp_insert_post( $post_args );
 
 					// do the saving of submission ids and such 
-					cgc_edu_exercise_log_submission( $postid, $submission_id );
+					cgc_exercise_log_submission( $postid, $submission_id );
 
 					// save misc fields
 					if ( 'image' == $type ) {

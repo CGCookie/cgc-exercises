@@ -52,7 +52,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 		return;
 
 
-	$status = cgc_edu_exercise_submission_status($id);
+	$status = cgc_exercise_submission_status($id);
 
 	if ( 'true' == $status ) {
 
@@ -332,7 +332,7 @@ function cgc_exercise_get_grade( $postid = 0 ) {
 *	@return the number of votes for the specific submission
 *
 */
-function cgc_edu_exercise_count_total_votes( $postid = 0 ) {
+function cgc_exercise_count_total_votes( $postid = 0 ) {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
@@ -350,7 +350,7 @@ function cgc_edu_exercise_count_total_votes( $postid = 0 ) {
 *	@return the status of the submission - Passed for passing, Failed for failing, or ready for grading if grading still open
 *
 */
-function cgc_edu_exercise_submission_status( $postid = '' ) {
+function cgc_exercise_submission_status( $postid = '' ) {
 
 	if ( empty( $postid ) )
 		return;
@@ -389,7 +389,7 @@ function cgc_edu_exercise_submission_status( $postid = '' ) {
 *	@param $postid int id of the submission
 *	@return the id of the connected exercise from the exercise submission
 */
-function cgc_edu_exercise_get_connected( $postid = 0 ) {
+function cgc_exercise_get_connected( $postid = 0 ) {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
@@ -423,7 +423,7 @@ function cgc_exercise_get_submissions( $postid = ''){
 *	@param $postid int id of the exercise to count the submissions of
 *	@return int total number of active submissions
 */
-function cgc_edu_exercise_count_submissions( $postid = '' ) {
+function cgc_exercise_count_submissions( $postid = '' ) {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
@@ -460,13 +460,13 @@ function cgc_edu_exercise_count_submissions( $postid = '' ) {
 *	@param $submission_id - int - the id of the submission being created
 *
 */
-function cgc_edu_exercise_log_submission( $postid = 0, $submission_id = 0 ) {
+function cgc_exercise_log_submission( $postid = 0, $submission_id = 0 ) {
 
 	if ( empty( $postid ) )
 		return;
 
 	// retrieve the IDs of all submissions for this exercise
-	$submissions = cgc_edu_exercise_get_submissions( $postid );
+	$submissions = cgc_exercise_get_submissions( $postid );
 
 	// go through the submissions check if its empty or an array
 	if ( ! empty( $submissions ) && is_array( $submissions ) ) {
