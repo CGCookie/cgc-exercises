@@ -34,7 +34,7 @@ class cgc_exercises_process_grading {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_grading' ) {
 
 			// only run for logged in users
-			if( !is_user_logged_in() || !current_user_can('edit_posts') )
+			if( !is_user_logged_in() )
 				return;
 
 			// ok security passes so let's process some data
