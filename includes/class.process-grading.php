@@ -25,7 +25,7 @@ class cgc_exercises_process_grading {
 
 		$vote 			= isset( $_POST['vote'] ) ? $_POST['vote'] : null;
 		$postid 		= isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
-		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
+		$userid 		= get_current_user_ID();
 
 		// get the yes votes
 		$votes 			=	 get_post_meta( $postid, '_cgc_edu_exercise_vote', true );

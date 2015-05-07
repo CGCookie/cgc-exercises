@@ -266,7 +266,7 @@ function cgc_edu_get_vimeo_cover( $id = '' ) {
 *	@param $postid int id of the excersie submission to calcuate votes for
 *	@param $passing int number required to pass or fail a submission
 */
-function cgc_edu_exercise_grade( $postid = 0 ) {
+function cgc_exercise_get_grade( $postid = 0 ) {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
@@ -405,7 +405,7 @@ function cgc_edu_exercise_get_connected( $postid = 0 ) {
 *	@param $id int id of the post to get the submissions for
 *	@return array of postids
 */
-function cgc_edu_exercise_get_submissions( $postid = ''){
+function cgc_exercise_get_submissions( $postid = ''){
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
