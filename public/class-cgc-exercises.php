@@ -64,7 +64,6 @@ class CGC_Exercises {
 
 		require_once(CGC_EXERCISES_DIR.'/includes/helpers.php');
 
-		require_once(CGC_EXERCISES_DIR.'/public/includes/class.assets.php');
 		require_once(CGC_EXERCISES_DIR.'/public/includes/modals.php');
 
 		require_once(CGC_EXERCISES_DIR.'/includes/class.process-submission.php');
@@ -72,8 +71,8 @@ class CGC_Exercises {
 
 		add_filter( 'comments_template', 			array($this,'exercise_submission_comment_template' ));
 
-		add_filter( 'comment_post_redirect', 		array($this,'cgc_edu_redirect_exercise_comment' ));
-		add_action('comment_form_logged_in_after',	array($this,'cgc_edu_exercise_add_redirect_field'));
+		add_filter( 'comment_post_redirect', 		array($this,'redirect_comment' ));
+		add_action('comment_form_logged_in_after',	array($this,'redirect_field'));
 
 	}
 
@@ -266,10 +265,10 @@ class CGC_Exercises {
 	*
 	*/
 
-	function cgc_edu_exercise_add_redirect_field(){
+	function redirect_field(){
 
-		if ( 'exercise_submission' == get_post_type() || 'exercise' == get_post_type() ) {?>
-			<input type="hidden" name="exercise_submission_redirect_to" value="<?php echo get_permalink(); ?>?tab=discussion">
+		if ( 'exercise_submission' == get_post_type() || 'exercise' == get_post_type() || 'cgc_images' == get_post_type() ) {?>
+			<input type="hidden" name="cgc_object_redirect" value="<?php echo get_permalink(); ?>#comments">
 		<?php }
 	}
 
@@ -279,9 +278,12 @@ class CGC_Exercises {
 	*/
 
 
-	function cgc_edu_redirect_exercise_comment( $location ) {
-	    if ( isset( $_POST['exercise_submission_redirect_to'] ) )
-	        return $_POST['exercise_submission_redirect_to'];
+	function redirect_comment( $location ) {
+
+		if ( !isset( $_POST['cgc_object_redirect'] ) )
+			return;
+
+	    return $_POST['cgc_object_redirect'];
 	}
 
 }
