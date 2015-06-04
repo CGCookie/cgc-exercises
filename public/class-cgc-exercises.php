@@ -69,9 +69,7 @@ class CGC_Exercises {
 		require_once(CGC_EXERCISES_DIR.'/includes/class.process-submission.php');
 		require_once(CGC_EXERCISES_DIR.'/includes/class.process-grading.php');
 
-		add_filter( 'comments_template', 			array($this,'exercise_submission_comment_template' ));
-
-		add_filter( 'comment_post_redirect', 		array($this,'redirect_comment' ));
+		//add_filter( 'comment_post_redirect', 		array($this,'redirect_comment' ));
 		add_action('comment_form_logged_in_after',	array($this,'redirect_field'));
 
 	}
@@ -239,26 +237,6 @@ class CGC_Exercises {
 		// @TODO: Define deactivation functionality here
 	}
 
-	/**
-	*
-	*	Load custom comments template for exercise submission post type
-	*
-	*/
-	function exercise_submission_comment_template( $comment_template ) {
-
-	    global $post;
-
-	    if ( !( is_singular() && ( have_comments() || 'open' == $post->comment_status ) ) ) {
-	        return;
-	    }
-	    if ( 'exercise_submission' == $post->post_type ) {
-	        return CGC_EXERCISES_DIR.'/templates/submission-comments.php';
-	    }
-	    if ( 'exercise' == $post->post_type ) {
-	        return CGC_EXERCISES_DIR.'/templates/exercise-comments.php';
-	    }
-	}
-
 
 	/**
 	*	add a hidden field to the exercise comment submission form to redirect the user to the same tab on the page
@@ -267,9 +245,9 @@ class CGC_Exercises {
 
 	function redirect_field(){
 
-		if ( 'exercise_submission' == get_post_type() || 'exercise' == get_post_type() || 'cgc_images' == get_post_type() ) {?>
+		?>
 			<input type="hidden" name="cgc_object_redirect" value="<?php echo get_permalink(); ?>#comments">
-		<?php }
+		<?php
 	}
 
 	/**
@@ -280,10 +258,11 @@ class CGC_Exercises {
 
 	function redirect_comment( $location ) {
 
-		if ( !isset( $_POST['cgc_object_redirect'] ) )
-			return;
+		if ( isset( $_POST['cgc_object_redirect'] ) ) {
 
-	    return $_POST['cgc_object_redirect'];
+	    	return $_POST['cgc_object_redirect'];
+
+	    }
 	}
 
 }
