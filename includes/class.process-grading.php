@@ -55,6 +55,8 @@ class cgc_exercises_process_grading {
 					// increment total overall votes
 					update_post_meta( $postid, '_cgc_edu_exercise_total_votes', intval( $total_votes ) + 1 );
 
+					update_user_meta( $userid, '_cgc_edu_exercise-'.absint( $postid ).'_has_voted', true );
+
 				} elseif ('no' == $vote) { // aww shcuks, they voted no, so subtract a point
 
 					// decrement
@@ -62,6 +64,8 @@ class cgc_exercises_process_grading {
 
 					// decrement total overall votes
 					update_post_meta( $postid, '_cgc_edu_exercise_total_votes', intval( $total_votes ) + 1 );
+
+					update_user_meta( $userid, '_cgc_edu_exercise-'.absint( $postid ).'_has_voted', true );
 
 				}
 

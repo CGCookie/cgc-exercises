@@ -108,15 +108,16 @@ function cgc_edu_exercise_submission_modal(){
 *
 *
 */
+add_action('wp_footer','cgc_edu_grading_modal');
 function cgc_edu_grading_modal(){
 
-
+	if ( 'exercise_submission' == get_post_type() ):
 	?>
 	<div class="modal fade modal--exercise-submission" id="cgc-grading-modal" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<h2 class="modal--header">Thanks for Grading!</h2>
-				<div class="modal--body">
+				<h2 class="modal-header">Thanks for Grading!</h2>
+				<div class="modal-body">
 					<p>Our robots are calculating your grade into the collective. It is important you let the artist know why you did or did not pass their piece.</p>
 					<p>The feedback will show publically underneath the piece in the discussion tab.</p>
 					<p>Feedback or reasoning for your grade</p>
@@ -135,7 +136,7 @@ function cgc_edu_grading_modal(){
 				</div>
 			</div>
 		</div>
-	</div><?php
+	</div><?php endif;
 }
 
 
