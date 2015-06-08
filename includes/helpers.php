@@ -328,7 +328,7 @@ function cgc_exercise_get_grade( $postid = 0 ) {
 
 		} elseif( !is_user_logged_in() ) {
 
-			$return = '<span class="cgc-edu-meta-login"><a href="#" data-reveal-id="header-login-form">Login</a> to grade this exercise!</span>';
+			$return = '<span class="cgc-edu-meta-login"><a href="#" data-toggle="modal" data-target="#modal--login">Login</a> to grade this exercise!</span>';
 
 		} else {
 
