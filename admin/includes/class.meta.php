@@ -57,6 +57,22 @@ class cgc_exercise_meta{
 		);
 
 		$meta_boxes[] = array(
+			'id'	=> '_exercise_library',
+			'title' => __('Display in Library', 'cgc-exercises'),
+			'object_types' 	=> array('exercise'),
+			'context'		=> 'side',
+			'priority'		=> 'low',
+			'fields' => array(
+				array(
+					'id'			=> '_exercise_library_display',
+					'name'			=> '',
+					'desc'			=> 'Check this box to show this exercise in the Library.',
+					'type'			=> 'checkbox'
+				)
+			)
+		);
+
+		$meta_boxes[] = array(
 			'id'	=> '_exercise_criteria_setup',
 			'title' => __('Exercise Criteria', 'cgc-exercises'),
 			'object_types' 	=> array('exercise'),
