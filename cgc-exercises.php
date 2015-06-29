@@ -10,7 +10,7 @@
  * Plugin Name:       CGC Exercise and Submissions
  * Plugin URI:        http://cgcookie.com
  * Description:       Creates an exercise and submission system.
- * Version:           0.1
+ * Version:           5.0
  * GitHub Plugin URI: https://github.com/cgcookie/cgc-exercises
  */
 
@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define('CGC_EXERCISES_VERSION', '0.1');
+define('CGC_EXERCISES_VERSION', '5.0');
 define('CGC_EXERCISES_DIR', plugin_dir_path( __FILE__ ));
 define('CGC_EXERCISES_URL', plugins_url( '', __FILE__ ));
 /*----------------------------------------------------------------------------*
