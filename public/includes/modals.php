@@ -58,8 +58,8 @@ function cgc_edu_exercise_submission_modal(){
 									break;
 								case 'sketchfab':
 									?>
-									<label for="exercise-sketchfab">Sketchfab Model ID</label>
-									<input required type="text" name="exercise-sketchfab" value=""><?php
+									<label for="exercise-sketchfab">Sketchfab Model URL</label>
+									<input required type="text" name="exercise-sketchfab" value="" placeholder="https://sketchfab.com...."><?php
 									break;
 								case 'unity':
 									?>
