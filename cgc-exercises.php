@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define('CGC_EXERCISES_VERSION', '5.0');
+define('CGC_EXERCISES_VERSION', '5.0.1');
 define('CGC_EXERCISES_DIR', plugin_dir_path( __FILE__ ));
 define('CGC_EXERCISES_URL', plugins_url( '', __FILE__ ));
 /*----------------------------------------------------------------------------*
