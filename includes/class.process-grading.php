@@ -47,26 +47,27 @@ class cgc_exercises_process_grading {
 
 					echo 'Thanks for voting!';
 
-				} elseif ( 'yes' == $vote ) { // user voted yes, so incremenet and set a flag for this user
+				} else {
 
-					// increment
-					update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) + 1 );
+					// update user and postmeta
+					self::vote_logic( $postid, $userid, $total_votes );
 
-					// increment total overall votes
-					update_post_meta( $postid, '_cgc_edu_exercise_total_votes', intval( $total_votes ) + 1 );
+					// update master list of voters
+					self::add_voter_to_list( $postid, $userid );
 
-					update_user_meta( $userid, '_cgc_edu_exercise-'.absint( $postid ).'_has_voted', true );
+					// if user votes yes
+					if ( 'yes' == $vote ) {
 
-				} elseif ('no' == $vote) { // aww shcuks, they voted no, so subtract a point
+						// increment
+						update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) + 1 );
 
-					// decrement
-					update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) - 1 );
+					// if user votes no
+					} else if ( 'no' == $vote ) {
 
-					// decrement total overall votes
-					update_post_meta( $postid, '_cgc_edu_exercise_total_votes', intval( $total_votes ) + 1 );
+						// decrement
+						update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) - 1 );
 
-					update_user_meta( $userid, '_cgc_edu_exercise-'.absint( $postid ).'_has_voted', true );
-
+					}
 				}
 
 				do_action('cgc_edu_exercise_voted', $postid, $userid, $vote );
@@ -75,6 +76,49 @@ class cgc_exercises_process_grading {
 
 		}
 		exit();
+	}
+
+	/**
+	*	Perform various tasks after a vote has been triggered
+	*
+	*	@param $postid int id of the post
+	*	@param $userid int id of the user voting
+	*	@param $total_votes int the total number of votes for the submission
+	*	@since 5.0.7
+	*/
+	function vote_logic( $postid, $userid, $total_votes ) {
+
+		// update vote count
+		update_post_meta( $postid, '_cgc_edu_exercise_total_votes', intval( $total_votes ) + 1 );
+
+		// set a flag that this user has voted
+		update_user_meta( $userid, '_cgc_edu_exercise-'.absint( $postid ).'_has_voted', true );
+
+
+	}
+
+	/**
+	*	Creates a list of users who have voted for a specific submission
+	*	@param $postid int id of the submission
+	*	@param $userid int id of the user to add
+	*
+	*	@since 5.0.7
+	*
+	*/
+	function add_voter_to_list( $postid, $userid ) {
+
+		// get all voters
+		$voters = cgc_exercise_get_voters( $postid );
+
+		if ( ! empty( $voters ) && is_array( $voters ) ) {
+			$voters[] = $userid;
+		} else {
+			$voters = array();
+			$voters[] = $userid;
+		}
+
+		// add user to list of users who have voted
+		update_post_meta( $postid, '_cgc_edu_exercise_user_votes', $voters );
 	}
 
 	// award xp based on a pass or fail status
