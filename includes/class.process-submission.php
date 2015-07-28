@@ -35,11 +35,12 @@ class cgc_exercises_process_submission {
 
 		$type           = get_post_meta( $postid , '_cgc_edu_exercise_type', true);
 
+		$is_citizen = class_exists('cgcUserAPI') ? cgcUserAPI::is_user_citizen() : false;
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_submission' ) {
 
-			// only run for logged in users
-			if( !is_user_logged_in() )
+			// only run for logged in users and those who are citizen
+			if( !is_user_logged_in() || !$is_citizen )
 				return;
 
 			// ok security passes so let's process some data
@@ -52,8 +53,6 @@ class cgc_exercises_process_submission {
 					exit();
 
 				} else {
-
-
 
 					// create an exercise submission
 					$post_args = array(
