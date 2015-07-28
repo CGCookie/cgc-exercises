@@ -1,5 +1,26 @@
 <?php
 
+
+/**
+*
+*	Get a list of user ids who have voted for a specific exercise submission
+*
+*	@param $submission_id int id of the submissio to get the user votes for
+*	@since 5.0.7
+*	@return array of user ids
+*/
+function cgc_exercise_get_voters( $submission_id = 0 ) {
+
+	if ( empty( $submission_id ) ) {
+		$submission_id = get_the_ID();
+	}
+
+	$voters = get_post_meta( $submission_id, '_cgc_edu_exercise_user_votes', true );
+
+	return !empty( $voters ) ? $voters : false;
+
+}
+
 /**
 *	Get the video for an exercise
 *
