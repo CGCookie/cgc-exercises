@@ -4,6 +4,34 @@ class cgc_exercise_meta{
 
 	public function __construct(){
 		add_filter( 'cmb2_meta_boxes', array($this,'exercise_meta') );
+		add_filter( 'cmb2_init', array($this,'exercise_submission_meta') );
+	}
+
+	public function exercise_submission_meta() {
+
+	    $cmb = new_cmb2_box( array(
+	        'id'            => 'submission_data',
+	        'title'         => __( 'Submission Data', 'cmb2' ),
+	        'object_types'  => array( 'exercise_submission' ),
+	        'context'       => 'normal',
+	        'priority'      => 'low',
+	        'show_names'    => true,
+	    ) );
+
+	    $cmb->add_field( array(
+	        'name'       => 'Sketchfab URL',
+	        'desc'       => 'Sketchfab URL',
+	        'id'         => '_cgc_edu_exercise_sketchfab',
+	        'type'       => 'text'
+	    ) );
+
+
+	    $cmb->add_field( array(
+	        'name'       => 'Video URL',
+	        'desc'       => 'Video URL',
+	        'id'         => '_cgc_edu_exercise_video',
+	        'type'       => 'text'
+	    ) );
 	}
 
 	public function exercise_meta( array $meta_boxes ) {

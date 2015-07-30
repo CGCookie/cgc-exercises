@@ -157,7 +157,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 	} elseif ( 'sketchfab' == $type ) {
 
 		$model  			= get_post_meta( $id , '_cgc_edu_exercise_sketchfab', true);
-		$sketchfab_cover 	= cgc_edu_get_sketcfab_cover( $model );
+		$sketchfab_cover 	= cgc_edu_get_sketcfab_cover( $id, $model );
 		$cover 				= $sketchfab_cover ? sprintf('<div class="submission--cover" style="background-image:url(\'%s\');"></div>',$sketchfab_cover) : null;
 
 	}
@@ -233,18 +233,41 @@ function cgc_get_video_id_from_string( $provider = '', $url = '') {
 }
 
 /**
+*	Return just the model from a sketchfab entry string
+*
+*	@param $post_id int the id of the entry to get the sketchfab url from
+*	@since 5.0.2
+*/
+function cgc_edu_get_sketchfab_model( $post_id = 0 ) {
+
+	if ( empty( $post_id ) )
+		return;
+
+	$string  	= get_post_meta( $post_id, '_cgc_edu_exercise_sketchfab', true );
+	$string 	= preg_replace('~embed~', '', $string);
+	$string     = basename( $string );
+
+	return !empty( $string ) ? $string : false;
+
+}
+
+/**
 *
 *	Return the thumbnail from the sketchfab api for the model being queried
 *
+*	@param $post_id int id of the entry to get the model for
 *	@param $model string id of the sketchfab model
 *	@return a thumbnail image
 */
-function cgc_edu_get_sketcfab_cover( $model = '' ) {
+function cgc_edu_get_sketcfab_cover( $post_id = 0, $model = '' ) {
 
 	if ( empty( $model ) )
 		return;
 
-    $apiurl = sprintf('https://sketchfab.com/oembed?url=https://sketchfab.com/models/%s', $model );
+	// return just the model so we can query the api
+	$id = cgc_edu_get_sketchfab_model( $post_id );
+
+    $apiurl = sprintf('https://sketchfab.com/oembed?url=https://sketchfab.com/models/%s', $id );
 
     $fetch = wp_remote_get($apiurl, array('sslverify'=>true));
     $remote = wp_remote_retrieve_body($fetch);
