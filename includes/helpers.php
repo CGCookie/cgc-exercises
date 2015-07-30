@@ -244,6 +244,7 @@ function cgc_edu_get_sketchfab_model( $post_id = 0 ) {
 		return;
 
 	$string  	= get_post_meta( $post_id, '_cgc_edu_exercise_sketchfab', true );
+	$string 	= preg_replace('~embed~', '', $string);
 	$string     = basename( $string );
 
 	return !empty( $string ) ? $string : false;
