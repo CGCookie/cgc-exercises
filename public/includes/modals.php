@@ -53,18 +53,18 @@ function cgc_edu_exercise_submission_modal(){
 								case 'video':
 									?>
 									<label for="exercise-video">Video URL <i class="exercise-video-source icon "></i></label>
-									<input id="exercise-video" type="text" name="exercise-video" value="">
+									<p><input id="exercise-video" type="text" name="exercise-video" value=""></p>
 									<input required id="exercise-video-provider" type="hidden" name="exercise-video-provider" value=""><?php
 									break;
 								case 'sketchfab':
 									?>
 									<label for="exercise-sketchfab">Sketchfab Model URL</label>
-									<input required type="text" name="exercise-sketchfab" value="" placeholder="https://sketchfab.com...."><?php
+									<p><input required type="text" name="exercise-sketchfab" value="" placeholder="https://sketchfab.com...."></p><?php
 									break;
 								case 'unity':
 									?>
 									<label for="exercise-unity">Link to Unity HTML File <small>Upload your Unity Files onto the web (Dropbox works great for this), then paste the link to the HTML file here.</small></label>
-									<input type="text" name="exercise-unity" value="">
+									<p><input type="text" name="exercise-unity" value=""></p>
 									<label class="file-upload" for="exercise-image">
 										<i class="icon icon-upload"></i>
 										<span>Screenshot</span>
