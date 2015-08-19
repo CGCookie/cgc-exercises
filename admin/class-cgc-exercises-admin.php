@@ -41,6 +41,7 @@ class CGC_Exercises_Admin {
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		require_once(CGC_EXERCISES_DIR.'/admin/includes/class.meta.php');
+		require_once(CGC_EXERCISES_DIR.'/admin/includes/class.debug.php');
 
 	}
 
