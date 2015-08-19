@@ -63,16 +63,12 @@ class cgcExerciseDebug {
 					},
 					confirmed = confirm('Are you sure you want to delete this exercise submission?');
 
-					console.log( deleteData )
-
 				    if ( confirmed ) {
 
 				      	$.post( ajaxurl, deleteData, function(response) {
 
-				      		console.log(response)
-
 							alert('Deleted!');
-							//location.reload();
+							location.reload();
 
 						});
 				    }
@@ -181,8 +177,6 @@ class cgcExerciseDebug {
 				if ( $submission == $exercise_id ) {
 
 					unset( $submissions[$key] );
-
-					//var_dump($submissions);wp_die();
 
 					$modified = true;
 				}
