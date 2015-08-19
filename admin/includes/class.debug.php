@@ -182,6 +182,8 @@ class cgcExerciseDebug {
 
 					unset( $submissions[$key] );
 
+					//var_dump($submissions);wp_die();
+
 					$modified = true;
 				}
 			}
@@ -189,6 +191,7 @@ class cgcExerciseDebug {
 		}
 
 		if ( $modified ) {
+			update_post_meta( $connected, '_cgc_exercise_submission_ids', $submissions );
 			return true;
 		} else {
 			return false;
