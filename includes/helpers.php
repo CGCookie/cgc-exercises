@@ -110,8 +110,11 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	}
 
+	// get the connected exercise
+	$connected      = get_post_meta( $id, '_cgc_exercise_submission_linked_to', true);
+
 	// get the type
-	$type        = get_post_meta( get_the_ID(), '_cgc_edu_exercise_type', true);
+	$type        = get_post_meta( $connected, '_cgc_edu_exercise_type', true);
 
 	$cover = '';
 	if ( 'video' == $type ) {
