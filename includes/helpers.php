@@ -116,6 +116,9 @@ function cgc_edu_submission_block( $id = 0 ) {
 	// get the type
 	$type        = get_post_meta( $connected, '_cgc_edu_exercise_type', true);
 
+	// is the account activated
+	$account_activated = class_exists('cgcUserAPI') && false == cgcUserAPI::account_status() ? true : false;
+
 	$cover = '';
 	if ( 'video' == $type ) {
 
@@ -165,19 +168,22 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	}
 
-	?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>">
-		<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
-			<span><?php echo $label;?></span>
-			<?php echo $cover;?>
-		</a>
-		<?php if ( is_page('activity') && is_user_logged_in() ) { ?>
-		<div id="submission-controls" class="not-visible">
-			<input type="checkbox" id="delete_submission_<?php echo absint( $id );?>" name="delete_submission_<?php echo absint( $id );?>">
-			<label for="delete_submission_<?php echo absint( $id );?>" class="checkbox-control checkbox"></label>
-		</div>
-		<?php } ?>
-	</li>
-	<?php
+	if ( $account_activated ):
+
+		?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>">
+			<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
+				<span><?php echo $label;?></span>
+				<?php echo $cover;?>
+			</a>
+			<?php if ( is_page('activity') && is_user_logged_in() ) { ?>
+			<div id="submission-controls" class="not-visible">
+				<input type="checkbox" id="delete_submission_<?php echo absint( $id );?>" name="delete_submission_<?php echo absint( $id );?>">
+				<label for="delete_submission_<?php echo absint( $id );?>" class="checkbox-control checkbox"></label>
+			</div>
+			<?php } ?>
+		</li>
+
+	<?php endif;
 
 
 }
@@ -291,7 +297,7 @@ function cgc_edu_get_sketcfab_cover( $post_id = 0, $model = '' ) {
 
     }
 
-    $out = $return['thumbnail_url'];
+    $out = isset( $return['thumbnail_url'] ) ? $return['thumbnail_url'] : false;
 
     if ( $out )
 		return $out;
