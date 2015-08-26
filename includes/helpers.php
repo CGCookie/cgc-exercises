@@ -119,6 +119,8 @@ function cgc_edu_submission_block( $id = 0 ) {
 	// is the account activated
 	$account_activated = class_exists('cgcUserAPI') && false == cgcUserAPI::account_status() ? true : false;
 
+	$post_author = get_post_field( 'post_author', $id );
+
 	$cover = '';
 	if ( 'video' == $type ) {
 
@@ -168,7 +170,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	}
 
-	if ( $account_activated ):
+	if ( $account_activated && $post_author == get_current_user_ID() ):
 
 		?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>">
 			<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
