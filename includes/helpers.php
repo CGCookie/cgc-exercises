@@ -110,8 +110,17 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	}
 
+	// get the connected exercise
+	$connected      = get_post_meta( $id, '_cgc_exercise_submission_linked_to', true);
+
 	// get the type
-	$type        = get_post_meta( get_the_ID(), '_cgc_edu_exercise_type', true);
+	$type        = get_post_meta( $connected, '_cgc_edu_exercise_type', true);
+
+	// yhe post author
+	$post_author = get_post_field( 'post_author', $id );
+
+	// is the account activated
+	$account_activated = class_exists('cgcUserAPI') ? cgcUserAPI::account_status( $post_author ) : false;
 
 	$cover = '';
 	if ( 'video' == $type ) {
@@ -162,13 +171,22 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	}
 
-	?><li class="submission-status--<?php echo $class;?>">
-		<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
-			<span><?php echo $label;?></span>
-			<?php echo $cover;?>
-		</a>
-	</li>
-	<?php
+	if ( false == $account_activated ):
+
+		?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>">
+			<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
+				<span><?php echo $label;?></span>
+				<?php echo $cover;?>
+			</a>
+			<?php if ( is_page('activity') && is_user_logged_in() ) { ?>
+			<div id="submission-controls" class="not-visible">
+				<input type="checkbox" id="delete_submission_<?php echo absint( $id );?>" name="delete_submission_<?php echo absint( $id );?>">
+				<label for="delete_submission_<?php echo absint( $id );?>" class="checkbox-control checkbox"></label>
+			</div>
+			<?php } ?>
+		</li>
+
+	<?php endif;
 
 
 }
@@ -282,7 +300,7 @@ function cgc_edu_get_sketcfab_cover( $post_id = 0, $model = '' ) {
 
     }
 
-    $out = $return['thumbnail_url'];
+    $out = isset( $return['thumbnail_url'] ) ? $return['thumbnail_url'] : false;
 
     if ( $out )
 		return $out;
@@ -512,6 +530,65 @@ function cgc_exercise_count_submissions( $postid = '' ) {
 
 	return $return;
 
+}
+
+/**
+*	Count the number of submissions across all exercises for a specific user, or return all the post_ids of all submissions belonging to a specific user
+*
+*	@param $user_id int id of the user to fetch submissions for
+*	@param $get_count bool true to count the submission, false to return post ids
+*	@since 5.0.4
+*	@return int or array of ids basedon get_count bool
+*/
+function cgc_exercise_count_all_submissions( $user_id = 0, $get_count = true ) {
+
+	if ( empty( $user_id ) )
+		$user_id = get_current_user_ID();
+
+	$exercises = get_posts( array( 'post_type' => 'exercise', 'posts_per_page' => -1 ) );
+	$count = 0;
+	$return = array();
+
+	if ( $exercises ) {
+
+		foreach ( (array) $exercises as $exercise ) {
+
+			$submissions 	= cgc_exercise_get_submissions( $exercise->ID );
+
+			if ( !empty( $submissions ) ) {
+
+				foreach( (array) $submissions as $submission ) {
+
+					$post = get_post( $submission );
+					$status = get_post_status ( $submission );
+
+					if ( FALSE !== $status && 'publish' == $status && $user_id == $post->post_author ) {
+
+						if ( true == $get_count ) {
+
+							$count++;
+
+							$count = $count;
+
+						} else {
+
+							$return[]= $post->ID;
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
+	} else {
+
+		$count = 0;
+	}
+
+	return true == $get_count ? $count : $return;
 }
 
 /**
