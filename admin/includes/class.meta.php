@@ -54,6 +54,12 @@ class cgc_exercise_meta{
 					'type'			=> 'text_small'
 				),
 				array(
+					'id'			=> '_cgc_edu_exercise_vote_threshold',
+					'name'			=> 'How many votes are allowed?',
+					'type'			=> 'text_small',
+					'default'		=> 10
+				),
+				array(
 					'id'			=> '_cgc_edu_exercise_type',
 					'name'			=> __('Which submission type is accepted for this exercise?', 'cgc-exercises'),
 					'type'			=> 'select',
