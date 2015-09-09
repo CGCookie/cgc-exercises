@@ -62,12 +62,12 @@ class cgc_exercises_process_grading {
 						update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) + 1 );
 
 					// if user votes no
-					} else if ( 'no' == $vote ) {
+					} //else if ( 'no' == $vote ) {
 
 						// decrement
-						update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) - 1 );
+						//update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) - 1 );
 
-					}
+					//}
 				}
 
 				do_action('cgc_edu_exercise_voted', $postid, $userid, $vote );
