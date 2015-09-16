@@ -132,6 +132,8 @@ class cgc_exercises_process_grading {
 		// total votes required to pass
 		$vote_allowed     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
+		$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 10;
+
 		// get submission author
 		$submission_author = get_post_field( 'post_author', $postid );
 		$author_data 		= get_userdata( $submission_author );
@@ -149,7 +151,7 @@ class cgc_exercises_process_grading {
 		update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
 		// 2. if the total # of votes is more than votes allowed
-		if ( $total_votes >= $vote_allowed ) {
+		if ( absint( $total_votes ) == absint( $threshold ) ) {
 
 			// 3. if total yes votes are also more than votes allowed
 			if ( $votes >= $vote_allowed ) {
