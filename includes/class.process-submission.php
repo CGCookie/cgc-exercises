@@ -96,7 +96,7 @@ class cgc_exercises_process_submission {
 					add_action( 'cgc_exercise_submitted', get_current_user_ID(), $submission_id, $type ); // action
 
 					// @todo - display a new thanks modal in place of this
-					echo '<div class="success">Success! You can view your submission <a href="'.get_permalink($submission_id).'">here</a></div>';
+					echo '<div class="success">You can view your submission <a href="'.get_permalink($submission_id).'">here</a></div>';
 
 				}
 
