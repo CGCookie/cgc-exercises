@@ -11,7 +11,7 @@ class cgc_exercises_process_grading {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_grading', 				array($this, 'process_grading' ));
-		//add_action('cgc_edu_exercise_voted', 				array($this,'award_and_mail'), 10, 3);
+		add_action('cgc_edu_exercise_voted', 				array($this,'award_and_mail'), 10, 3);
 	}
 
 	/**
@@ -172,7 +172,7 @@ class cgc_exercises_process_grading {
 				$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
 				if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+					//wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
 				}
 
 
@@ -186,7 +186,7 @@ class cgc_exercises_process_grading {
 				$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
 				if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+					//wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
 				}
 
 			}
