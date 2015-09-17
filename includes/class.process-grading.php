@@ -11,7 +11,7 @@ class cgc_exercises_process_grading {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_grading', 				array($this, 'process_grading' ));
-		//add_action('cgc_edu_exercise_voted', 				array($this,'award_and_mail'), 10, 3);
+		add_action('cgc_edu_exercise_voted', 				array($this,'award_and_mail'), 10, 3);
 	}
 
 	/**
@@ -62,12 +62,12 @@ class cgc_exercises_process_grading {
 						update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) + 1 );
 
 					// if user votes no
-					} else if ( 'no' == $vote ) {
+					} //else if ( 'no' == $vote ) {
 
 						// decrement
-						update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) - 1 );
+						//update_post_meta( $postid, '_cgc_edu_exercise_vote', intval( $votes ) - 1 );
 
-					}
+					//}
 				}
 
 				do_action('cgc_edu_exercise_voted', $postid, $userid, $vote );
@@ -132,6 +132,8 @@ class cgc_exercises_process_grading {
 		// total votes required to pass
 		$vote_allowed     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
+		$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 10;
+
 		// get submission author
 		$submission_author = get_post_field( 'post_author', $postid );
 		$author_data 		= get_userdata( $submission_author );
@@ -149,7 +151,7 @@ class cgc_exercises_process_grading {
 		update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
 		// 2. if the total # of votes is more than votes allowed
-		if ( $total_votes >= $vote_allowed ) {
+		if ( absint( $total_votes ) == absint( $threshold ) ) {
 
 			// 3. if total yes votes are also more than votes allowed
 			if ( $votes >= $vote_allowed ) {
@@ -170,7 +172,7 @@ class cgc_exercises_process_grading {
 				$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
 				if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+					//wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
 				}
 
 
@@ -184,7 +186,7 @@ class cgc_exercises_process_grading {
 				$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
 				if ( !get_user_meta( $userid, 'no_emails', true ) ) {
-					wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
+					//wp_mail( $author_data->user_email, 'Your Exercise Submission', $message );
 				}
 
 			}

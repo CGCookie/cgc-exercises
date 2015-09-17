@@ -360,10 +360,13 @@ function cgc_exercise_get_grade( $postid = 0 ) {
 	$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
 	$passing     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
+	// threshold
+	$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 10;
+
 	// has this user voted
 	$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.$postid.'_has_voted', true);
 
-	if ( $total_votes >= $passing ) { // total points have reacehd teh total number required to pass
+	if ( absint( $total_votes ) == absint( $threshold ) ) { // total points have reacehd teh threshold reqiured to trigger grading
 
 		if ( $votes >= $passing ) { // votes are greater than passing
 
@@ -444,7 +447,10 @@ function cgc_exercise_submission_status( $postid = '' ) {
 	$connected      = get_post_meta( $postid, '_cgc_exercise_submission_linked_to', true);
 	$passing     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
-	if ( $total_votes >= $passing ) { // total points have reacehd teh total number required to pass
+	// threshold
+	$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 10;
+
+	if ( absint( $total_votes ) == absint( $threshold ) ) { // total points have reacehd teh threshold reqiured to trigger grading
 
 		if ( $votes >= $passing ) { // votes are greater than passing
 
