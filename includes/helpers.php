@@ -337,6 +337,68 @@ function cgc_edu_get_vimeo_cover( $id = '' ) {
 		return $out;
 }
 
+/**
+*
+*	Get a cover for a wisita video
+*
+*	@param $video_id string the id of the video to get data for
+*
+*	@return url for image
+*	@since 5.6
+*/
+function cgc_get_wistia_cover( $video_id = '' ) {
+
+	if ( empty( $video_id ) )
+		return;
+
+	$api_pass = cgc_get_option('wistia_api_password','cgc_theme_settings');
+
+	if ( empty( $api_pass ) )
+		return;
+
+    $apiurl = sprintf('https://api.wistia.com/v1/medias/%s.json?api_password=%s', trim( $video_id ), $api_pass );
+
+    $fetch 	= wp_remote_get( $apiurl, array( 'sslverify' => true) );
+    $remote = wp_remote_retrieve_body( $fetch );
+
+    $return = wp_cache_get('cgc_wistia_cover-'.$video_id.'');
+
+    if( !is_wp_error( $remote ) && false === $return ) {
+
+        $return = json_decode( $remote, true );
+        wp_cache_set( 'cgc_wistia_cover-'.$video_id.'', $return );
+    }
+
+   	$out = $return['thumbnail']['url'];
+
+    if ( $out ) {
+
+    	$ret = esc_url( remove_query_arg( 'image_crop_resized', $out ) );
+
+    	//$upload = cgc_save_wistia_cover( $cover, $video_id );
+
+    	return $ret;
+
+	} else {
+
+		return false;
+	}
+}
+
+/**
+*	Programmatically upload thumbnail from the wisita response to the media library
+*
+*	@since 5.6
+*	@return array an array of data that we can use in cgc_attach_saved_wistia_cover
+*	@error getting "invalid file type" so for this reason this function is currently not being used
+*/
+function cgc_save_wistia_cover( $cover = '', $video_id = '' ) {
+
+	$upload = wp_upload_bits( 'cgc_wistia_cover_'.$video_id, null, $cover );
+
+	return $upload;
+}
+
 
 /**
 *
