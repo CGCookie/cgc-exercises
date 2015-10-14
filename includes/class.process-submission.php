@@ -39,8 +39,8 @@ class cgc_exercises_process_submission {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_submission' ) {
 
-			// only run for logged in users and those who are citizen
-			if( !is_user_logged_in() || !$is_citizen )
+			// only run for logged in users
+			if( !is_user_logged_in() )
 				return;
 
 			// ok security passes so let's process some data
