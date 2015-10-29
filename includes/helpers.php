@@ -295,7 +295,7 @@ function cgc_edu_get_sketcfab_cover( $post_id = 0, $model = '' ) {
     	$remote = wp_remote_retrieve_body($fetch);
         $return = json_decode( $remote,true);
 
-        wp_cache_set( 'cgc_edu_sketchfab_cover-'.$id, $remote, '', 12 * HOUR_IN_SECONDS );
+        wp_cache_set( 'cgc_edu_sketchfab_cover-'.$id, $fetch, '', 12 * HOUR_IN_SECONDS );
 
     }
 
