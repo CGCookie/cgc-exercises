@@ -287,18 +287,18 @@ function cgc_edu_get_sketcfab_cover( $post_id = 0, $model = '' ) {
 
     $apiurl = sprintf('https://sketchfab.com/oembed?url=https://sketchfab.com/models/%s', $id );
 
-    $return = wp_cache_get('cgc_edu_sketchfab_cover-'.$id );
+    $remote = wp_cache_get('cgc_edu_sketchfab_cover-'.$id );
 
-    if( false === $return ) {
+    if( false === $remote ) {
 
     	$fetch = wp_remote_get($apiurl, array('sslverify'=>true));
     	$remote = wp_remote_retrieve_body($fetch);
-        $return = json_decode( $remote,true);
 
-        wp_cache_set( 'cgc_edu_sketchfab_cover-'.$id, $return, '', 12 * HOUR_IN_SECONDS );
+        wp_cache_set( 'cgc_edu_sketchfab_cover-'.$id, $remote, '', 12 * HOUR_IN_SECONDS );
 
     }
 
+    $return = json_decode( $remote, true );
     $out = isset( $return['thumbnail_url'] ) ? $return['thumbnail_url'] : false;
 
     if ( $out )
