@@ -292,7 +292,7 @@ function cgc_edu_get_sketcfab_cover( $post_id = 0, $model = '' ) {
 
     $return = wp_cache_get('cgc_edu_sketchfab_cover-'.$id );
 
-    if( !is_wp_error( $remote ) && false == $return ) {
+    if( !is_wp_error( $remote ) && false === $return ) {
 
         $return = json_decode( $remote,true);
 
