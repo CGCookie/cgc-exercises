@@ -421,7 +421,7 @@ function cgc_exercise_get_grade( $postid = 0 ) {
 	$passing     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
 	// threshold
-	$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 10;
+	$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 5;
 
 	// has this user voted
 	$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.$postid.'_has_voted', true);
@@ -508,7 +508,7 @@ function cgc_exercise_submission_status( $postid = '' ) {
 	$passing     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
 	// threshold
-	$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 10;
+	$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 5;
 
 	if ( absint( $total_votes ) == absint( $threshold ) ) { // total points have reacehd teh threshold reqiured to trigger grading
 

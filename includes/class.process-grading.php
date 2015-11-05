@@ -132,7 +132,7 @@ class cgc_exercises_process_grading {
 		// total votes required to pass
 		$vote_allowed     	= get_post_meta( $connected, '_cgc_edu_exercise_passing', true );
 
-		$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 10;
+		$threshold = get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) ? get_post_meta( $connected, '_cgc_edu_exercise_vote_threshold', true ) : 5;
 
 		// get submission author
 		$submission_author = get_post_field( 'post_author', $postid );
