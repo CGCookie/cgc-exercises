@@ -298,7 +298,7 @@ function cgc_edu_get_sketcfab_cover( $post_id = 0, $model = '' ) {
 
     }
 
-    $out = isset( $return['thumbnail_url'] ) ? $return['thumbnail_url'] : false;
+    $out = isset( $return['thumbnail_url'] ) ? $return['thumbnail_url'] : CGC5_THEME_URL.'/assets/img/default-sketchfab-cover.png';
 
     if ( $out )
 		return $out;
