@@ -165,18 +165,16 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 	} elseif ( 'sketchfab' == $type ) {
 
-		$model  			= get_post_meta( $id , '_cgc_edu_exercise_sketchfab', true);
-		$sketchfab_cover 	= cgc_edu_get_sketcfab_cover( $id, $model );
-		$cover 				= $sketchfab_cover ? sprintf('<div class="submission--cover" style="background-image:url(\'%s\');"></div>',$sketchfab_cover) : null;
-
+		$model  	= get_post_meta( $id , '_cgc_edu_exercise_sketchfab', true);
+		$model_id 	= cgc_edu_get_sketchfab_model( $id );
 	}
 
 	if ( false == $account_activated ):
 
-		?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>">
+		?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>" data-model-id="<?php echo $model_id;?>" data-post-id="<?php echo $id;?>">
 			<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
 				<span><?php echo $label;?></span>
-				<?php echo $cover;?>
+				<div class="submission--cover"></div>
 			</a>
 			<?php if ( is_page('activity') && is_user_logged_in() ) { ?>
 			<div id="submission-controls" class="not-visible">
@@ -267,41 +265,6 @@ function cgc_edu_get_sketchfab_model( $post_id = 0 ) {
 
 	return !empty( $string ) ? $string : false;
 
-}
-
-/**
-*
-*	Return the thumbnail from the sketchfab api for the model being queried
-*
-*	@param $post_id int id of the entry to get the model for
-*	@param $model string id of the sketchfab model
-*	@return a thumbnail image
-*/
-function cgc_edu_get_sketcfab_cover( $post_id = 0, $model = '' ) {
-
-	if ( empty( $model ) )
-		return;
-
-	// return just the model so we can query the api
-	$id = cgc_edu_get_sketchfab_model( $post_id );
-
-    $apiurl = sprintf('https://sketchfab.com/oembed?url=https://sketchfab.com/models/%s', $id );
-
-    $return = wp_cache_get('cgc_edu_sketchfab_covr-'.$id );
-
-    if( false === $return ) {
-
-    	$fetch 	= wp_remote_get( $apiurl, array( 'sslverify'=> true ) );
-    	$return = json_decode( wp_remote_retrieve_body( $fetch ), true );
-
-        wp_cache_set( 'cgc_edu_sketchfab_covr-'.$id, $return, '', 12 * HOUR_IN_SECONDS );
-
-    }
-
-    $out = isset( $return['thumbnail_url'] ) ? $return['thumbnail_url'] : CGC5_THEME_URL.'/assets/img/default-sketchfab-cover.png';
-
-    if ( $out )
-		return $out;
 }
 
 /**
