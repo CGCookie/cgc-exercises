@@ -35,7 +35,7 @@ class cgc_exercises_process_submission {
 
 		$type           = get_post_meta( $postid , '_cgc_edu_exercise_type', true);
 
-		$is_citizen = class_exists('cgcUserAPI') ? cgcUserAPI::is_user_citizen() : false;
+		$is_citizen = class_exists('cgcUserApi') ? cgcUserApi::is_user_citizen() : false;
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_submission' ) {
 
