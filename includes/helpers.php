@@ -167,6 +167,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 		$model  	= get_post_meta( $id , '_cgc_edu_exercise_sketchfab', true);
 		$model_id 	= cgc_edu_get_sketchfab_model( $id );
+		$cover      = '<div class="submission--cover"></div>';
 	}
 
 	if ( false == $account_activated ):
@@ -174,7 +175,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 		?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>" data-model-id="<?php echo $model_id;?>" data-post-id="<?php echo $id;?>">
 			<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
 				<span><?php echo $label;?></span>
-				<div class="submission--cover"></div>
+				<?php echo $cover;?>
 			</a>
 			<?php if ( is_page('activity') && is_user_logged_in() ) { ?>
 			<div id="submission-controls" class="not-visible">
