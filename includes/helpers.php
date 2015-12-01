@@ -122,7 +122,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 	// is the account activated
 	$account_activated = class_exists('cgcUserApi') ? cgcUserApi::account_status( $post_author ) : false;
 
-	$cover = '';
+	$cover = $model_id = '';
 	if ( 'video' == $type ) {
 
 		// get the info about video
