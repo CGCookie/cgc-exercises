@@ -348,6 +348,40 @@ function cgc_get_wistia_cover( $video_id = '' ) {
 }
 
 /**
+*
+*	Get a length for a video from wistia
+*
+*	@param $video_id string the id of the video to get data for
+*
+*	@return url for image
+*	@since 5.6
+*/
+function cgc_get_wistia_video_length( $video_id = '' ) {
+
+	if ( empty( $video_id ) )
+		return;
+
+	$api_pass = cgc_get_option('wistia_api_password','cgc_theme_settings');
+
+	if ( empty( $api_pass ) )
+		return;
+
+    $apiurl = sprintf('https://api.wistia.com/v1/medias/%s.json?api_password=%s', trim( $video_id ), $api_pass );
+
+    $fetch 	= wp_remote_get( $apiurl, array( 'sslverify' => true) );
+    $remote = wp_remote_retrieve_body( $fetch );
+
+    if( !is_wp_error( $remote ) ) {
+
+        $return = json_decode( $remote, true );
+    }
+
+   	$out = round( $return['duration'] );
+
+    return $out ? $out : false;
+}
+
+/**
 *	Programmatically upload thumbnail from the wisita response to the media library
 *
 *	@since 5.6
