@@ -424,7 +424,7 @@ function cgc_exercise_get_grade( $postid = 0 ) {
 	// has this user voted
 	$has_voted     = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.$postid.'_has_voted', true);
 
-	if ( absint( $total_votes ) == absint( $threshold ) ) { // total points have reacehd teh threshold reqiured to trigger grading
+	if ( absint( $total_votes ) >= absint( $threshold ) ) { // total points have reacehd teh threshold reqiured to trigger grading
 
 		if ( $votes >= $passing ) { // votes are greater than passing
 
