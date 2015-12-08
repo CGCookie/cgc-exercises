@@ -150,8 +150,8 @@ class cgc_exercises_process_grading {
 		// 1. set a flag for this user so they can't vote anymore
 		update_user_meta( $userid, '_cgc_edu_exercise-'.$postid.'_has_voted', true );
 
-		// 2. if the total # of votes is more than votes allowed
-		if ( absint( $total_votes ) == absint( $threshold ) ) {
+		// 2. if the total # of votes is equal to or more than votes allowed
+		if ( absint( $total_votes ) >= absint( $threshold ) ) {
 
 			// 3. if total yes votes are also more than votes allowed
 			if ( $votes >= $vote_allowed ) {
@@ -164,6 +164,8 @@ class cgc_exercises_process_grading {
 					'last_page'		=> 	''
 		   		);
 		        cgc_increment_user_xp( $args );
+
+		        do_action('cgc_exercise_passed', $submission_author, $connected, $postid ); // submission author, exercise post id, submission post id
 
 		        // mail the user
 				$message = "Hi ".$author_data->display_name.",\n";
@@ -178,6 +180,8 @@ class cgc_exercises_process_grading {
 
 			// 4. this exercise did not pass so run our logic here
 			} else {
+
+				do_action('cgc_exercise_failed', $submission_author, $connected, $postid ); // submission author, exercise post id, submission post id
 
 				// mail the user
 				$message = "Hi ".$author_data->display_name.",\n";
