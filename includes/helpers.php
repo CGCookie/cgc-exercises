@@ -174,7 +174,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 
 		?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>" data-model-id="<?php echo $model_id;?>" data-post-id="<?php echo $id;?>">
 			<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
-				<span><?php echo $label;?></span>
+				<span class="submission-status"><?php echo $label;?></span>
 				<?php echo $cover;?>
 			</a>
 			<?php if ( is_page('activity') && is_user_logged_in() ) { ?>
