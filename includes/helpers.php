@@ -173,7 +173,7 @@ function cgc_edu_submission_block( $id = 0 ) {
 	if ( false == $account_activated ):
 
 		?><li id="submission-<?php echo $id;?>" class="submission--item submission-status--<?php echo $class;?>" data-model-id="<?php echo $model_id;?>" data-post-id="<?php echo $id;?>">
-			<a href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
+			<a class="submission--link" href="<?php echo get_permalink( $id );?>" data-title="<?php echo isset( $id->post_title ) ? esc_html( $id->post_title ) : false;?>">
 				<span class="submission-status"><?php echo $label;?></span>
 				<?php echo $cover;?>
 			</a>
