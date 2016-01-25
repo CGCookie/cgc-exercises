@@ -194,6 +194,7 @@
 		background:lighten($base,5);
 		padding:6px 10px;
 		margin-bottom:0;
+		@extend .button.small;
 
 		&:hover {
 			@include make-network-color('background');

@@ -90,8 +90,8 @@ function cgc_edu_submission_block( $id = 0 ) {
 	if ( empty( $id ) )
 		return;
 
-
-	$status = cgc_exercise_submission_status($id);
+	$status 	= cgc_exercise_submission_status( $id );
+	$has_voted   = get_user_meta( get_current_user_ID(), '_cgc_edu_exercise-'.$id.'_has_voted', true);
 
 	if ( 'true' == $status ) {
 
@@ -103,11 +103,15 @@ function cgc_edu_submission_block( $id = 0 ) {
 		$class = 'failed';
 		$label = 'Did not pass';
 
-	} elseif( 'open' == $status ) {
+	} elseif( 'open' == $status && !$has_voted ) {
 
 		$class = 'open';
 		$label = 'Ready for Grading';
 
+	} else if ( $has_voted ) {
+
+		$class = 'open';
+		$label = 'Thanks for grading!';
 	}
 
 	// get the connected exercise
