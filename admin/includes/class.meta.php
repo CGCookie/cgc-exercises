@@ -3,8 +3,28 @@
 class cgc_exercise_meta{
 
 	public function __construct(){
-		add_filter( 'cmb2_meta_boxes', array($this,'exercise_meta') );
-		add_filter( 'cmb2_init', array($this,'exercise_submission_meta') );
+		add_filter( 'cmb2_meta_boxes', 	array($this,'exercise_meta') );
+		add_filter( 'cmb2_init', 		array($this,'exercise_submission_meta') );
+		add_filter( 'cmb2_init', 		array($this,'standalone') );
+	}
+
+	public function standalone() {
+
+	    $cmb = new_cmb2_box( array(
+	        'id'            => 'standalone_status',
+	        'title'         => __( 'Standalone Exercise', 'cmb2' ),
+	        'object_types'  => array( 'exercise' ),
+	        'context'       => 'side',
+	        'priority'      => 'high',
+	        'show_names'    => true,
+	    ) );
+
+	    $cmb->add_field( array(
+	        'name'       => '',
+	        'desc'       => 'Is this exercise standalone, as in not part of a course?',
+	        'id'         => '_exercise_standalone',
+	        'type'       => 'checkbox'
+	    ) );
 	}
 
 	public function exercise_submission_meta() {
