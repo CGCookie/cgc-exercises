@@ -152,7 +152,7 @@ function cgc_edu_unity_modal(){
 	if ( 'exercise_submission' == get_post_type() ):
 
 		$player_url 	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_unity', true);
-	 	$ssl_safe_url 	= $player_url ? ltrim( $player_url, 'http:' ) : false;
+	 	$ssl_safe_url 	= $player_url ? cgc_safe_ssl_url( $player_url ) : false;
 
 		?>
 		<div class="modal fade modal--exercise-submission" id="cgc-unity-modal" tabindex="-1" role="dialog">
