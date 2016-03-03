@@ -68,7 +68,7 @@ function cgc_edu_exercise_submission_modal(){
 									<label class="file-upload" for="exercise-image">
 										<i class="icon icon-upload"></i>
 										<span>Screenshot</span>
-										<span class="filename">Recommended size - 300 x 300</span>
+										<span class="filename">Recommended size - 900 x 500</span>
 										<input required type="file" name="exercise-image" multiple="false">
 									</label>
 									<?php
