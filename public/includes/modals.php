@@ -151,14 +151,15 @@ function cgc_edu_unity_modal(){
 
 	if ( 'exercise_submission' == get_post_type() ):
 
-		$player_url = get_post_meta( get_the_ID(), '_cgc_edu_exercise_unity', true);
+		$player_url 	= get_post_meta( get_the_ID(), '_cgc_edu_exercise_unity', true);
+	 	$ssl_safe_url 	= ltrim( $player_url, 'http:' );
 
 		?>
 		<div class="modal fade modal--exercise-submission" id="cgc-unity-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-body">
-						<iframe width="100%" height="500px" src="<?php echo esc_url( $player_url );?>" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
+						<iframe width="100%" height="500px" src="<?php echo esc_url( $ssl_safe_url );?>" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
 					</div>
 				</div>
 			</div>
