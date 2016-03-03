@@ -52,6 +52,13 @@ class cgc_exercise_meta{
 	        'id'         => '_cgc_edu_exercise_video',
 	        'type'       => 'text'
 	    ) );
+
+	    $cmb->add_field( array(
+	        'name'       => 'Unity URL',
+	        'desc'       => 'Unity URL',
+	        'id'         => '_cgc_edu_exercise_unity',
+	        'type'       => 'text'
+	    ) );
 	}
 
 	public function exercise_meta( array $meta_boxes ) {

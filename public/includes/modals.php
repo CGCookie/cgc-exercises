@@ -146,20 +146,22 @@ function cgc_edu_grading_modal(){
 *
 *	@param $player_url string the url to the users submittd unity html file
 */
-function cgc_edu_unity_modal( $player_url = '' ){
+add_action('wp_footer','cgc_edu_unity_modal');
+function cgc_edu_unity_modal(){
 
-	ob_start();
+	if ( 'exercise_submission' == get_post_type() ):
 
-	?>
-	<div id="cgc-unity-modal" class="reveal-modal cgc-universal-modal">
-		<a class="close-reveal-modal "><i class="dashicons dashicons-no-alt"></i></a>
-		<div class="cgc-universal-modal--wrap">
-			<div class="cgc-universal-modal--body">
-				<iframe width="100%" height="500px" src="<?php echo esc_url( $player_url );?>" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
+		$player_url = get_post_meta( get_the_ID(), '_cgc_edu_exercise_unity', true);
+
+		?>
+		<div class="modal fade modal--exercise-submission" id="cgc-unity-modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-body">
+						<iframe width="100%" height="500px" src="<?php echo esc_url( $player_url );?>" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
+					</div>
+				</div>
 			</div>
-
 		</div>
-	</div>
-	<?php
-	return ob_get_clean();
+	<?php endif;
 }
