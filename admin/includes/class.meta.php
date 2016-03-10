@@ -190,6 +190,36 @@ class cgc_exercise_meta{
 				)
 			)
 		);
+
+		$meta_boxes[] = array(
+			'id'	=> '_exercise_notes_setup',
+			'title' => __('Instructor Notes', 'cgc-exercises'),
+			'object_types' 	=> array('exercise'),
+			'fields' => array(
+				array(
+			        'name'       => 'Date Notes Become Available',
+			        'desc'       => 'What is the date that the notes become available?',
+			        'id'         => '_cgc_exercise_notes_date',
+			        'type'       => 'text_date_timestamp'
+			    ),
+			    array(
+					'id'			=> '_cgc_exercise_notes_video',
+					'name'			=> 'Notes Video ID',
+					'desc'			=> 'Enter the Wistia Video ID for the exercise notes',
+					'type'			=> 'text_small'
+				),
+				array(
+					'id' 			=> '_cgc_exercise_notes',
+					'name' 			=> __('Instructor Notes', 'cgc-exercises'),
+					'type' 			=> 'wysiwyg',
+					'options' 		=> array(
+				        'wpautop' 	=> true, // use wpautop?
+				        'textarea_rows' => get_option('default_post_edit_rows', 5)
+				    ),
+					'desc'		=> 'Your instructor notes for this exercise go here'
+				)
+			)
+		);
 		return $meta_boxes;
 
 	}
