@@ -25,6 +25,13 @@ class cgc_exercise_meta{
 	        'id'         => '_exercise_standalone',
 	        'type'       => 'checkbox'
 	    ) );
+
+	    $cmb->add_field( array(
+	        'name'       => 'Notify Users',
+	        'desc'       => 'Only check this box after filling in instructor notes',
+	        'id'         => '_cgc_exercise_updated',
+	        'type'       => 'checkbox'
+	    ) );
 	}
 
 	public function exercise_submission_meta() {
