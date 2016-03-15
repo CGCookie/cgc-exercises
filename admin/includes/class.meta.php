@@ -30,7 +30,7 @@ class cgc_exercise_meta{
 	        'name'       => 'Notify Users',
 	        'desc'       => 'Only check this box after filling in instructor notes',
 	        'id'         => '_cgc_exercise_updated',
-	        'type'       => 'text_datetime_timestamp'
+	        'type'       => 'checkbox'
 	    ) );
 	}
 
