@@ -198,6 +198,7 @@ class cgc_exercise_meta{
 			)
 		);
 
+		/*
 		$meta_boxes[] = array(
 			'id'	=> '_exercise_notes_setup',
 			'title' => __('Instructor Notes', 'cgc-exercises'),
@@ -227,6 +228,7 @@ class cgc_exercise_meta{
 				)
 			)
 		);
+		*/
 		return $meta_boxes;
 
 	}
