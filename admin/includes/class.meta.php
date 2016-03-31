@@ -25,13 +25,6 @@ class cgc_exercise_meta{
 	        'id'         => '_exercise_standalone',
 	        'type'       => 'checkbox'
 	    ) );
-
-	    $cmb->add_field( array(
-	        'name'       => 'Notify Users',
-	        'desc'       => 'Only check this box after filling in instructor notes',
-	        'id'         => '_cgc_exercise_updated',
-	        'type'       => 'checkbox'
-	    ) );
 	}
 
 	public function exercise_submission_meta() {
@@ -198,21 +191,50 @@ class cgc_exercise_meta{
 			)
 		);
 
-
 		$meta_boxes[] = array(
 			'id'	=> '_exercise_notes_setup',
-			'title' => __('Attached Notes', 'cgc-exercises'),
+			'title' => __('Instructor Notes', 'cgc-exercises'),
 			'object_types' 	=> array('exercise'),
 			'fields' => array(
 				array(
-					'name'    => __( 'Attached Notes', 'cgc-core' ),
+			        'name'       => 'Date Notes Become Available',
+			        'desc'       => 'What is the date that the notes become available?',
+			        'id'         => '_cgc_exercise_notes_date',
+			        'type'       => 'text_date_timestamp'
+			    ),
+			    array(
+					'id'			=> '_cgc_exercise_notes_video',
+					'name'			=> 'Notes Video ID',
+					'desc'			=> 'Enter the Wistia Video ID for the exercise notes',
+					'type'			=> 'text_small'
+				),
+				array(
+					'id' 			=> '_cgc_exercise_notes',
+					'name' 			=> __('Instructor Notes', 'cgc-exercises'),
+					'type' 			=> 'wysiwyg',
+					'options' 		=> array(
+				        'wpautop' 	=> true, // use wpautop?
+				        'textarea_rows' => get_option('default_post_edit_rows', 5)
+				    ),
+					'desc'		=> 'Your instructor notes for this exercise go here'
+				)
+			)
+		);
+
+		$meta_boxes[] = array(
+			'id'	=> '_exercise_results_setup',
+			'title' => __('Attached Exercise Results', 'cgc-exercises'),
+			'object_types' 	=> array('exercise'),
+			'fields' => array(
+				array(
+					'name'    => __( '', 'cgc-core' ),
 					'desc'    => __( 'Drag posts from the left column to the right column to attach them to this page.<br />You may rearrange the order of the posts in the right column by dragging and dropping.', 'cgc-core' ),
 					'id'      => '_cgc_exercise_attached_to_note',
 					'type'    => 'custom_attached_posts',
 					'options' => array(
 						'show_thumbnails' => true, // Show thumbnails on the left
 						'filter_boxes'    => true, // Show a text box for filtering the results
-						'query_args'      => array( 'posts_per_page' => 100 ,'post_type' => 'cgc_notes'), // override the get_posts args
+						'query_args'      => array( 'posts_per_page' => 100 ,'post_type' => 'exercise_results'), // override the get_posts args
 					)
 				)
 			)
