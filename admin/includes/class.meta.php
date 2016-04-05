@@ -234,7 +234,7 @@ class cgc_exercise_meta{
 					'options' => array(
 						'show_thumbnails' => true, // Show thumbnails on the left
 						'filter_boxes'    => true, // Show a text box for filtering the results
-						'query_args'      => array( 'posts_per_page' => 100 ,'post_type' => 'exercise_results'), // override the get_posts args
+						'query_args'      => array( 'posts_per_page' => 100 ,'post_type' => 'exercise_results','post_status' => array('publish','future')), // override the get_posts args
 					)
 				)
 			)
