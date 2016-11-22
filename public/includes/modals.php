@@ -90,7 +90,7 @@ function cgc_edu_exercise_submission_modal(){
 								<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('cgc-exercise-submission-nonce'); ?>"/>
 								<input type="submit" value="Submit">
 								<a class="button comment-cancel" href="#">Nah, nevermind</a>
-								<p>By submitting your exercise, you agree to recieve public critiques, feedback, and voting on your image.</p>
+								<p>By submitting your exercise, you agree to receive public critiques, feedback, and voting on your image.</p>
 							</div>
 						</form>
 					</div>
