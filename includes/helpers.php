@@ -447,7 +447,7 @@ function cgc_exercise_get_grade( $postid = 0 ) {
 
 		} elseif ( get_current_user_ID() == get_the_author_meta('ID') ) {
 
-			$return = 'Your submission is still be voted on, hang tight!';
+			$return = 'Your submission is still being voted on, hang tight!';
 
 		} elseif( is_user_logged_in() ) {
 
